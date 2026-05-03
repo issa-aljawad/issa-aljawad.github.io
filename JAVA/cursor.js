@@ -55,7 +55,7 @@ const CursorManager = (function () {
         // Hover state on interactive elements
         const bindInteractiveElements = () => {
             const interactiveElements = document.querySelectorAll(
-                'a, button, [role="button"], .cv-sw-item, .logo-item, .header-toggle-btn, .service-box, .deck-card, .comment-nav-btn'
+                'a, button, .cv-sw-item, .logo-item, .header-toggle-btn, .service-box, .deck-card, .comment-nav-btn'
             );
             
             interactiveElements.forEach(el => {
@@ -63,23 +63,16 @@ const CursorManager = (function () {
                 if (el.dataset.cursorBound) return;
                 el.dataset.cursorBound = 'true';
 
-                const onEnter = () => {
+                el.addEventListener('mouseenter', () => {
                     document.body.classList.add('cursor-hover');
                     cursorPointer.classList.add('is-hand');
                     cursorUse.setAttribute('href', '#cursor-dark-hand');
-                };
-
-                const onLeave = () => {
+                });
+                el.addEventListener('mouseleave', () => {
                     document.body.classList.remove('cursor-hover');
                     cursorPointer.classList.remove('is-hand');
                     cursorUse.setAttribute('href', '#cursor-dark-pointer');
-                };
-
-                el.addEventListener('mouseenter', onEnter);
-                el.addEventListener('mouseleave', onLeave);
-                
-                // Cleanup for dynamically removed elements if needed
-                // Using a MutationObserver in a real app would be better
+                });
             });
         };
 

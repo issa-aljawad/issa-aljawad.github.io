@@ -5,9 +5,9 @@
 
 (() => {
   const SKIP_NEXT_LOAD_KEY = "portfolio-loader-skip-next-load";
-  const INTRO_LEAVE_DELAY = 1280;
-  const INTRO_REMOVE_DELAY = 1840;
-  const NAVIGATE_DELAY = 720;
+  const INTRO_LEAVE_DELAY = 3000;
+  const INTRO_REMOVE_DELAY = 3700;
+  const NAVIGATE_DELAY = 3000;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const PAGE_TITLES = {
     "branding.html": "Branding",
@@ -95,11 +95,7 @@
     if (!mainEl) return;
 
     mainEl.setAttribute("aria-label", title);
-    
-    // Clear existing children safely
-    while (mainEl.firstChild) {
-      mainEl.removeChild(mainEl.firstChild);
-    }
+    mainEl.replaceChildren();
 
     title
       .split(/\s+/)
@@ -121,9 +117,7 @@
       const mainEl = titleEl.querySelector(".loader-title-main");
       if (mainEl) {
         mainEl.setAttribute("aria-label", "");
-        while (mainEl.firstChild) {
-          mainEl.removeChild(mainEl.firstChild);
-        }
+        mainEl.replaceChildren();
       }
       titleEl.classList.remove("is-visible");
       return;

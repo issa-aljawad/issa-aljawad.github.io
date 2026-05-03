@@ -163,8 +163,8 @@
 }
 
 .loader-title.is-visible .loader-title-word {
-  animation: titleWordReveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(0.08s + (var(--word-index) * 0.07s));
+  animation: titleWordReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.2s + (var(--word-index) * 0.12s));
 }
 
 .loader-flame-glow,
@@ -311,51 +311,51 @@
 }
 
 .loader-stage.is-transitioning .loader-flame-glow {
-  animation: glowPulse 1.05s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+  animation: glowPulse 2.9s cubic-bezier(0.6, 0, 0.4, 1) forwards;
 }
 
 .loader-stage.is-transitioning .loader-flame-aura {
-  animation: auraRise 1s cubic-bezier(0.64, 0, 0.36, 1) 0.06s forwards;
+  animation: auraRise 2.82s cubic-bezier(0.64, 0, 0.36, 1) 0.12s forwards;
 }
 
 .loader-stage.is-transitioning .loader-flame--outer {
-  animation: flameOuter 1.06s cubic-bezier(0.6, 0, 0.4, 1) forwards;
+  animation: flameOuter 3s cubic-bezier(0.6, 0, 0.4, 1) forwards;
 }
 
 .loader-stage.is-transitioning .loader-flame--mid {
-  animation: flameMid 0.98s cubic-bezier(0.6, 0, 0.4, 1) 0.05s forwards;
+  animation: flameMid 2.92s cubic-bezier(0.6, 0, 0.4, 1) 0.08s forwards;
 }
 
 .loader-stage.is-transitioning .loader-flame--inner {
-  animation: flameInner 0.9s cubic-bezier(0.6, 0, 0.4, 1) 0.08s forwards;
+  animation: flameInner 2.84s cubic-bezier(0.6, 0, 0.4, 1) 0.12s forwards;
 }
 
 .loader-stage.is-transitioning .loader-flame-core {
-  animation: flameCore 0.82s cubic-bezier(0.6, 0, 0.4, 1) 0.12s forwards;
+  animation: flameCore 2.76s cubic-bezier(0.6, 0, 0.4, 1) 0.18s forwards;
 }
 
 .loader-stage.is-transitioning .loader-ring--one {
-  animation: ringPulse 0.9s cubic-bezier(0.64, 0, 0.36, 1) 0.16s forwards;
+  animation: ringPulse 2.7s cubic-bezier(0.64, 0, 0.36, 1) 0.24s forwards;
 }
 
 .loader-stage.is-transitioning .loader-ring--two {
-  animation: ringPulse 0.96s cubic-bezier(0.64, 0, 0.36, 1) 0.22s forwards;
+  animation: ringPulse 2.76s cubic-bezier(0.64, 0, 0.36, 1) 0.34s forwards;
 }
 
 .loader-stage.is-transitioning .loader-spark--one {
-  animation: sparkRiseA 0.82s cubic-bezier(0.58, 0, 0.42, 1) 0.16s forwards;
+  animation: sparkRiseA 2.58s cubic-bezier(0.58, 0, 0.42, 1) 0.22s forwards;
 }
 
 .loader-stage.is-transitioning .loader-spark--two {
-  animation: sparkRiseB 0.76s cubic-bezier(0.58, 0, 0.42, 1) 0.2s forwards;
+  animation: sparkRiseB 2.5s cubic-bezier(0.58, 0, 0.42, 1) 0.28s forwards;
 }
 
 .loader-stage.is-transitioning .loader-spark--three {
-  animation: sparkRiseC 0.8s cubic-bezier(0.58, 0, 0.42, 1) 0.14s forwards;
+  animation: sparkRiseC 2.54s cubic-bezier(0.58, 0, 0.42, 1) 0.2s forwards;
 }
 
 .loader-stage.is-transitioning .loader-spark--four {
-  animation: sparkRiseD 0.86s cubic-bezier(0.58, 0, 0.42, 1) 0.24s forwards;
+  animation: sparkRiseD 2.62s cubic-bezier(0.58, 0, 0.42, 1) 0.32s forwards;
 }
 
 @keyframes glowPulse {

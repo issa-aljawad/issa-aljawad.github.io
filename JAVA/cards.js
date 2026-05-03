@@ -32,7 +32,7 @@
     }
 
     function setActive(index) {
-        if (index === currentIndex || index < 0 || index >= total) return;   
+        if (index === currentIndex) return;   // ← ADDED: short-circuit redundant calls
         currentIndex = index;
 
         cards.forEach((card, i) => {
@@ -56,14 +56,12 @@
         });
 
         categories.forEach((c, i) => {
-            if (c) c.classList.toggle('is-active', i === index);
+            c.classList.toggle('is-active', i === index);
         });
 
         dots.forEach((d, i) => {
-            if (d) {
-                d.classList.toggle('is-active', i === index);
-                d.setAttribute('aria-current', i === index ? 'true' : 'false');
-            }
+            d.classList.toggle('is-active', i === index);
+            d.setAttribute('aria-current', i === index ? 'true' : 'false');
         });
 
         if (prevBtn) prevBtn.disabled = index === 0;
@@ -105,9 +103,7 @@
             });
         }, {
             rootMargin: '-50% 0px -50% 0px',
-            threshold: 0,
-            // Use the works-scroll-wrap as root if needed, but null (viewport) is usually fine
-            root: null
+            threshold: 0
         });
 
         triggers.forEach((t) => io.observe(t));
