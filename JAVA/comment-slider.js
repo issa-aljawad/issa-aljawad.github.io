@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- SLIDER LOGIC ---
   const updateSlider = (index) => {
+    if (!slides.length) return;
+    
     // Remove active from all
     slides.forEach(slide => slide.classList.remove('active'));
     
@@ -36,12 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
     slides[currentSlide].classList.add('active');
     
     // Update Progress Thumb Position
-    // The thumb moves along the grey line
     if (progressBar && progressBar.parentElement) {
       const containerWidth = progressBar.parentElement.offsetWidth;
       const thumbWidth = progressBar.offsetWidth;
       const maxTravel = containerWidth - thumbWidth;
-      const moveX = (currentSlide / (totalSlides - 1)) * maxTravel;
+      
+      // Prevent division by zero if totalSlides is 1
+      const progress = totalSlides > 1 ? currentSlide / (totalSlides - 1) : 1;
+      const moveX = progress * maxTravel;
       
       progressBar.style.transform = `translateX(${moveX}px)`;
     }

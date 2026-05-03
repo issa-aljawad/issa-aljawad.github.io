@@ -108,7 +108,7 @@
   border: 1px solid rgba(117, 46, 255, 0.3);
   border-radius: 4px;
   /* Sharper corners for anime style */
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to allow date badges to stick out */
   box-shadow: 0 0 40px rgba(117, 46, 255, 0.1);
   position: relative;
   text-align: left;
@@ -120,8 +120,7 @@
 
   /* Reveal initial state (Opening up from top) */
   opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  /* Closed from bottom */
+  clip-path: inset(-50px -50px 100% -50px); /* Adjusted to not clip badges during animation */
   transition:
     clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
     opacity 0.6s ease 0.6s;
@@ -129,8 +128,7 @@
 
 #about.reveal .cv-card {
   opacity: 1;
-  clip-path: inset(0 0 0 0);
-  /* Fully open */
+  clip-path: inset(-50px -50px -50px -50px); /* Fully open with room for badges */
 }
 
 /* Loading Progress Bar */
@@ -148,6 +146,13 @@
 
 #about.reveal .cv-loading-bar {
   width: 100%;
+  animation: bar-finish 0.3s ease-out 3s forwards;
+}
+
+@keyframes bar-finish {
+  0% { opacity: 1; box-shadow: 0 0 15px var(--purple); }
+  50% { opacity: 0.5; box-shadow: 0 0 30px var(--purple-light); }
+  100% { opacity: 0.8; box-shadow: 0 0 10px var(--purple); }
 }
 
 /* System Data Status Label */
@@ -158,16 +163,22 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--purple);
+  color: var(--purple-light);
   opacity: 0;
   z-index: 15;
   letter-spacing: 0.15em;
   pointer-events: none;
   transition: opacity 0.4s ease 1.5s;
+  animation: system-flicker 4s infinite 2s;
 }
 
-#about.reveal .cv-system-data {
-  opacity: 0.6;
+@keyframes system-flicker {
+  0%, 100% { opacity: 0.6; }
+  92% { opacity: 0.6; }
+  93% { opacity: 0.2; }
+  94% { opacity: 0.6; }
+  95% { opacity: 0.3; }
+  96% { opacity: 0.6; }
 }
 
 /* Staggered Content Animation */
@@ -521,6 +532,19 @@
   gap: 16px 24px;
 }
 
+@media (max-width: 1200px) {
+  .cv-experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .cv-experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cv-bottom-row {
   display: grid;
   grid-template-columns: 1.5fr 0.7fr 0.8fr;
@@ -529,12 +553,25 @@
   padding-top: 24px;
 }
 
+@media (max-width: 1024px) {
+  .cv-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 /* Specific grids within columns */
 .cv-achievements-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
   gap: 12px 20px;
+}
+
+@media (max-width: 640px) {
+  .cv-achievements-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ------------------------------------------------------
@@ -565,6 +602,46 @@
 }
 
 /* Base Button Styles */
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 32px;
+  background: var(--purple);
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.cv-download-btn:hover {
+  background: var(--purple-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.cv-btn-glitch {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.cv-download-btn:hover .cv-btn-glitch {
+  transform: translateX(100%);
+}
+
 .cv-btn {
   display: inline-flex;
   align-items: center;
@@ -682,10 +759,21 @@
   overflow: hidden;
 }
 
-.cv-sw-item svg {
+.cv-sw-item svg,
+.cv-sw-item img {
   width: 28px;
   height: 28px;
   z-index: 2;
+  object-fit: contain;
+}
+
+.cv-sw-item img {
+  filter: grayscale(1) brightness(2);
+  transition: filter 0.3s ease;
+}
+
+.cv-sw-item:hover img {
+  filter: none;
 }
 
 .cv-sw-item::before {
@@ -722,13 +810,13 @@
   color: #ff9a00;
 }
 
-.cv-sw-item[title="Substance 3D Painter"]:hover {
+.cv-sw-item[title="Substance"]:hover {
   box-shadow: 0 0 20px rgba(28, 237, 98, 0.5);
   border-color: rgb(28, 237, 98);
   color: rgb(28, 237, 98);
 }
 
-.cv-sw-item[title="3D Coat"]:hover {
+.cv-sw-item[title="3DCoat"]:hover {
   box-shadow: 0 0 20px rgba(0, 191, 165, 0.5);
   border-color: #00bfa5;
   color: #00bfa5;

@@ -24,18 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reveal Animation on Scroll
   const bannerSection = document.querySelector('#companies');
   
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        bannerSection.classList.add('reveal');
-        revealObserver.unobserve(entry.target);
-      }
+  if (bannerSection && "IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          bannerSection.classList.add('reveal');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5 // Lowered from 0.8 for better mobile compatibility
     });
-  }, {
-    threshold: 0.8 // Trigger only when 80% of the section is in view
-  });
 
-  if (bannerSection) {
     revealObserver.observe(bannerSection);
+  } else if (bannerSection) {
+    bannerSection.classList.add('reveal');
   }
 });

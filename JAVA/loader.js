@@ -95,7 +95,11 @@
     if (!mainEl) return;
 
     mainEl.setAttribute("aria-label", title);
-    mainEl.replaceChildren();
+    
+    // Clear existing children safely
+    while (mainEl.firstChild) {
+      mainEl.removeChild(mainEl.firstChild);
+    }
 
     title
       .split(/\s+/)
@@ -117,7 +121,9 @@
       const mainEl = titleEl.querySelector(".loader-title-main");
       if (mainEl) {
         mainEl.setAttribute("aria-label", "");
-        mainEl.replaceChildren();
+        while (mainEl.firstChild) {
+          mainEl.removeChild(mainEl.firstChild);
+        }
       }
       titleEl.classList.remove("is-visible");
       return;
