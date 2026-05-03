@@ -1,0 +1,1426 @@
+/* ======================================================
+   PROJECTS SECTION
+====================================================== */
+
+.selected-works {
+  position: relative;
+  z-index: 20;
+
+  background: var(--bg);
+  font-family: var(--ff-display);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+
+/* ======================================================
+   SCROLL WRAP
+====================================================== */
+
+.works-scroll-wrap {
+  position: relative;
+  height: calc(var(--works-count, 5) * 100vh);
+}
+
+
+/* ======================================================
+   STICKY STAGE
+====================================================== */
+
+.works-stage {
+  position: sticky;
+  top: 0;
+
+  height: 100vh;
+  overflow: visible;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 3.5vh, 50px);
+
+  padding: clamp(60px, 8vh, 100px) clamp(24px, 5vw, 80px);
+}
+
+
+/* ======================================================
+   HEADING
+====================================================== */
+
+.works-heading {
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: clamp(28px, 6vw, 78px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text);
+
+  /* Initial hidden state for scroll reveal */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.1s, transform 0.1s;
+  /* Safety reset */
+}
+
+/* This class will be added via JS on scroll */
+.works-heading.reveal-active {
+  animation: cinematicSlide 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes cinematicSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ======================================================
+   CARD DECK
+====================================================== */
+
+.card-deck {
+  position: relative;
+  z-index: 3;
+  width: var(--card-w);
+  height: var(--card-h);
+  perspective: 2000px;
+
+  /* Initial hidden state for reveal */
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.card-deck.reveal-active {
+  animation: deckReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.4s;
+  /* Starts slightly after the heading */
+}
+
+@keyframes deckReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.deck-card {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  border-radius: 25px;
+
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.7),
+    0 10px 25px -10px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease,
+    filter 0.5s ease;
+}
+
+
+.deck-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* ======================================================
+   CARD STATES
+====================================================== */
+
+.deck-card.is-active {
+  z-index: 10;
+
+  opacity: 1;
+  filter: none;
+
+  transform: rotate(-3deg) scale(1.08);
+}
+
+
+.deck-card.is-past {
+  z-index: 1;
+
+  opacity: 0;
+  filter: brightness(0.3);
+  pointer-events: none;
+
+  transform: translate(-8vw, -160vh) rotate(-12deg) scale(0.9);
+  transition-duration: 1s;
+}
+
+
+.deck-card.is-upcoming-1 {
+  z-index: 5;
+
+  opacity: 1;
+  filter: grayscale(1) brightness(0.95);
+
+  transform: translate(42%, 6%) rotate(16deg) scale(0.8);
+}
+
+
+.deck-card.is-upcoming-2 {
+  z-index: 5;
+
+  opacity: 1;
+  filter: grayscale(1) brightness(0.95);
+
+  transform: translate(-42%, 6%) rotate(-16deg) scale(0.8);
+}
+
+
+.deck-card.is-upcoming-3,
+.deck-card.is-upcoming-4 {
+  z-index: 2;
+  opacity: 0;
+  filter: none; /* Removed expensive filter for hidden cards */
+  pointer-events: none;
+  transform: translateY(90px) scale(0.85);
+  visibility: hidden; /* Added to skip rendering entirely */
+}
+
+
+.card-deck:hover .deck-card.is-active {
+  transform: rotate(-3deg) scale(1.11);
+}
+
+
+/* =============================================================
+   CARD ELEMENT 0 — DRAGON + SPEAR ANIMATION
+============================================================= */
+
+.card-logo-display {
+  position: absolute;
+  z-index: 12;
+
+  width: 620px;
+  height: 360px;
+
+  left: 120px;
+  top: 80px;
+
+  transform: none;
+  pointer-events: none;
+}
+
+
+/* =============================================================
+   DRAGON SVG CARD 0
+============================================================= */
+
+.card-dragon-0 {
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  left: 0;
+  top: 0;
+
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+.card-dragon-0.active,
+.card-dragon-0.is-frozen {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+
+.card-dragon-0 svg {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  overflow: visible;
+}
+
+
+.card-dragon-0 svg path,
+.card-dragon-0 svg rect,
+.card-dragon-0 svg circle,
+.card-dragon-0 svg ellipse,
+.card-dragon-0 svg line,
+.card-dragon-0 svg polyline,
+.card-dragon-0 svg polygon {
+  stroke: #808080 !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+
+  stroke-dasharray: var(--path-length);
+  stroke-dashoffset: var(--path-length);
+}
+
+
+.card-dragon-0.active svg path,
+.card-dragon-0.active svg rect,
+.card-dragon-0.active svg circle,
+.card-dragon-0.active svg ellipse,
+.card-dragon-0.active svg line,
+.card-dragon-0.active svg polyline,
+.card-dragon-0.active svg polygon {
+  animation:
+    cardDragonDrawScribble 2s cubic-bezier(.65, 0, .35, 1) forwards,
+    cardDragonRoughMotion 0.1s infinite alternate,
+    cardDragonFillIn 0.4s ease forwards,
+    cardDragonCleanSettle 0.1s ease forwards;
+
+  animation-delay:
+    var(--delay, 0s),
+    0s,
+    2.2s,
+    3s;
+}
+
+
+@keyframes cardDragonFillIn {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+/* =============================================================
+   SPEAR SVG CARD 0
+   Reveals from right to left without clipping
+============================================================= */
+
+.card-spear-wrap {
+  position: absolute;
+  z-index: 12;
+
+  /* Big safe canvas so the SVG does not get clipped */
+  width: 900px;
+  height: 260px;
+
+  /* Move spear freely here */
+  left: 520px;
+  top: 250px;
+
+  opacity: 0;
+
+  /*
+    Right-to-left reveal.
+    Negative inset values give extra breathing room
+    so the SVG edges/text do not get chopped.
+  */
+  clip-path: inset(-80px -220px -80px 100%);
+  transform: translateX(70px);
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+
+.card-spear-wrap.active {
+  animation: spearRevealRightToLeft 1.45s cubic-bezier(.65, 0, .35, 1) forwards 0.45s;
+}
+
+
+.card-svg-spear-0 {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+
+.card-svg-spear-0 svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+
+.card-svg-spear-0 svg path,
+.card-svg-spear-0 svg rect,
+.card-svg-spear-0 svg circle,
+.card-svg-spear-0 svg ellipse,
+.card-svg-spear-0 svg line,
+.card-svg-spear-0 svg polyline,
+.card-svg-spear-0 svg polygon {
+  animation: none !important;
+}
+
+
+/* =============================================================
+   CARD ELEMENT 0 KEYFRAMES
+============================================================= */
+
+@keyframes cardDragonDrawScribble {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes cardDragonRoughMotion {
+  from {
+    filter: url(#roughen);
+    transform: translate(-0.3px, 0.2px);
+  }
+
+  to {
+    filter: url(#roughen);
+    transform: translate(0.4px, -0.2px);
+  }
+}
+
+
+@keyframes cardDragonCleanSettle {
+  to {
+    filter: none;
+    transform: translate(0, 0);
+  }
+}
+
+
+@keyframes spearRevealRightToLeft {
+  0% {
+    opacity: 0;
+    clip-path: inset(-80px -220px -80px 100%);
+    transform: translateX(70px);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  75% {
+    clip-path: inset(-80px -220px -80px -220px);
+    transform: translateX(-14px);
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(-80px -220px -80px -220px);
+    transform: translateX(0);
+  }
+}
+
+/* =============================================================
+   ZOMBIE SVG CARD 1
+   Pops upward when card index 1 becomes active
+============================================================= */
+
+.card-zombie-wrap {
+  position: absolute;
+  z-index: 12;
+
+  width: 600px;
+  height: 600px;
+
+  /* Move zombie freely here */
+  left: -100px;
+  top: 150px;
+
+  /* Initial state — matches 0% keyframe */
+  opacity: 0;
+  transform: translateY(100px) scale(0.65) rotate(-8deg);
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+
+.card-zombie-wrap.active {
+  animation: zombiePopUp 0.75s cubic-bezier(.2, 1.4, .35, 1) forwards;
+}
+
+
+.card-svg-zombie-1 {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+
+.card-svg-zombie-1 svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+
+@keyframes zombiePopUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.65) rotate(-8deg);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(-14px) scale(1.08) rotate(2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* =============================================================
+   AC SPEAR SVG CARD 3
+============================================================= */
+
+.card-ac-wrap {
+  position: absolute;
+  z-index: 12;
+
+  width: 520px;
+  height: auto;
+
+  left: 900px;
+  top: -120px;
+
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+
+  pointer-events: none;
+}
+
+.card-ac-wrap.active,
+.card-ac-wrap.is-frozen {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.card-ac-wrap .ac-hand-animation,
+.card-ac-wrap .ac-svg-mount {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.card-ac-wrap .ac-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Shared SVG animation settings */
+.card-ac-wrap #gauntlet,
+.card-ac-wrap #chain-pull-set,
+.card-ac-wrap #front-pull-set,
+.card-ac-wrap #chain,
+.card-ac-wrap #spear,
+.card-ac-wrap #view-the-art {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+/* Initial states */
+.card-ac-wrap #gauntlet {
+  opacity: 0;
+  transform: translateY(-36px) scale(0.98);
+}
+
+/* Chain group behind gauntlet */
+.card-ac-wrap #chain-pull-set {
+  transform: translateY(0);
+  transform-origin: center top;
+}
+
+/* Spear + text group above gauntlet */
+.card-ac-wrap #front-pull-set {
+  transform: translateY(0);
+  transform-origin: center top;
+}
+
+/* Chain starts hidden above */
+.card-ac-wrap #chain {
+  opacity: 0;
+  transform-origin: center top;
+  transform: translateY(-760px) scaleY(0.05);
+}
+
+/* Spear starts above */
+.card-ac-wrap #spear {
+  opacity: 0;
+  transform-origin: center top;
+  transform: translateY(-760px) scaleY(0.98);
+}
+
+.card-ac-wrap #view-the-art {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transform-origin: center center;
+}
+
+/* Animation trigger */
+.card-ac-wrap .ac-logo.is-animating #gauntlet {
+  animation:
+    acGauntletIn 0.45s cubic-bezier(.2, 1.25, .35, 1) forwards,
+    acGauntletTug 0.5s ease-out 1.35s forwards;
+}
+
+.card-ac-wrap .ac-logo.is-animating #spear {
+  animation: acSpearReachesText 0.8s cubic-bezier(.08, .95, .12, 1) 0.35s forwards;
+}
+
+.card-ac-wrap .ac-logo.is-animating #chain {
+  animation: acChainUnrolls 0.82s cubic-bezier(.08, .95, .12, 1) 0.36s forwards;
+}
+
+.card-ac-wrap .ac-logo.is-animating #view-the-art {
+  animation: acTextHitShake 0.24s ease-out 1.12s forwards;
+}
+
+/* Pull chain group + spear/text group upward together */
+.card-ac-wrap .ac-logo.is-animating #chain-pull-set,
+.card-ac-wrap .ac-logo.is-animating #front-pull-set {
+  animation: acBladePullsTextUp 1s cubic-bezier(.17, 1.35, .3, 1) 1.35s forwards;
+}
+
+/* Keyframes */
+@keyframes acGauntletIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-36px) scale(0.98);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(5px) scale(1.01);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes acSpearReachesText {
+  0% {
+    opacity: 0;
+    transform: translateY(-760px) scaleY(0.98);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateY(24px) scaleY(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes acChainUnrolls {
+  0% {
+    opacity: 0;
+    transform: translateY(-760px) scaleY(0.05);
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+    transform: translateY(24px) scaleY(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes acTextHitShake {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  35% {
+    transform: translateY(10px) scale(0.985);
+  }
+
+  70% {
+    transform: translateY(-4px) scale(1.015);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Stronger pull-up */
+@keyframes acBladePullsTextUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  16% {
+    transform: translateY(14px);
+  }
+
+  58% {
+    transform: translateY(-370px);
+  }
+
+  78% {
+    transform: translateY(-325px);
+  }
+
+  100% {
+    transform: translateY(-720px);
+  }
+}
+
+@keyframes acGauntletTug {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  35% {
+    transform: translateY(-12px) scale(1.01);
+  }
+
+  70% {
+    transform: translateY(4px) scale(1);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =============================================================
+   BLOOD HAND SVG CARD 1
+   Old pulse / reveal animation
+============================================================= */
+
+.card-blood-hand-wrap {
+  position: absolute;
+  z-index: 8;
+
+  width: 600px;
+  height: 600px;
+
+  /* Move blood hand freely here */
+  left: -100px;
+  top: 120px;
+
+  opacity: 0;
+  transform: scale(0.9) translateY(40px);
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+.card-blood-hand-wrap.active,
+.card-blood-hand-wrap.is-frozen {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.card-svg-blood-hand-1 {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+.card-svg-blood-hand-1 svg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+
+  filter:
+    drop-shadow(0 0 8px rgba(255, 0, 0, 0.18)) drop-shadow(0 18px 32px rgba(0, 0, 0, 0.35));
+}
+
+/* =============================================================
+   BLOOD HAND SVG BASE
+============================================================= */
+
+.card-svg-blood-hand-1 svg path,
+.card-svg-blood-hand-1 svg circle,
+.card-svg-blood-hand-1 svg rect,
+.card-svg-blood-hand-1 svg ellipse,
+.card-svg-blood-hand-1 svg polygon,
+.card-svg-blood-hand-1 svg polyline,
+.card-svg-blood-hand-1 svg line {
+  transform-box: fill-box;
+  transform-origin: center center;
+
+
+}
+
+/* Each generated group gets animated separately */
+.blood-hand-piece {
+  transform-box: fill-box;
+  transform-origin: center center;
+
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+/* Important: keep real SVG shape visible inside animated groups */
+.blood-hand-piece>* {
+  opacity: 1 !important;
+}
+
+/* Glow layer created by JS */
+.blood-hand-glow-layer {
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(10px);
+
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.blood-hand-glow-layer * {
+  fill: #ffffff !important;
+  opacity: 0 !important;
+}
+
+/* =============================================================
+   BLOOD HAND ANIMATION TRIGGER
+============================================================= */
+
+.card-svg-blood-hand-1 svg.is-animating .blood-hand-glow-layer {
+  animation: bloodGlowPulse 1.15s ease-out forwards;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .blood-hand-piece {
+  animation:
+    bloodPieceReveal 0.48s cubic-bezier(.18, 1.4, .35, 1) forwards,
+    bloodPiecePulse 1.35s ease-in-out 0.55s infinite alternate;
+}
+
+/* JS adds stagger classes from p0 to p15 */
+.card-svg-blood-hand-1 svg.is-animating .p0 {
+  animation-delay: 0.00s, 0.55s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p1 {
+  animation-delay: 0.04s, 0.59s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p2 {
+  animation-delay: 0.08s, 0.63s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p3 {
+  animation-delay: 0.12s, 0.67s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p4 {
+  animation-delay: 0.16s, 0.71s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p5 {
+  animation-delay: 0.20s, 0.75s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p6 {
+  animation-delay: 0.24s, 0.79s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p7 {
+  animation-delay: 0.28s, 0.83s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p8 {
+  animation-delay: 0.32s, 0.87s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p9 {
+  animation-delay: 0.36s, 0.91s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p10 {
+  animation-delay: 0.40s, 0.95s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p11 {
+  animation-delay: 0.44s, 0.99s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p12 {
+  animation-delay: 0.48s, 1.03s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p13 {
+  animation-delay: 0.52s, 1.07s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p14 {
+  animation-delay: 0.56s, 1.11s;
+}
+
+.card-svg-blood-hand-1 svg.is-animating .p15 {
+  animation-delay: 0.60s, 1.15s;
+}
+
+/* Main hand / first path gets stronger impact */
+.card-svg-blood-hand-1 svg.is-animating .blood-hand-main-piece {
+  animation:
+    bloodMainReveal 0.58s cubic-bezier(.16, 1.55, .35, 1) forwards,
+    bloodMainPulse 1.4s ease-in-out 0.65s infinite alternate;
+}
+
+/* =============================================================
+   BLOOD HAND KEYFRAMES
+============================================================= */
+
+@keyframes bloodMainReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.05) rotate(-8deg);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes bloodPieceReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.18) rotate(-6deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.16) rotate(2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes bloodMainPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
+  }
+
+  100% {
+    transform: scale(1.025);
+    filter: drop-shadow(0 0 14px rgba(255, 0, 0, 0.35));
+  }
+}
+
+@keyframes bloodPiecePulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes bloodGlowPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  45% {
+    opacity: 0.42;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+}
+
+/* =============================================================
+   CARD ELEMENT 4 — GENESIS SENSHI (RAIN)
+============================================================= */
+
+.card-genesis-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 2;
+  /* Behind the card-deck (z-index 3) */
+  transition: opacity 0.8s ease;
+
+  /* Smoothly fade rain at the bottom to prevent sharp clipping */
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+}
+
+.card-genesis-wrap.active {
+  opacity: 1;
+}
+
+.rain-drop {
+  position: absolute;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.45) 100%);
+  width: 1px;
+  top: -100px;
+  will-change: transform;
+}
+
+@keyframes genesisRain {
+  0% {
+    transform: translate(0, 0) rotate(12deg);
+  }
+
+  100% {
+    transform: translate(-80px, 110vh) rotate(12deg);
+  }
+}
+
+/* =============================================================
+   CARD ELEMENT 4 — GENESIS SENSHI (FOREGROUND FLOWERS/TEXT)
+============================================================= */
+
+.card-genesis-foreground {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  pointer-events: auto !important;
+}
+
+/* =============================================================
+   KATANA SVG (GENESIS SENSHI)
+============================================================= */
+
+.card-katana-wrap {
+  position: absolute;
+  z-index: 12;
+  width: 900px;
+  height: 540px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  overflow: visible;
+  transition: opacity 0.4s ease;
+}
+
+.card-katana-wrap.active {
+  opacity: 1;
+}
+
+.card-svg-katana-4 {
+  width: 100%;
+  height: 100%;
+}
+
+.card-svg-katana-4 svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(0 20px 28px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 10px rgba(255, 214, 214, 0.08));
+}
+
+#katana-group,
+#blade,
+#blade-highlight,
+#handle-group,
+#petals-group,
+.petal {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+/* Initial states */
+#katana-group {
+  opacity: 0;
+  transform: translateX(-180px) translateY(30px) rotate(-16deg) scale(0.9);
+}
+
+#blade-highlight {
+  opacity: 0;
+  transform: translateX(-220px);
+}
+
+.petal {
+  opacity: 0;
+}
+
+.mist-ring {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+/* Animation triggers (via .is-animating class on the SVG) */
+.katana-svg.is-animating #katana-group {
+  animation: katanaEnter 1s cubic-bezier(.16, 1.15, .3, 1) forwards;
+}
+
+.katana-svg.is-animating #blade-highlight {
+  animation: bladeShine 1.15s ease-out 0.75s forwards;
+}
+
+.katana-svg.is-animating #petal-1 {
+  animation: petalFall1 4.2s ease-in-out 0.8s forwards;
+}
+
+.katana-svg.is-animating #petal-2 {
+  animation: petalFall2 4.8s ease-in-out 1s forwards;
+}
+
+.katana-svg.is-animating #petal-3 {
+  animation: petalFall3 4.5s ease-in-out 1.15s forwards;
+}
+
+.katana-svg.is-animating #mist-1 {
+  animation: mistPulse 1.6s ease-out 0.2s forwards;
+}
+
+.katana-svg.is-animating #mist-2 {
+  animation: mistPulse 1.9s ease-out 0.35s forwards;
+}
+
+@keyframes katanaEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(-180px) translateY(30px) rotate(-16deg) scale(0.9);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateX(22px) translateY(-10px) rotate(2deg) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes bladeShine {
+  0% {
+    opacity: 0;
+    transform: translateX(-220px);
+  }
+
+  10% {
+    opacity: 0.95;
+  }
+
+  80% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(290px);
+  }
+}
+
+@keyframes petalFall1 {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px) rotate(0deg) scale(0.7);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  35% {
+    transform: translate(-16px, 82px) rotate(90deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-14px, 330px) rotate(290deg) scale(0.8);
+  }
+}
+
+@keyframes petalFall2 {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px) rotate(0deg) scale(0.7);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  35% {
+    transform: translate(24px, 95px) rotate(-45deg) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(32px, 350px) rotate(-180deg) scale(0.9);
+  }
+}
+
+@keyframes petalFall3 {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px) rotate(0deg) scale(0.7);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  35% {
+    transform: translate(-40px, 110px) rotate(60deg) scale(1.05);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-45px, 380px) rotate(220deg) scale(0.85);
+  }
+}
+
+@keyframes mistPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+
+  35% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+/* ======================================================
+   CATEGORY DISPLAY
+====================================================== */
+
+.category-display {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  height: clamp(44px, 8vw, 100px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+.category-text {
+  position: absolute;
+
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(34px, 7.6vw, 100px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 245, 240, 0.35);
+
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+.category-text.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ======================================================
+   SCROLL TRIGGERS
+====================================================== */
+
+.scroll-triggers {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+.scroll-trigger {
+  width: 100%;
+  height: 80vh;
+
+  pointer-events: none;
+}
+
+
+/* ======================================================
+   SIDE SCRIBBLE LINES
+====================================================== */
+
+.squiggle {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+
+  width: clamp(80px, 10vw, 140px);
+  height: 100%;
+
+  color: var(--purple);
+  pointer-events: none;
+
+  filter: drop-shadow(0 0 12px rgba(160, 90, 255, 0.4));
+}
+
+
+.squiggle--left {
+  left: clamp(8px, 2vw, 32px);
+  transform: rotate(-4deg);
+}
+
+
+.squiggle--right {
+  right: clamp(8px, 2vw, 32px);
+  transform: rotate(4deg) scaleX(-1);
+}
+
+
+.squiggle__path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+
+  animation: squiggle-draw 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+
+.squiggle__path--alt {
+  stroke-dasharray: 1100;
+  stroke-dashoffset: 1100;
+
+  animation-duration: 8s;
+  animation-delay: -2s;
+}
+
+
+.squiggle--right .squiggle__path {
+  animation-delay: -3s;
+}
+
+
+.squiggle--right .squiggle__path--alt {
+  animation-delay: -5s;
+}
+
+
+@keyframes squiggle-draw {
+  0% {
+    stroke-dashoffset: 1400;
+  }
+
+  45% {
+    stroke-dashoffset: 0;
+  }
+
+  55% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -1400;
+  }
+}

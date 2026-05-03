@@ -1,0 +1,77 @@
+/* ======================================================
+   SCROLLING BANNER - PRECISION SPEC
+====================================================== */
+.banner-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--purple);
+  /* White background from inspection */
+  user-select: none;
+  z-index: 10;
+}
+
+.banner {
+  padding: 22px 0;
+  /* 22px 0 22px 0 from inspection */
+  height: 104px;
+  /* Exact height from inspection */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.banner-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 8s linear infinite;
+}
+
+.banner-icon {
+  width: 60px;
+  height: 60px;
+
+  /* Gap between icon and its text */
+  margin-right: 20px;
+
+  /* Gap before the icon (when inside a group) */
+  margin-left: 40px;
+
+  flex-shrink: 0;
+  color: #000000;
+}
+
+.banner-item :first-child.banner-icon {
+  margin-left: 0;
+}
+
+.banner-item .banner-icon:first-child {
+  margin-left: 40px;
+}
+
+.banner-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  /* Precision Font Spec */
+  font-family: var(--ff-formular);
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 60px;
+  letter-spacing: -0.675px;
+  text-transform: uppercase;
+  color: #0A0A0A;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

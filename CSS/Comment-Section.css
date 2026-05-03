@@ -1,0 +1,228 @@
+/* ======================================================
+   COMMENT SECTION — TESTIMONIAL SLIDER
+====================================================== */
+
+.comment-section {
+  padding: 120px 0;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  /* Hidden for reveal */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.comment-section.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Internal Reveals */
+.comment-quote-icon,
+.comment-text,
+.comment-author-wrap,
+.comment-nav,
+.comment-progress-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.comment-section.reveal-active .comment-quote-icon { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.comment-section.reveal-active .comment-text { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+.comment-section.reveal-active .comment-author-wrap { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+.comment-section.reveal-active .comment-nav { opacity: 1; transform: translateY(0); transition-delay: 0.75s; }
+.comment-section.reveal-active .comment-progress-container { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+
+.comment-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+
+.comment-slider {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-slide {
+  display: none;
+  width: 100%;
+}
+
+.comment-slide.active {
+  display: block;
+  animation: slideFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Quote Layout */
+.comment-content-wrap {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.comment-quote-icon {
+  width: 55px;
+  height: 55px;
+  background: var(--purple-light); /* Purple from reference */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(181, 141, 255, 0.3);
+}
+
+.comment-text {
+  font-family: var(--ff-formular);
+  font-size: 1.8rem;
+  line-height: 1.4;
+  color: #fff;
+  max-width: 950px;
+  letter-spacing: -0.01em;
+}
+
+/* Author Info */
+.comment-author-wrap {
+  margin-top: 60px;
+  margin-left: 120px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.comment-author-logo {
+  width: 75px;
+  height: 75px;
+  background: #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(181, 141, 255, 0.2);
+}
+
+.comment-author-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(2);
+}
+
+.comment-author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment-author-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.comment-author-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  color: var(--purple-light); /* Purple text */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* Slider Controls */
+.comment-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.comment-nav-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--purple-light); /* Purple arrows */
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.4;
+}
+
+.comment-nav-btn:hover {
+  opacity: 1;
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 8px var(--purple));
+}
+
+.comment-nav-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Progress Bar — Grey Line with Moving Purple Thumb */
+.comment-progress-container {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15); /* Solid Grey line */
+  margin-top: 100px;
+  position: relative;
+  overflow: visible; /* Allow thumb to overlap */
+}
+
+.comment-progress-bar {
+  position: absolute;
+  top: -3px; /* Center on line */
+  left: 0;
+  height: 8px; /* Slightly taller "rectangle" thumb */
+  background: var(--purple-light);
+  width: 60px; /* Fixed width rectangle */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 15px var(--purple);
+  border-radius: 4px; /* Slightly rounded edges for the thumb */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .comment-text {
+    font-size: 1.2rem;
+  }
+  
+  .comment-content-wrap {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .comment-quote-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .comment-author-wrap {
+    margin-left: 0;
+  }
+}

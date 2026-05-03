@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Caveat:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap");
+
+@font-face {
+  font-family: "Formular";
+  src:
+    url("../Assets/Fonts/Formular-Light.woff") format("woff"),
+    url("../Assets/Fonts/Formular-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formular";
+  src:
+    url("../Assets/Fonts/Formular-Medium.woff") format("woff"),
+    url("../Assets/Fonts/Formular-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formular";
+  src:
+    url("../Assets/Fonts/Formular-Medium.woff") format("woff"),
+    url("../Assets/Fonts/Formular-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================================================
+   GLOBAL VARIABLES & RESET
+====================================================== */
+:root {
+  --purple: #752eff;
+  --purple-light: #9b6fff;
+  --purple-dark: #52459b;
+  --navy: #1a1d38;
+  --bg: #050505;
+  --bg2: #0d0d1a;
+  --bg3: #111124;
+  --text: #f5f5f0;
+  --muted: rgba(245, 245, 240, 0.35);
+  --card-w: clamp(240px, 24vw, 380px);
+  --card-h: clamp(340px, 36vw, 540px);
+  --ff-body: "DM Sans", "Inter", sans-serif;
+  --ff-display: "Barlow Condensed", "Rajdhani", Impact, sans-serif;
+  --ff-script: "Caveat", cursive;
+  --ff-formular: "Formular", "DM Sans", "Inter", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ======================================================
+   SCROLLBAR (NEON PURPLE)
+====================================================== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: 1px solid rgba(117, 46, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple);
+  box-shadow: 0 0 10px var(--purple);
+}
+
+/* ======================================================
+   CUSTOM APEX CURSOR (CENTERED SYMBOLS)
+====================================================== */
+.cursor-pointer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 64px;           /* bigger so centered icon reads well */
+  height: 64px;
+  pointer-events: none;
+  z-index: 100001;       /* above preloader (100000) */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: transform, left, top;
+  /* Default = pointer tip @ SVG(81,75) in 256 viewBox, rendered at 64px:
+     (81/256)*64 ≈ 20px, (75/256)*64 ≈ 19px */
+  transform: translate(-20px, -19px);
+}
+
+.cursor-pointer.is-visible {
+  opacity: 1;
+}
+
+/* Hand fingertip @ SVG(117,75) in 256 viewBox, rendered at 64px:
+   (117/256)*64 ≈ 29px, (75/256)*64 ≈ 19px */
+.cursor-pointer.is-hand {
+  transform: translate(-29px, -19px);
+}
+
+.cursor-hover .cursor-pointer {
+  transform: translate(-20px, -19px) scale(1.12);
+}
+
+.cursor-hover .cursor-pointer.is-hand {
+  transform: translate(-29px, -19px) scale(1.12);
+}
+
+.anime-cursor-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Hide default system cursor on desktop */
+@media (pointer: fine) {
+  body, a, button, .cv-sw-item, .logo-item,
+  .header-toggle-btn, .service-box, .deck-card, .comment-nav-btn {
+    cursor: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cursor-pointer { display: none !important; }
+  body, a, button { cursor: auto !important; }
+}
+/* ======================================================
+   GLOBAL CINEMATIC FILM GRAIN
+====================================================== */
+@keyframes noise-anim {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+.global-grain {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  z-index: 9990; /* Above layout, below cursor and preloader */
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.045; 
+  animation: noise-anim 0.2s infinite;
+  mix-blend-mode: overlay;
+}

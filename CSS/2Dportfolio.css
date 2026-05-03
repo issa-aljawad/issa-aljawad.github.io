@@ -1,0 +1,151 @@
+/* =====================================================
+   2D PORTFOLIO PAGE STYLES
+   ===================================================== */
+
+body.realm-2d {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.portfolio-header {
+    padding: 150px 5% 80px;
+    background: linear-gradient(to bottom, #111, #0a0a0a);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.05), transparent);
+    pointer-events: none;
+}
+
+.header-eyebrow {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--accent-color, #ff0055);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    margin-bottom: 25px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.header-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.gallery-container {
+    padding: 50px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #1a1a1a;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gallery-item.large {
+    grid-column: span 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .item-overlay {
+    opacity: 1;
+}
+
+.item-category {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--accent-color, #ff0055);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.item-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.portfolio-footer {
+    padding: 100px 5%;
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background: #fff;
+    color: #000;
+}
+
+@media (max-width: 900px) {
+    .gallery-item.large {
+        grid-column: span 1;
+    }
+}

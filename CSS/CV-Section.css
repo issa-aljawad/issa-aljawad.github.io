@@ -1,0 +1,764 @@
+/* ======================================================
+   SECTION 4 — ABOUT / CV
+====================================================== */
+
+/* ------------------------------------------------------
+   Main About Section
+------------------------------------------------------ */
+
+#about {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* Changed from center to allow scrolling from top */
+  padding: 80px 5%;
+  background: var(--bg);
+  /* overflow: hidden; Removed to prevent clipping */
+}
+
+/* Background glow */
+.about-bg-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 65% at 50% 50%,
+      rgba(117, 46, 255, 0.09) 0%,
+      transparent 65%);
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Aligned to left to match card layout */
+  text-align: left;
+}
+
+
+/* Small section label */
+.section-eyebrow {
+  margin-bottom: 12px;
+
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: var(--purple-light);
+
+  /* Reveal initial state */
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+#about.reveal .section-eyebrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Main section title */
+.section-title {
+  margin: 0 0 30px;
+
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.95;
+
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  color: var(--text);
+
+  /* Reveal initial state (from left) */
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 1s cubic-bezier(0.2, 0, 0.2, 1) 0s;
+  /* Start immediately */
+}
+
+#about.reveal .section-title {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Recommended replacement for inline style */
+.section-title span {
+  color: var(--purple);
+}
+
+
+/* ======================================================
+   CV CARD
+====================================================== */
+
+.cv-card {
+  width: 100%;
+  max-width: 1200px;
+  background: var(--bg2);
+  border: 1px solid rgba(117, 46, 255, 0.3);
+  border-radius: 4px;
+  /* Sharper corners for anime style */
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(117, 46, 255, 0.1);
+  position: relative;
+  text-align: left;
+
+  /* Halftone Texture Overlay */
+  background-image:
+    radial-gradient(rgba(117, 46, 255, 0.05) 1px, transparent 0);
+  background-size: 8px 8px;
+
+  /* Reveal initial state (Opening up from top) */
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  /* Closed from bottom */
+  transition:
+    clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+    opacity 0.6s ease 0.6s;
+}
+
+#about.reveal .cv-card {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  /* Fully open */
+}
+
+/* Loading Progress Bar */
+.cv-loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--purple-light);
+  box-shadow: 0 0 15px var(--purple);
+  z-index: 20;
+  transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+#about.reveal .cv-loading-bar {
+  width: 100%;
+}
+
+/* System Data Status Label */
+.cv-system-data {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--purple);
+  opacity: 0;
+  z-index: 15;
+  letter-spacing: 0.15em;
+  pointer-events: none;
+  transition: opacity 0.4s ease 1.5s;
+}
+
+#about.reveal .cv-system-data {
+  opacity: 0.6;
+}
+
+/* Staggered Content Animation */
+.cv-header,
+.cv-section,
+.cv-footer {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#about.reveal .cv-header {
+  transition-delay: 1.2s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about.reveal .cv-section--experience {
+  transition-delay: 1.5s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about.reveal .cv-section--achievements {
+  transition-delay: 1.8s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about.reveal .cv-section--skills {
+  transition-delay: 2.1s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about.reveal .cv-section--software {
+  transition-delay: 2.4s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#about.reveal .cv-footer {
+  transition-delay: 2.7s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Anime Style Decorative Brackets */
+.cv-card::before,
+.cv-card::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--purple);
+  z-index: 10;
+  pointer-events: none;
+  /* Sync with card reveal */
+  opacity: 0;
+  transition: opacity 0.4s ease 1.8s;
+}
+
+#about.reveal .cv-card::before,
+#about.reveal .cv-card::after {
+  opacity: 1;
+}
+
+.cv-card::before {
+  top: 15px;
+  left: 15px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.cv-card::after {
+  bottom: 15px;
+  right: 15px;
+  border-left: none;
+  border-top: none;
+}
+
+.cv-header {
+  position: relative;
+  overflow: hidden;
+  padding: 50px 36px;
+  background: linear-gradient(135deg,
+      #0a0a1a 0%,
+      rgba(117, 46, 255, 0.25) 100%);
+  border-bottom: 2px solid var(--purple);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Speed Lines Overlay */
+.cv-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 10px,
+      rgba(117, 46, 255, 0.03) 10px,
+      rgba(117, 46, 255, 0.03) 11px);
+  pointer-events: none;
+}
+
+/* Name Glitch Effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 3px 3px 0px var(--purple-dark);
+  }
+
+  25% {
+    text-shadow: -2px -2px 0px #ff00ff, 2px 2px 0px #00ffff;
+  }
+
+  50% {
+    text-shadow: 2px -2px 0px #ff00ff, -2px 2px 0px #00ffff;
+  }
+
+  75% {
+    text-shadow: -2px 2px 0px #ff00ff, 2px -2px 0px #00ffff;
+  }
+
+  100% {
+    text-shadow: 3px 3px 0px var(--purple-dark);
+  }
+}
+
+.cv-name {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 3px 3px 0px var(--purple-dark);
+}
+
+.cv-name:hover {
+  animation: glitch 0.3s linear infinite;
+  cursor: default;
+}
+
+.cv-role {
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  background: rgba(117, 46, 255, 0.15);
+  padding: 4px 15px;
+  border-radius: 2px;
+}
+
+/* Section Titles */
+.cv-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.cv-section h3 span {
+  position: relative;
+  z-index: 1;
+}
+
+.cv-section h3::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--purple), transparent);
+}
+
+.cv-section--experience h3,
+.cv-section--achievements h3 {
+  color: var(--purple);
+}
+
+.cv-item {
+  position: relative;
+  padding: 15px 18px;
+  /* Slightly more padding for the new date position */
+  border-left: 3px solid rgba(117, 46, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 20px;
+  /* More vertical gap for sticking out elements */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Item Decorative Accents */
+.cv-item::before,
+.cv-item::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--purple);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.cv-item::before {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.cv-item::after {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.cv-item:hover::before,
+.cv-item:hover::after {
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+}
+
+.cv-item:hover {
+  border-left-color: var(--purple-light);
+  background: rgba(117, 46, 255, 0.08);
+  transform: translateX(8px);
+  box-shadow: -10px 0 20px rgba(117, 46, 255, 0.1);
+}
+
+.cv-item-header {
+  display: block;
+  /* No longer need flex row since date is absolute */
+  margin-bottom: 8px;
+}
+
+.cv-item-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.cv-item-date {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--purple);
+  padding: 4px 14px;
+  border-radius: 0;
+  /* Sharp corners for anime look */
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  box-shadow: 4px 4px 0px #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  transform: rotate(2deg);
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  /* Angled corner */
+}
+
+.cv-item:hover .cv-item-date {
+  background: var(--purple-light);
+  transform: rotate(0deg) scale(1.1);
+  box-shadow: 6px 6px 0px #000;
+}
+
+/* Responsive Adjustments for Experience Items */
+@media (max-width: 768px) {
+  .cv-item-date {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    margin-bottom: 10px;
+    transform: none;
+    clip-path: none;
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .cv-item:hover .cv-item-date {
+    transform: scale(1.02);
+  }
+
+  .cv-item-header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
+.cv-item-position {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--purple-light);
+  margin-bottom: 6px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.cv-item-sub {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ------------------------------------------------------
+   CV Body — Flex Column Main Layout
+------------------------------------------------------ */
+
+.cv-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  position: relative;
+  z-index: 5;
+}
+
+.cv-experience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 16px 24px;
+}
+
+.cv-bottom-row {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 0.8fr;
+  gap: 32px;
+  border-top: 1px solid rgba(117, 46, 255, 0.2);
+  padding-top: 24px;
+}
+
+/* Specific grids within columns */
+.cv-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 12px 20px;
+}
+
+/* ------------------------------------------------------
+   Skills Tags
+------------------------------------------------------ */
+
+.cv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ------------------------------------------------------
+   CV FOOTER
+------------------------------------------------------ */
+
+.cv-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Align buttons to the right now that note is gone */
+  gap: 16px;
+  padding: 24px 36px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(117, 46, 255, 0.2);
+  position: relative;
+  z-index: 5;
+}
+
+/* Base Button Styles */
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--purple);
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-btn:hover {
+  background: var(--purple-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.cv-btn--secondary {
+  background: transparent;
+  border: 2px solid var(--purple);
+  box-shadow: 4px 4px 0px var(--purple);
+}
+
+.cv-btn--secondary:hover {
+  background: rgba(117, 46, 255, 0.1);
+  color: #fff;
+  box-shadow: 6px 6px 0px var(--purple);
+}
+
+/* Stylized Tags - Redesigned for Cinematic Look */
+.cv-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(117, 46, 255, 0.08);
+  border: 1px solid rgba(117, 46, 255, 0.25);
+  border-radius: 20px;
+  /* Pill shape for a modern look */
+  color: var(--purple-light);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.cv-tag:hover {
+  background: rgba(117, 46, 255, 0.15);
+  border-color: var(--purple-light);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(117, 46, 255, 0.2);
+}
+
+/* Scanline Animation */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Add Scanline Overlay */
+.cv-card-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(117, 46, 255, 0.05) 50%,
+      transparent);
+  height: 100px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 4;
+  animation: scanline 8s linear infinite;
+}
+
+/* ------------------------------------------------------
+   Software Layout Fix
+------------------------------------------------------ */
+
+.cv-software-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 5px;
+}
+
+.cv-sw-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(117, 46, 255, 0.2);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: help;
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-sw-item svg {
+  width: 28px;
+  height: 28px;
+  z-index: 2;
+}
+
+.cv-sw-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--purple);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.cv-sw-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--purple-light);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(117, 46, 255, 0.2);
+}
+
+.cv-sw-item:hover::before {
+  opacity: 0.1;
+}
+
+/* Brand Specific Glows */
+.cv-sw-item[title="Adobe Photoshop"]:hover {
+  box-shadow: 0 0 20px rgba(49, 168, 255, 0.5);
+  border-color: #31a8ff;
+  color: #31a8ff;
+}
+
+.cv-sw-item[title="Adobe Illustrator"]:hover {
+  box-shadow: 0 0 20px rgba(255, 154, 0, 0.5);
+  border-color: #ff9a00;
+  color: #ff9a00;
+}
+
+.cv-sw-item[title="Substance 3D Painter"]:hover {
+  box-shadow: 0 0 20px rgba(28, 237, 98, 0.5);
+  border-color: rgb(28, 237, 98);
+  color: rgb(28, 237, 98);
+}
+
+.cv-sw-item[title="3D Coat"]:hover {
+  box-shadow: 0 0 20px rgba(0, 191, 165, 0.5);
+  border-color: #00bfa5;
+  color: #00bfa5;
+}
+
+.cv-sw-item[title="Unreal Engine"]:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.cv-sw-item[title="ZBrush"]:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.cv-sw-item[title="Blender"]:hover {
+  box-shadow: 0 0 20px rgba(245, 121, 42, 0.5);
+  border-color: #f5792a;
+  color: #f5792a;
+}
+
+/* Hologram Interaction Layer */
+.cv-card-hologram {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(117, 46, 255, 0.08) 0%,
+      transparent 60%);
+  pointer-events: none;
+  z-index: 3;
+}

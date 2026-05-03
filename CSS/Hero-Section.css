@@ -1,0 +1,352 @@
+/* ======================================================
+   HERO SECTION
+====================================================== */
+
+#hero-section-1 {
+  position: relative;
+
+  min-height: 100vh;
+  overflow: hidden; /* Restored to keep the page clean */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the whole content block */
+  gap: clamp(20px, 4vw, 60px);
+  padding: 80px clamp(20px, 5vw, 60px) 40px;
+}
+
+
+/* ======================================================
+   HERO BACKGROUND LAYERS
+====================================================== */
+
+.hero-layers,
+.hero-bg-glow,
+.hero-grid {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-glow {
+  background:
+    radial-gradient(
+      ellipse 65% 90% at 28% 65%,
+      rgba(117, 46, 255, 0.14) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 35% 40% at 70% 25%,
+      rgba(82, 69, 155, 0.07) 0%,
+      transparent 60%
+    );
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(117, 46, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(117, 46, 255, 0.025) 1px, transparent 1px);
+
+  background-size: 64px 64px;
+}
+
+#hero-section-1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+
+  width: 1px;
+  height: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(117, 46, 255, 0.3),
+    transparent
+  );
+}
+
+
+/* ======================================================
+   HERO VIDEO
+====================================================== */
+
+.hero-video-container {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 1 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+.hero-video-wrap::before,
+.hero-video-wrap::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-video-wrap::before {
+  bottom: -10%;
+  width: clamp(400px, 65vw, 1100px);
+  height: clamp(100px, 20vw, 220px);
+  background: radial-gradient(
+    ellipse,
+    rgba(117, 46, 255, 0.7) 0%,
+    transparent 75%
+  );
+  filter: blur(clamp(40px, 7vw, 90px));
+}
+
+.hero-video-wrap::after {
+  top: 5%;
+  width: clamp(300px, 55vw, 800px);
+  height: 90%;
+  background: radial-gradient(
+    ellipse,
+    rgba(117, 46, 255, 0.3) 0%,
+    transparent 80%
+  );
+  filter: blur(clamp(50px, 8vw, 100px));
+}
+
+.hero-video {
+  display: block;
+  width: 1200px; 
+  height: auto;
+  
+  will-change: transform, mask-image;
+
+  /* Standard mask colors: Black (visible) to Transparent (hidden) */
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 0%,
+    black 10%,
+    transparent 60%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 0%,
+    black 10%,
+    transparent 70%
+  );
+
+  border-radius: 0;
+
+  filter: drop-shadow(
+    0 0 100px rgba(117, 46, 255, 0.3)
+  );
+  
+  background: transparent;
+  border: none;
+  object-fit: contain;
+}
+
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-14px) rotate(0.4deg);
+  }
+
+  66% {
+    transform: translateY(-6px) rotate(-0.3deg);
+  }
+}
+
+
+/* ======================================================
+   HERO TEXT BOX
+====================================================== */
+
+.hero-right {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 1 auto;
+  width: min(560px, 100%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-left: 0;
+  margin-right: 0;
+
+  padding-left: clamp(16px, 5vw, 40px);
+  padding-right: clamp(16px, 5vw, 40px);
+}
+
+.hero-title {
+  margin-bottom: clamp(14px, 2vw, 28px);
+
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.hero-title-accent {
+  display: block;
+  color: var(--purple);
+}
+
+.hero-desc {
+  max-width: clamp(270px, 32vw, 380px);
+  margin-bottom: clamp(24px, 3vw, 44px);
+
+  font-size: clamp(1rem, 1.25vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.75;
+
+  color: var(--muted);
+}
+
+
+/* ======================================================
+   HERO CTA BUTTON
+====================================================== */
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 12px);
+
+  width: fit-content;
+
+  padding:
+    clamp(10px, 1.3vw, 15px)
+    clamp(20px, 3vw, 36px);
+
+  background: var(--purple);
+  color: #ffffff;
+
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.72rem, 1vw, 0.82rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.hero-cta:hover {
+  background: var(--purple-light);
+  transform: translateX(5px);
+}
+
+.hero-cta-arrow {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  transition: transform 0.2s ease;
+}
+
+.hero-cta:hover .hero-cta-arrow {
+  transform: translateX(4px);
+}
+
+
+/* ======================================================
+   HERO STATS
+====================================================== */
+
+.hero-stats {
+  display: flex;
+  gap: clamp(18px, 3vw, 36px);
+
+  margin-top: clamp(28px, 4vw, 50px);
+  padding-top: clamp(16px, 2.5vw, 30px);
+
+  border-top: 2px solid rgba(255, 255, 255, 0.214);
+}
+
+.hero-stat-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2rem);
+  line-height: 1;
+
+  color: #ffffff;
+}
+
+.hero-stat-num span {
+  color: var(--purple);
+}
+
+.hero-stat-label {
+  margin-top: 4px;
+
+  font-size: clamp(0.72rem, 1vw, 0.8rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: var(--muted);
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 1024px) {
+  #hero-section-1 {
+    flex-direction: column-reverse;
+    justify-content: center;
+    padding: 100px 20px 40px;
+    gap: 20px;
+  }
+
+  .hero-character {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .hero-video {
+    width: 90vw;
+  }
+
+  .hero-right {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+}

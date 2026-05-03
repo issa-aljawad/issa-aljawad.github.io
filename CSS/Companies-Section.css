@@ -1,0 +1,389 @@
+/* ======================================================
+   COMPANIES SECTION — REDESIGN
+====================================================== */
+#companies {
+  padding: 80px 0;
+  position: relative;
+  background: #050505;
+  overflow: hidden;
+  /* subtle top and bottom glow instead of hard borders */
+  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 -20px 40px rgba(0, 0, 0, 0.5);
+}
+
+#companies::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  /* Moved to bottom */
+  left: 50%;
+  width: 0;
+  /* Starts at 0 */
+  height: 2.5px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(162, 0, 255, 0.4) 50%,
+      transparent 100%);
+  box-shadow: 0 0 15px rgba(162, 0, 255, 0.3);
+  transform: translateX(-50%);
+  transition: width 1.2s cubic-bezier(0.2, 0, 0.2, 1) 0.8s;
+  /* Delayed to play last */
+}
+
+#companies.reveal::before {
+  width: 100%;
+}
+
+.companies-header {
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0, 0.2, 1) 0s;
+  /* Plays first */
+}
+
+#companies.reveal .companies-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-toggle-btn {
+  background: none;
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+  padding: 10px 20px;
+  position: relative;
+  outline: none;
+}
+
+.header-toggle-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #a200ff;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px #a200ff;
+}
+
+.header-toggle-btn.active {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
+}
+
+.header-toggle-btn.active::after {
+  width: 60%;
+}
+
+.header-toggle-btn:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.header-toggle-sep {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  color: rgba(162, 0, 255, 0.3);
+  font-weight: 300;
+}
+
+.marquee-main-container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  /* Consistent height */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s cubic-bezier(0.2, 0, 0.2, 1) 0.4s;
+  /* Plays second */
+}
+
+#companies.reveal .marquee-main-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logos-marquee-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.logos-marquee-wrap.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.logos-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  animation: logos-scroll 25s linear infinite;
+  padding: 20px 0;
+}
+
+#marquee-proud .logos-track {
+  animation-duration: 42s;
+}
+
+.logo-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60px;
+  flex: 0 0 auto;
+  opacity: 0.25;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.logo-item:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.logo-svg {
+  height: 45px;
+  width: auto;
+  max-width: 180px;
+  display: block;
+  filter: none;
+}
+
+.logo-wordmark {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* Specific scaling for wider/taller logos */
+.logo-item[data-brand="ubisoft"] .logo-svg {
+  height: 60px;
+}
+
+.logo-item[data-brand="netherrealm"] .logo-svg {
+  height: 65px;
+}
+
+.logo-item[data-brand="warnerbros"] .logo-svg {
+  height: 62px;
+}
+
+.logo-item[data-brand="wandlor"] .logo-svg {
+  height: 58px;
+  max-width: 220px;
+}
+
+.logo-item[data-brand="molotov"] .logo-svg {
+  height: 62px;
+  max-width: 220px;
+}
+
+.logo-item[data-brand="click"] .logo-svg {
+  height: 80px;
+}
+
+.logo-item[data-brand="digitalizehub"] .logo-svg {
+  height: 100px;
+  max-width: 200px;
+}
+
+.logo-item[data-brand="kosium"] .logo-svg {
+  height: 75px;
+  max-width: 200px;
+}
+
+.logo-item[data-brand="lii-market"] .logo-svg {
+  height: 60px;
+}
+
+.logo-item[data-brand="noju"] .logo-svg {
+  height: 100px;
+}
+
+.logo-item[data-brand="paradox"] .logo-svg {
+  height: 56px;
+  max-width: 250px;
+}
+
+.logo-item[data-brand="sceneproduction"] .logo-svg {
+  height: 80px;
+}
+
+.logo-item[data-brand="mk11"] .logo-svg {
+  height: 58px;
+  max-width: 250px;
+  filter: none;
+}
+
+.logo-item[data-brand="ac-mirage"] .logo-svg {
+  height: 68px;
+  max-width: 300px;
+  filter: none;
+}
+
+.logo-item[data-brand="dl2"] .logo-svg {
+  height: 66px;
+  max-width: 300px;
+  filter: none;
+}
+
+.logo-item[data-brand="genesis"] .logo-svg {
+  height: 78px;
+  max-width: 260px;
+}
+
+.logo-item[data-brand="mk-movie"] .logo-svg {
+  height: 72px;
+  max-width: 320px;
+  filter: none;
+}
+
+.logo-item[data-brand="jaecoo"] .logo-svg {
+  height: 42px;
+  max-width: 235px;
+}
+
+.logo-item[data-brand="omada"] .logo-svg {
+  height: 31px;
+  max-width: 205px;
+}
+
+.logo-item[data-brand="zeekr"] .logo-svg {
+  height: 38px;
+  max-width: 210px;
+}
+
+.logo-sep {
+  width: 4px;
+  height: 4px;
+  background: #a200ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a200ff;
+  opacity: 0.4;
+}
+
+@keyframes logos-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  #companies {
+    padding: 60px 0;
+  }
+
+  .logo-item {
+    padding: 0 40px;
+  }
+
+  .logo-svg {
+    height: 35px;
+  }
+
+  .logo-item[data-brand="ubisoft"] .logo-svg {
+    height: 45px;
+  }
+
+  .logo-item[data-brand="wandlor"] .logo-svg {
+    height: 42px;
+    max-width: 180px;
+  }
+
+  .logo-item[data-brand="molotov"] .logo-svg {
+    height: 46px;
+    max-width: 180px;
+  }
+
+  .logo-item[data-brand="click"] .logo-svg,
+  .logo-item[data-brand="digitalizehub"] .logo-svg,
+  .logo-item[data-brand="lii-market"] .logo-svg,
+  .logo-item[data-brand="noju"] .logo-svg,
+  .logo-item[data-brand="sceneproduction"] .logo-svg {
+    height: 60px;
+  }
+
+  .logo-item[data-brand="kosium"] .logo-svg {
+    height: 62px;
+    max-width: 250px;
+  }
+
+  .logo-item[data-brand="paradox"] .logo-svg {
+    height: 40px;
+    max-width: 190px;
+  }
+
+  .logo-item[data-brand="mk11"] .logo-svg {
+    height: 42px;
+    max-width: 190px;
+  }
+
+  .logo-item[data-brand="ac-mirage"] .logo-svg {
+    height: 50px;
+    max-width: 230px;
+  }
+
+  .logo-item[data-brand="dl2"] .logo-svg {
+    height: 50px;
+    max-width: 230px;
+  }
+
+  .logo-item[data-brand="genesis"] .logo-svg {
+    height: 58px;
+    max-width: 210px;
+  }
+
+  .logo-item[data-brand="mk-movie"] .logo-svg {
+    height: 52px;
+    max-width: 240px;
+  }
+
+  .logo-item[data-brand="jaecoo"] .logo-svg {
+    height: 33px;
+    max-width: 190px;
+  }
+
+  .logo-item[data-brand="omada"] .logo-svg {
+    height: 24px;
+    max-width: 165px;
+  }
+
+  .logo-item[data-brand="zeekr"] .logo-svg {
+    height: 30px;
+    max-width: 170px;
+  }
+}
