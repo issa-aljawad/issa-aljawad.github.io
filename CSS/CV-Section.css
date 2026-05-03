@@ -122,8 +122,8 @@
   opacity: 0;
   clip-path: inset(-50px -50px 100% -50px); /* Adjusted to not clip badges during animation */
   transition:
-    clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
-    opacity 0.6s ease 0.6s;
+    clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+    opacity 0.6s ease 0.3s;
 }
 
 #about.reveal .cv-card {
@@ -141,12 +141,12 @@
   background: var(--purple-light);
   box-shadow: 0 0 15px var(--purple);
   z-index: 20;
-  transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+  transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
 
 #about.reveal .cv-loading-bar {
   width: 100%;
-  animation: bar-finish 0.3s ease-out 3s forwards;
+  animation: bar-finish 0.3s ease-out 2.7s forwards;
 }
 
 @keyframes bar-finish {
@@ -168,7 +168,7 @@
   z-index: 15;
   letter-spacing: 0.15em;
   pointer-events: none;
-  transition: opacity 0.4s ease 1.5s;
+  transition: opacity 0.4s ease 1.2s;
   animation: system-flicker 4s infinite 2s;
 }
 
@@ -191,37 +191,37 @@
 }
 
 #about.reveal .cv-header {
-  transition-delay: 1.2s;
+  transition-delay: 0.7s;
   opacity: 1;
   transform: translateY(0);
 }
 
 #about.reveal .cv-section--experience {
-  transition-delay: 1.5s;
+  transition-delay: 1.0s;
   opacity: 1;
   transform: translateY(0);
 }
 
 #about.reveal .cv-section--achievements {
-  transition-delay: 1.8s;
+  transition-delay: 1.3s;
   opacity: 1;
   transform: translateY(0);
 }
 
 #about.reveal .cv-section--skills {
-  transition-delay: 2.1s;
+  transition-delay: 1.6s;
   opacity: 1;
   transform: translateY(0);
 }
 
 #about.reveal .cv-section--software {
-  transition-delay: 2.4s;
+  transition-delay: 1.9s;
   opacity: 1;
   transform: translateY(0);
 }
 
 #about.reveal .cv-footer {
-  transition-delay: 2.7s;
+  transition-delay: 2.2s;
   opacity: 1;
   transform: translateY(0);
 }
@@ -729,7 +729,7 @@
   height: 100px;
   width: 100%;
   pointer-events: none;
-  z-index: 4;
+  z-index: 12;
   animation: scanline 8s linear infinite;
 }
 
@@ -810,13 +810,13 @@
   color: #ff9a00;
 }
 
-.cv-sw-item[title="Substance"]:hover {
+.cv-sw-item[title="Substance 3D Painter"]:hover {
   box-shadow: 0 0 20px rgba(28, 237, 98, 0.5);
   border-color: rgb(28, 237, 98);
   color: rgb(28, 237, 98);
 }
 
-.cv-sw-item[title="3DCoat"]:hover {
+.cv-sw-item[title="3D Coat"]:hover {
   box-shadow: 0 0 20px rgba(0, 191, 165, 0.5);
   border-color: #00bfa5;
   color: #00bfa5;
@@ -848,5 +848,5 @@
       rgba(117, 46, 255, 0.08) 0%,
       transparent 60%);
   pointer-events: none;
-  z-index: 3;
+  z-index: 11;
 }
