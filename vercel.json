@@ -1,1 +1,8 @@
-{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
+{
+  "rewrites": [
+    { "source": "/Projects/(.*)", "destination": "/HTML/Projects/$1" },
+    { "source": "/Services/(.*)", "destination": "/HTML/Services/$1" },
+    { "source": "/2D-portfolio.html", "destination": "/HTML/2D-portfolio.html" },
+    { "source": "/3D-portfolio.html", "destination": "/HTML/3D-portfolio.html" }
+  ]
+}
