@@ -53,6 +53,9 @@
   <script src="/JAVA/comment-slider.js"></script>
   <script src="/JAVA/portfolio-selection.js" defer></script>
   <script src="/JAVA/about.js" defer></script>
+  <script src="/JAVA/hero-stats.js" defer></script>
+  <script src="/JAVA/nav-visibility.js" defer></script>
+  <script src="/JAVA/nav-burger.js" defer></script>
   <script src="/JAVA/contact-modal.js"></script>
 </head>
 
@@ -74,6 +77,12 @@
       <a class="reveal" data-reveal-delay="240" href="#about">About</a>
     </div>
 
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
   </nav>
 
 
@@ -85,48 +94,97 @@
     <div class="hero-layers">
       <div class="hero-bg-glow"></div>
       <div class="hero-grid"></div>
-    </div>
-
-    <div class="hero-video-container reveal-from-left">
-      <div class="hero-video-wrap">
-        <!--<video autoplay loop muted playsinline class="hero-video">
-          <source src="/Assets/Hero-Section/template.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video> -->
+      <div class="hero-anime-bg" aria-hidden="true">
+        <span class="hero-slash hero-slash--top"></span>
+        <span class="hero-slash hero-slash--mid"></span>
+        <span class="hero-slash hero-slash--bottom"></span>
+        <span class="hero-slash-detail hero-slash-detail--one"></span>
+        <span class="hero-slash-detail hero-slash-detail--two"></span>
+        <span class="hero-slash-detail hero-slash-detail--three"></span>
       </div>
     </div>
 
-    <div class="hero-right reveal-from-right" data-reveal-stagger="120" data-reveal-start="180">
+    <div class="hero-video-container">
+      <div class="hero-character-stage" aria-hidden="true">
+        <span class="hero-rect hero-rect--one"></span>
+        <span class="hero-rect hero-rect--two"></span>
+        <span class="hero-rect hero-rect--three"></span>
+
+        <div class="hero-character-reveal">
+          <div class="hero-character-stack">
+            <img
+              src="/Assets/Hero-Section/Character.png"
+              alt="Stylized character artwork"
+              class="hero-character hero-character--base">
+            <img
+              src="/Assets/Hero-Section/closed-eyes.png"
+              alt=""
+              class="hero-character hero-character--blink"
+              aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-copy reveal-from-left" data-reveal-stagger="120" data-reveal-start="120">
 
       <h1 class="hero-title reveal">
-        Welcome To<br>
-        <span class="hero-title-accent">My World!</span>
+        <span class="hero-title-main">ISSA AL JAWAD</span>
+        <span class="hero-title-script">Artist</span>
       </h1>
 
       <p class="hero-desc reveal">
-        I'm A Digital Artist focusing mainly on the film and entertainment industry.
-        Enjoy my creations
+        I'm A Digital Artist focusing mainly on the film and entertainment industry. Enjoy my creations
       </p>
 
       <a href="#projects" class="hero-cta reveal">
         View My Work
         <span class="hero-cta-arrow">&#8594;</span>
       </a>
+    </div>
 
+    <div class="hero-side-stack hero-side-stack--left reveal-from-left" data-reveal-stagger="100" data-reveal-start="260">
+      <span class="hero-side-kicker">Profile</span>
+      <span class="hero-side-item">Visual Artist</span>
+      <span class="hero-side-item">3D Artist</span>
+      <span class="hero-side-item">Beirut, Lebanon</span>
+    </div>
+
+    <div class="hero-side-stack hero-side-stack--right reveal-from-right" data-reveal-stagger="100" data-reveal-start="300">
+      <span class="hero-side-kicker">Focus</span>
+      <span class="hero-side-item">Cinematic Posters</span>
+      <span class="hero-side-item">3D Stylized Art</span>
+      <span class="hero-side-rail" aria-hidden="true">
+        <span class="hero-side-rail-dot hero-side-rail-dot--one"></span>
+        <span class="hero-side-rail-dot hero-side-rail-dot--two"></span>
+        <span class="hero-side-rail-dot hero-side-rail-dot--three"></span>
+      </span>
+    </div>
+
+    <div class="hero-ui-decor" aria-hidden="true">
+      <span class="hero-ui-line hero-ui-line--left"></span>
+      <span class="hero-ui-line hero-ui-line--right"></span>
+      <span class="hero-ui-dot hero-ui-dot--left"></span>
+      <span class="hero-ui-dot hero-ui-dot--right"></span>
+      <span class="hero-ui-bracket hero-ui-bracket--top"></span>
+      <span class="hero-ui-bracket hero-ui-bracket--bottom"></span>
+    </div>
+
+    <div class="hero-stats-wrap reveal-from-right" data-reveal-stagger="120" data-reveal-start="240">
       <div class="hero-stats">
 
-        <div class="reveal">
-          <div class="hero-stat-num">3<span>+</span></div>
+        <div class="hero-stat-block reveal">
+          <div class="hero-stat-num"><span class="hero-stat-value" data-target="3">0</span><span>+</span></div>
           <div class="hero-stat-label">Featured Projects</div>
         </div>
 
-        <div class="reveal">
-          <div class="hero-stat-num">10<span>+</span></div>
+        <div class="hero-stat-block reveal">
+          <div class="hero-stat-num"><span class="hero-stat-value" data-target="10">0</span><span>+</span></div>
           <div class="hero-stat-label">Years Creating</div>
         </div>
 
-        <div class="reveal">
-          <div class="hero-stat-num">2<span>+</span></div>
+        <div class="hero-stat-block reveal">
+          <div class="hero-stat-num"><span class="hero-stat-value" data-target="2">0</span><span>+</span></div>
           <div class="hero-stat-label">Top Studios</div>
         </div>
 

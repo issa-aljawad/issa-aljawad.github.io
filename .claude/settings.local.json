@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\")",
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\" -Confirm:$false)"
+    ]
+  }
+}
