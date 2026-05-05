@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\")",
-      "PowerShell(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\" -Confirm:$false)"
+      "PowerShell(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\" -Confirm:$false)",
+      "Bash(cp \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\CSS\\\\Cards-Section.css\" \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\BACKUP\\\\Cards-Section-CSS.css\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Issa Al Jawad\\Desktop\\Portfolio Website\\Website Final Version\\Main-Project\\CSS"
     ]
   }
 }
