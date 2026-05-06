@@ -5,38 +5,18 @@
   padding: 80px 0;
   position: relative;
   background: #050505;
-  overflow: visible; /* Changed from hidden to show the edge line overlap */
-  z-index: 50; /* Ensure it can sit on top of Section 3 if needed */
+  overflow: visible;
+  z-index: 50; /* Lowered so Section 3 sits on top */
   /* subtle top and bottom glow instead of hard borders */
   box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 -20px 40px rgba(0, 0, 0, 0.5);
 }
 
-#companies::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  /* Moved to bottom */
-  left: 50%;
-  width: 0;
-  /* Starts at 0 */
-  height: 2.5px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(162, 0, 255, 0.4) 50%,
-      transparent 100%);
-  box-shadow: 0 0 15px rgba(162, 0, 255, 0.3);
-  transform: translateX(-50%);
-  transition: width 1.2s cubic-bezier(0.2, 0, 0.2, 1) 0.8s;
-  /* Delayed to play last */
-}
-
-#companies.reveal::before {
-  width: 100%;
-}
+/* Purple line removed */
 
 .companies-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+  /* Reduced from 60px to move marquee up */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,10 +35,10 @@
 .header-toggle-btn {
   background: none;
   border: none;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.4em;
+  font-family: Rajdhani, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 4.3vw, 3.5rem);
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
@@ -78,12 +58,14 @@
   background: #a200ff;
   transition: all 0.4s ease;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px #a200ff;
+  box-shadow: none;
+  /* Removed purple glow */
 }
 
 .header-toggle-btn.active {
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
+  text-shadow: none;
+  /* Removed purple glow */
 }
 
 .header-toggle-btn.active::after {
@@ -95,10 +77,10 @@
 }
 
 .header-toggle-sep {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.2rem;
-  color: rgba(162, 0, 255, 0.3);
-  font-weight: 300;
+  font-family: var(--ff-display);
+  font-size: clamp(2.6rem, 4.3vw, 4.8rem);
+  color: var(--purple);
+  font-weight: 400;
 }
 
 .marquee-main-container {
