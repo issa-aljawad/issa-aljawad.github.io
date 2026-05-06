@@ -187,7 +187,7 @@ const AnimationManager = (function () {
 
         cards.forEach(async (card) => {
             const index = card.dataset.index;
-            const stage = document.querySelector(".works-stage");
+            const stage = document.querySelector(".featured-gallery__stage");
             const elements = stage.querySelectorAll(`[data-index="${index}"]`);
 
             elements.forEach(async el => {
@@ -272,7 +272,7 @@ const AnimationManager = (function () {
      * SCROLL REVEAL MANAGER
      */
     function initScrollReveal() {
-        const revealElements = document.querySelectorAll(".works-heading, .card-deck");
+        const revealElements = document.querySelectorAll(".featured-gallery__title, .card-deck");
 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -296,3 +296,4 @@ document.addEventListener("DOMContentLoaded", () => {
     AnimationManager.init();
     AnimationManager.initScrollReveal();
 });
+

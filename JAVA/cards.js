@@ -2,13 +2,13 @@
     const section = document.getElementById('projects');
     const stageLink = document.getElementById('featuredArtworkLink');
     const display = document.getElementById('categoryDisplay');
-    const dataItems = document.querySelectorAll('.works-data-item');
+    const dataItems = document.querySelectorAll('.featured-gallery__data-item');
     const triggers = document.querySelectorAll('.scroll-trigger');
 
     if (!section || !stageLink || !display || dataItems.length === 0 || triggers.length === 0) return;
 
     const categories = display.querySelectorAll('.category-text');
-    const wrap = section.querySelector('.works-scroll-wrap');
+    const wrap = section.querySelector('.featured-gallery__scroll-wrap');
     const total = triggers.length;
     let currentIndex = -1;
 
@@ -82,3 +82,4 @@
         }
     });
 })();
+

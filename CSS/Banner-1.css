@@ -7,7 +7,7 @@
   background: var(--purple);
   /* White background from inspection */
   user-select: none;
-  z-index: 10;
+  z-index: 25;
 }
 
 .banner {

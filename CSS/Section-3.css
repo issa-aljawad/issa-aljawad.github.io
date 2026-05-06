@@ -5,317 +5,300 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 40px;
+  padding: 0;
   overflow: hidden;
-  background: #050505;
-
-  margin-top: 0; 
+  background: #000000;
   position: relative;
   z-index: 10;
 }
 
-.services-container {
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 150px;
+  background: url('/Assets/line.svg') no-repeat top right;
+  background-size: contain;
+  filter: brightness(10);
+  z-index: 20;
+  transform: rotate(180deg) scaleX(-1);
+}
+
+.services-main-layout {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  height: 100vh;
+  padding: 0 2vw;
+}
+
+/* Character on the Left */
+.services-character-wrap {
+  flex: 0 0 40%;
+  /* Reduced from 50% */
+  max-width: 700px;
+  /* Reduced from 900px */
+  height: 80vh;
+  /* Reduced from 100vh */
+  position: relative;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-left: -2vw;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+}
+
+.services-section.start-animation .services-character-wrap {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.services-character {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 50px rgba(117, 46, 255, 0.15));
+  transform-origin: bottom center;
+}
+
+/* Center Title Wrap */
+.services-header-wrap {
+  position: absolute;
+  top: 12%;
+  left: 48%;
+  /* Slightly to the left of center to match ref */
+  transform: translateX(-50%);
+  text-align: center;
+  width: auto;
+  pointer-events: none;
+  z-index: 15;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  align-items: center;
 }
 
-.services-wrap {
+.services-hero-title {
+
   position: relative;
-  width: fit-content;
+  display: inline-block;
+  margin-bottom: 22px;
+  line-height: 0.84;
 }
 
-.services-title {
-  margin: 0;
-  color: white;
-  font-size: clamp(45px, 8vw, 90px);
-  font-weight: 700;
-  letter-spacing: 8px;
-  line-height: 1;
-  font-family: 'Rajdhani', sans-serif;
-  text-transform: uppercase;
-
-  transform: translateX(-100vw);
-  opacity: 0;
+.services-title-main {
+  display: block;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 6vw, 8rem);
+  /* Increased from 6rem */
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  color: #ffffff;
 }
 
-.lines {
+.services-title-script {
   position: absolute;
-  left: 0;
+  left: 55%;
   top: 60%;
-  width: 100%;
-  height: 100px;
-  overflow: visible;
-  pointer-events: none;
+  font-family: var(--ff-script);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  line-height: 1;
+  color: var(--purple);
+  z-index: 1;
+  transform: translate(-50%, 0);
 }
 
-.line {
-  fill: none;
-  stroke: #a200ff;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
+/* Services Perspective Wrap */
+.services-perspective-wrap {
+  flex: 0 0 55%;
+  max-width: 900px;
+  z-index: 1;
+  position: relative;
+  margin-right: -8vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* Services Grid */
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns for bigger cards */
-  gap: 20px;
+  position: relative;
   width: 100%;
-  max-width: 1400px; /* Increased max-width */
-  margin: 0 auto;
+  right: 15%;
+  /* Adjusted from 30% to bring it more towards the right side like the reference */
+  height: 75vh;
+  /* Reduced from 90vh to make cards smaller */
+  aspect-ratio: 704.33 / 617.65;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-grid:hover {
+  transform: scale(1.02);
 }
 
 .service-box {
-  background: var(--bg2);
-  border: 1px solid rgba(117, 46, 255, 0.2);
-  padding: 80px 60px;
-  min-height: 500px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  width: 100%;
-  box-sizing: border-box;
-  text-decoration: none;
-  
-  /* Halftone Texture Overlay */
-  background-image: 
-    radial-gradient(rgba(117, 46, 255, 0.03) 1px, transparent 0);
-  background-size: 10px 10px;
-
-  /* Reveal initial state */
-  opacity: 0;
-  clip-path: inset(0 0 100% 0); /* Opens up like the CV card */
-  
-  transition: 
-    clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.6s ease,
-    background-color 0.4s ease,
-    box-shadow 0.4s ease;
-      
-  will-change: transform, opacity, clip-path;
-  z-index: 1;
-}
-
-/* Decorative Brackets */
-.service-box::before,
-.service-box::after {
-  content: '';
   position: absolute;
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--purple);
+  inset: 0;
+  background: #ffffff;
+  text-decoration: none;
+  box-sizing: border-box;
   opacity: 0;
-  transition: all 0.4s ease 1s;
-  z-index: 10;
-  pointer-events: none;
+  transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
 }
 
-.service-box::before { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-.service-box::after { bottom: 20px; right: 20px; border-left: none; border-top: none; }
-
-.services-section.start-animation .service-box::before,
-.services-section.start-animation .service-box::after {
-  opacity: 0.4;
-}
-
-/* Entry Animation */
 .services-section.start-animation .service-box {
   opacity: 1;
-  clip-path: inset(0 0 0 0);
 }
 
-.services-section.start-animation .service-box:nth-child(1) { transition-delay: 0.4s; }
-.services-section.start-animation .service-box:nth-child(2) { transition-delay: 0.6s; }
-.services-section.start-animation .service-box:nth-child(3) { transition-delay: 0.8s; }
-.services-section.start-animation .service-box:nth-child(4) { transition-delay: 1.0s; }
-
-/* Hologram Layer */
-.service-hologram {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(117, 46, 255, 0.12) 0%,
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-  pointer-events: none;
+/* Card Shapes from SVG */
+.service-box:nth-child(1) {
+  clip-path: polygon(4.13% 40.85%, 5.25% 30.42%, 6.57% 18.26%, 52.27% 9.12%, 36.30% 55.25%);
+  transition-delay: 0.1s;
 }
 
-.service-box:hover .service-hologram {
-  opacity: 1;
+.service-box:nth-child(2) {
+  clip-path: polygon(49.28% 49.65%, 40.08% 49.88%, 40.96% 47.12%, 54.26% 9.14%, 69.33% 6.21%, 100% 0%, 92.48% 48.77%, 81.30% 48.98%, 55.22% 49.50%);
+  transition-delay: 0.2s;
 }
 
-/* Scanline Effect */
-.service-scanline {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(117, 46, 255, 0.05) 51%,
-    transparent 52%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0.3;
+.service-box:nth-child(3) {
+  clip-path: polygon(24.34% 89.39%, 0% 84.79%, 3.75% 42.34%, 35.65% 57.51%);
+  transition-delay: 0.3s;
 }
 
-.service-box:hover {
-  background: rgba(117, 46, 255, 0.05);
-  border-color: var(--purple-light);
-  box-shadow: 0 0 40px rgba(117, 46, 255, 0.15);
-}
-
-.service-box:hover::before,
-.service-box:hover::after {
-  opacity: 1;
-  width: 45px;
-  height: 45px;
-  border-color: var(--purple-light);
+.service-box:nth-child(4) {
+  clip-path: polygon(65.59% 96.50%, 44.88% 92.67%, 26.26% 89.19%, 39.59% 51.36%, 55.62% 51.27%, 90.82% 51.14%, 92.33% 51.21%, 84.41% 100%);
+  transition-delay: 0.4s;
 }
 
 .service-content {
-  position: relative;
-  z-index: 10;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-}
-
-/* Text Pops Out on Hover */
-.service-box:hover .service-content {
-  opacity: 1; /* Ensure text stays visible */
-  transform: translateX(15px) scale(1.05); /* Pop out effect */
-}
-
-.service-hover-img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  opacity: 0;
-  transform: scale(1.1);
-  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   pointer-events: none;
-  filter: brightness(0.4) saturate(1.2); /* Darken to make text pop */
 }
 
-.service-box:hover .service-hover-img {
-  opacity: 1;
-  transform: scale(1);
+/* Content Positioning */
+.service-box:nth-child(1) .service-content {
+  top: 32%;
+  left: 25%;
+  width: 150px;
+  transform: translate(-50%, -50%) rotateY(20deg) skewY(10deg);
 }
 
-.service-name {
+.service-box:nth-child(2) .service-content {
+  top: 28%;
+  left: 72%;
+  width: 220px;
+  transform: translate(-50%, -50%) rotateY(-35deg) skewY(-5deg);
+}
+
+.service-box:nth-child(3) .service-content {
+  top: 68%;
+  left: 22%;
+  width: 160px;
+  transform: translate(-50%, -50%) rotateY(20deg) skewY(-10deg);
+}
+
+.service-box:nth-child(4) .service-content {
+  top: 74%;
+  left: 62%;
+  width: 260px;
+  transform: translate(-50%, -50%) rotateY(-35deg) skewY(5deg);
+}
+
+.service-box .service-name {
+  color: #000000;
   font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(28px, 4vw, 42px);
-  color: white;
-  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-}
-
-.service-box:hover .service-name {
-  color: var(--purple-light);
-  text-shadow: 0 0 15px rgba(162, 0, 255, 0.5);
-  animation: service-glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
-}
-
-@keyframes service-glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-
-.service-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px; /* Increased size */
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  max-width: 80%; /* Limit width for better readability on large cards */
 }
 
-.service-line {
-  width: 40px;
-  height: 2px;
-  background: #a200ff;
-  transition: width 0.4s ease;
+.service-box .service-desc {
+  color: #333333;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 10px;
+  max-width: 90%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
 }
 
-.service-box:hover .service-line {
+.service-box:hover .service-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Decorative Edge Lines */
+.services-edge {
+  position: absolute;
   width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 120;
+  filter: brightness(10);
+  rotate: 2deg;
 }
 
-/* Animation starts when services.js adds this class */
-.services-section.start-animation .services-title {
-  animation: revealFromLeft 0.6s ease forwards;
-  animation-delay: 0.2s;
+.services-edge--top-companies {
+  top: -100px;
+  width: 110%;
+  /* Increased width */
+  right: -100px;
+  /* Shifted right to expand past the edge */
+  transform: scaleX(-1);
+  rotate: -5deg;
 }
 
-.services-section.start-animation .line {
-  animation: drawLine 1.5s ease forwards;
-  animation-delay: 0.6s;
-}
-
-.services-section.start-animation .line-two {
-  animation-delay: 0.4s;
-}
-
-@keyframes revealFromLeft {
-  to {
-    transform: translateX(0);
-    opacity: 1;
+@media (max-width: 1200px) {
+  .services-main-layout {
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+    height: auto;
   }
-}
 
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
+  .services-perspective-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+    margin: 0;
+    perspective: none;
   }
-}
 
-/* Mobile Adjustments */
-@media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: 1fr; /* Stack on tablet and mobile */
-  }
-}
-
-@media (max-width: 768px) {
-  .services-section {
-    padding: 80px 20px;
-  }
-  
-  .services-container {
-    gap: 40px;
+    aspect-ratio: 1 / 1;
+    right: 0 !important;
+    height: auto !important;
   }
 
   .service-box {
-    min-height: 400px;
-    padding: 50px 30px;
+    position: relative;
+    clip-path: none !important;
+    height: 300px;
+    margin-bottom: 20px;
   }
 
-  .service-desc {
-    max-width: 100%;
+  .service-content {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    padding: 40px;
   }
 }
