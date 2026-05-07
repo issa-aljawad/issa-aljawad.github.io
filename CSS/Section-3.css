@@ -43,6 +43,16 @@
   align-items: flex-end;
 }
 
+.services-character-scene {
+  position: absolute;
+  left: -7px;
+  bottom: -30px;
+  width: 100%;
+  transform-origin: bottom center;
+  animation: servicesCharacterFloat 5.4s ease-in-out infinite;
+  z-index: 2;
+}
+
 .services-section.start-animation .services-character-wrap {
   opacity: 1;
   transform: translateX(0);
@@ -53,14 +63,45 @@
   height: auto;
   display: block;
   filter: drop-shadow(0 0 50px rgba(117, 46, 255, 0.15));
-  transform-origin: bottom center;
-  position: absolute;
-  left: -7px;
-  bottom: -30px;
-  /* Pushed down slightly */
-  animation: servicesCharacterFloat 6s ease-in-out infinite;
+  position: relative;
   z-index: 2;
   /* Sits above the paths */
+}
+
+.services-character-left-hand,
+.services-character-right-hand,
+.services-character-eyes {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 3;
+}
+
+.services-character-left-hand,
+.services-character-right-hand {
+  transform-box: fill-box;
+}
+
+.services-character-left-hand {
+  transform-origin: 80% 18%;
+  animation: servicesLeftHandFloat 3.8s ease-in-out infinite;
+}
+
+.services-character-right-hand {
+  transform-origin: 20% 18%;
+  animation: servicesRightHandFloat 4.2s ease-in-out infinite 0.35s;
+}
+
+.services-character-eyes {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  z-index: 4;
+  filter: none;
+  animation: servicesEyesBlink 6.8s steps(1, end) infinite 1s;
 }
 
 /* Actual Logo Paths Behind Character */
@@ -94,11 +135,71 @@
   }
 
   33% {
-    transform: translateY(-10px) rotate(0.5deg);
+    transform: translateY(-16px) rotate(0.9deg);
   }
 
   66% {
-    transform: translateY(-5px) rotate(-0.3deg);
+    transform: translateY(-8px) rotate(-0.55deg);
+  }
+}
+
+@keyframes servicesLeftHandFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-3px) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+
+  75% {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+}
+
+@keyframes servicesRightHandFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: translateY(-2px) rotate(3deg);
+  }
+
+  55% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+
+  78% {
+    transform: translateY(-1px) rotate(2deg);
+  }
+}
+
+@keyframes servicesEyesBlink {
+
+  0%,
+  6%,
+  6.8%,
+  42%,
+  42.8%,
+  75%,
+  75.7%,
+  100% {
+    opacity: 0;
+  }
+
+  6.3%,
+  42.4%,
+  75.3% {
+    opacity: 1;
   }
 }
 
@@ -192,9 +293,9 @@
   text-decoration: none;
   z-index: 1;
   isolation: isolate;
-  transition: transform 0.12s cubic-bezier(0.33, 1, 0.68, 1), 
-              filter 0.12s cubic-bezier(0.33, 1, 0.68, 1), 
-              opacity 0.6s ease;
+  transition: transform 0.12s cubic-bezier(0.33, 1, 0.68, 1),
+    filter 0.12s cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 0.6s ease;
   transition-delay: 0s, 0s, 0s;
   opacity: 0;
 }

@@ -28,7 +28,7 @@
     rel="stylesheet">
 
   <!-- CSS Files -->
-  <link rel="stylesheet" href="/CSS/Loader.css">
+  <!--<link rel="stylesheet" href="/CSS/Loader.css">-->
   <link rel="stylesheet" href="/CSS/Global-variables.css">
   <link rel="stylesheet" href="/CSS/Navigation.css">
   <link rel="stylesheet" href="/CSS/Hero-Section.css">
@@ -341,10 +341,19 @@
       <div class="services-character-wrap">
         <!-- Actual Logo Paths Behind Character -->
         <svg class="character-bg-logo" viewBox="0 0 595.28 841.89" xmlns="http://www.w3.org/2000/svg">
-          <path d="M431.29,246.15v236.42l-.13,140.35-.27-.22-91.43-73.96c-7.31-5.85-13.62-14.05-13.63-23.94l-.04-53.43-.06-89.06c0-.92.03-1.84.06-2.76.29-6.29,1.58-12.64,3.9-18.56,2.22-5.68,5.37-10.96,9.45-15.41l23.47-25.33,68.27-73.67.4-.43Z" fill="#752eff" class="logo-path-large"/>
-          <path d="M270.41,297.61l-82.6,89.49c-10.56,10.41-10.99,24.89.16,34.96l82.46,66.42-.02-190.87Z" fill="#752eff" class="logo-path-small"/>
+          <path
+            d="M431.29,246.15v236.42l-.13,140.35-.27-.22-91.43-73.96c-7.31-5.85-13.62-14.05-13.63-23.94l-.04-53.43-.06-89.06c0-.92.03-1.84.06-2.76.29-6.29,1.58-12.64,3.9-18.56,2.22-5.68,5.37-10.96,9.45-15.41l23.47-25.33,68.27-73.67.4-.43Z"
+            fill="#752eff" class="logo-path-large" />
+          <path d="M270.41,297.61l-82.6,89.49c-10.56,10.41-10.99,24.89.16,34.96l82.46,66.42-.02-190.87Z" fill="#752eff"
+            class="logo-path-small" />
         </svg>
-        <img src="/Assets/Services Section/Character.png" alt="Services Character" class="services-character">
+        <div class="services-character-scene">
+          <img src="/Assets/Services Section/Character.png" alt="Services Character" class="services-character">
+          <img src="/Assets/Services Section/eyes.png" alt="" class="services-character-eyes" aria-hidden="true">
+          <!-- Future animated parts:
+               .services-character-left-hand
+               .services-character-right-hand -->
+        </div>
       </div>
 
       <!-- Center Title -->
@@ -360,13 +369,16 @@
         <div class="services-grid">
           <a href="/HTML/Services/branding.html" class="service-box reveal-item" data-reveal="slide-up">
             <svg class="service-shell-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="service-shell-path" points="30.38 254.87 38.26 190.43 47.57 115.33 369.42 58.85 256.96 343.78 30.38 254.87" />
+              <polygon class="service-shell-path"
+                points="30.38 254.87 38.26 190.43 47.57 115.33 369.42 58.85 256.96 343.78 30.38 254.87" />
             </svg>
             <svg class="service-ink-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <path class="service-ink-path" d="M254.7,338.6l-.93-.37L34.72,252.28l7.51-61.37,8.94-72.15,311.9-54.74-108.37,274.57ZM36.9,250.98l216.68,85.02,106.33-269.39L52.98,120.47l-8.76,70.68-7.32,59.82Z" />
+              <path class="service-ink-path"
+                d="M254.7,338.6l-.93-.37L34.72,252.28l7.51-61.37,8.94-72.15,311.9-54.74-108.37,274.57ZM36.9,250.98l216.68,85.02,106.33-269.39L52.98,120.47l-8.76,70.68-7.32,59.82Z" />
             </svg>
             <svg class="service-bg-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none">
-              <path class="service-bg-path" d="M36.9,250.98l216.68,85.02,106.33-269.39L52.98,120.47l-8.76,70.68-7.32,59.82Z" />
+              <path class="service-bg-path"
+                d="M36.9,250.98l216.68,85.02,106.33-269.39L52.98,120.47l-8.76,70.68-7.32,59.82Z" />
             </svg>
             <div class="service-hologram"></div>
             <div class="service-scanline"></div>
@@ -383,13 +395,16 @@
 
           <a href="/HTML/Services/poster-design.html" class="service-box reveal-item" data-reveal="slide-up">
             <svg class="service-shell-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <path class="service-shell-path" d="M348.41,309.18l-44.28,1.06c-6.98.17-13.47.89-20.55.39l6.2-17.08,93.71-234.57,106.13-18.1,112.09-20.07,103.89-18.3-52.92,301.22-33.73.45-45.03.88-84.65,1.29-52.28.89-46.8,1.03-41.8.9Z" />
+              <path class="service-shell-path"
+                d="M348.41,309.18l-44.28,1.06c-6.98.17-13.47.89-20.55.39l6.2-17.08,93.71-234.57,106.13-18.1,112.09-20.07,103.89-18.3-52.92,301.22-33.73.45-45.03.88-84.65,1.29-52.28.89-46.8,1.03-41.8.9Z" />
             </svg>
             <svg class="service-ink-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <path class="service-ink-path" d="M289.22,306.81l4.3-11.85,92.85-232.41,103.92-17.72,112.13-20.07,98.26-17.31-.25,1.41-51.11,290.93-30.42.4-45.05.88-84.63,1.29-52.29.89-46.82,1.04-41.8.9-44.29,1.06c-2.27.05-4.49.17-6.63.27-2.33.12-4.51.23-6.72.27l-1.46.03ZM295.39,295.69l-3.29,9.05c1.69-.05,3.39-.14,5.17-.23,2.19-.11,4.42-.22,6.71-.28l44.29-1.06,41.8-.9,46.82-1.04,52.29-.89,84.63-1.29,45.06-.88,28.77-.38L698.22,9.92l-95.45,16.81-112.13,20.07-102.83,17.54-92.43,231.36Z" />
+              <path class="service-ink-path"
+                d="M289.22,306.81l4.3-11.85,92.85-232.41,103.92-17.72,112.13-20.07,98.26-17.31-.25,1.41-51.11,290.93-30.42.4-45.05.88-84.63,1.29-52.29.89-46.82,1.04-41.8.9-44.29,1.06c-2.27.05-4.49.17-6.63.27-2.33.12-4.51.23-6.72.27l-1.46.03ZM295.39,295.69l-3.29,9.05c1.69-.05,3.39-.14,5.17-.23,2.19-.11,4.42-.22,6.71-.28l44.29-1.06,41.8-.9,46.82-1.04,52.29-.89,84.63-1.29,45.06-.88,28.77-.38L698.22,9.92l-95.45,16.81-112.13,20.07-102.83,17.54-92.43,231.36Z" />
             </svg>
             <svg class="service-bg-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none">
-              <path class="service-bg-path" d="M295.39,295.69l-3.29,9.05c1.69-.05,3.39-.14,5.17-.23,2.19-.11,4.42-.22,6.71-.28l44.29-1.06,41.8-.9,46.82-1.04,52.29-.89,84.63-1.29,45.06-.88,28.77-.38L698.22,9.92l-95.45,16.81-112.13,20.07-102.83,17.54-92.43,231.36Z" />
+              <path class="service-bg-path"
+                d="M295.39,295.69l-3.29,9.05c1.69-.05,3.39-.14,5.17-.23,2.19-.11,4.42-.22,6.71-.28l44.29-1.06,41.8-.9,46.82-1.04,52.29-.89,84.63-1.29,45.06-.88,28.77-.38L698.22,9.92l-95.45,16.81-112.13,20.07-102.83,17.54-92.43,231.36Z" />
             </svg>
             <div class="service-hologram"></div>
             <div class="service-scanline"></div>
@@ -407,10 +422,12 @@
 
           <a href="/HTML/Services/3d-character-creation.html" class="service-box reveal-item" data-reveal="slide-up">
             <svg class="service-shell-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="service-shell-path" points="172.7 554.63 1.28 526.3 27.67 264.02 252.41 357.73 172.7 554.63" />
+              <polygon class="service-shell-path"
+                points="172.7 554.63 1.28 526.3 27.67 264.02 252.41 357.73 172.7 554.63" />
             </svg>
             <svg class="service-ink-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <path class="service-ink-path" d="M170.2,550.16l-.79-.13-163.77-27.07.09-.93,25.38-252.24,216.11,90.11-77.01,190.26ZM7.81,521.29l161.13,26.63,75.67-186.94-211.79-88.31-25.01,248.62Z" />
+              <path class="service-ink-path"
+                d="M170.2,550.16l-.79-.13-163.77-27.07.09-.93,25.38-252.24,216.11,90.11-77.01,190.26ZM7.81,521.29l161.13,26.63,75.67-186.94-211.79-88.31-25.01,248.62Z" />
             </svg>
             <svg class="service-bg-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none">
               <path class="service-bg-path" d="M7.81,521.29l161.13,26.63,75.67-186.94-211.79-88.31-25.01,248.62Z" />
@@ -430,13 +447,16 @@
 
           <a href="/HTML/Services/3d-texturing.html" class="service-box reveal-item" data-reveal="slide-up">
             <svg class="service-shell-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <polygon class="service-shell-path" points="463.29 598.55 317.43 574.92 186.27 553.42 280.18 319.78 393.07 319.22 641.01 318.39 651.63 318.86 631.59 426.76 605.28 570.38 595.8 620.17 463.29 598.55" />
+              <polygon class="service-shell-path"
+                points="463.29 598.55 317.43 574.92 186.27 553.42 280.18 319.78 393.07 319.22 641.01 318.39 651.63 318.86 631.59 426.76 605.28 570.38 595.8 620.17 463.29 598.55" />
             </svg>
             <svg class="service-ink-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none" aria-hidden="true">
-              <path class="service-ink-path" d="M592.6,615.59l-.96-.16-127.7-20.84-145.86-23.63-126.23-20.69.47-1.16,90.58-225.36h.67s109.54-.54,109.54-.54l247.81-.83,5.96.26-19.2,103.37-26.3,143.64-8.75,45.93ZM194.63,548.71l123.77,20.29,145.86,23.63,126.74,20.68,8.39-44.01,26.3-143.63,18.78-101.11-3.61-.16-247.76.83-108.86.54-89.61,222.95Z" />
+              <path class="service-ink-path"
+                d="M592.6,615.59l-.96-.16-127.7-20.84-145.86-23.63-126.23-20.69.47-1.16,90.58-225.36h.67s109.54-.54,109.54-.54l247.81-.83,5.96.26-19.2,103.37-26.3,143.64-8.75,45.93ZM194.63,548.71l123.77,20.29,145.86,23.63,126.74,20.68,8.39-44.01,26.3-143.63,18.78-101.11-3.61-.16-247.76.83-108.86.54-89.61,222.95Z" />
             </svg>
             <svg class="service-bg-svg" viewBox="0 0 708 618.67" preserveAspectRatio="none">
-              <path class="service-bg-path" d="M194.63,548.71l123.77,20.29,145.86,23.63,126.74,20.68,8.39-44.01,26.3-143.63,18.78-101.11-3.61-.16-247.76.83-108.86.54-89.61,222.95Z" />
+              <path class="service-bg-path"
+                d="M194.63,548.71l123.77,20.29,145.86,23.63,126.74,20.68,8.39-44.01,26.3-143.63,18.78-101.11-3.61-.16-247.76.83-108.86.54-89.61,222.95Z" />
             </svg>
             <div class="service-hologram"></div>
             <div class="service-scanline"></div>
