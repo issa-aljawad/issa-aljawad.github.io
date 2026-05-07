@@ -138,11 +138,11 @@ body::-webkit-scrollbar {
 }
 
 .cursor-hover .cursor-pointer {
-  transform: translate(-20px, -19px) scale(1.12);
+  transform: translate(-20px, -19px);
 }
 
 .cursor-hover .cursor-pointer.is-hand {
-  transform: translate(-29px, -19px) scale(1.12);
+  transform: translate(-29px, -19px);
 }
 
 .anime-cursor-svg {
