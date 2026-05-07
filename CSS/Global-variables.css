@@ -11,8 +11,6 @@
   --bg3: #111124;
   --text: #f5f5f0;
   --muted: rgba(245, 245, 240, 0.35);
-  --card-w: clamp(240px, 24vw, 380px);
-  --card-h: clamp(340px, 36vw, 540px);
   --ff-body: "DM Sans", "Inter", sans-serif;
   --ff-display: "Barlow Condensed", "Rajdhani", Impact, sans-serif;
   --ff-script: "Caveat", cursive;

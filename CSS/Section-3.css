@@ -10,8 +10,7 @@
   /* Changed from hidden to allow character to extend behind the next section */
   background: #000000;
   position: relative;
-  z-index: 50;
-  /* Increased to sit on top of Section 2 */
+  z-index: auto;
 }
 
 .services-main-layout {
@@ -22,6 +21,7 @@
   align-items: flex-end;
   justify-content: space-between;
   position: relative;
+  z-index: 40;
   height: 100vh;
   padding: 0 2vw;
 }
