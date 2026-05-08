@@ -413,6 +413,7 @@
     --featured-card-spacing: 15%;
     --featured-rail-height: clamp(235px, 34vw, 400px);
     --featured-card-max-width: clamp(265px, 31vw, 395px);
+    margin-top: -60px;
   }
 
   .featured-gallery__stage {
@@ -425,7 +426,7 @@
   }
 
   .featured-gallery__line--top {
-    left: -720px;
+    display: none;
   }
 
   .featured-gallery__line--bottom {
@@ -442,7 +443,7 @@
 
   .featured-gallery__stage {
     min-height: auto;
-    padding: 72px 16px 48px;
+    padding: 32px 16px 48px;
   }
 
   .featured-gallery__shell {
@@ -591,10 +592,7 @@
   }
 
   .featured-gallery__line--top {
-    width: 1650px;
-    top: -112px;
-    left: -620px;
-    opacity: 0.4;
+    display: none;
   }
 
   .featured-gallery__line--bottom {
