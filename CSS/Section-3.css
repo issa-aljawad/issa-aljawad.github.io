@@ -13,6 +13,8 @@
   z-index: auto;
 }
 
+
+
 .services-main-layout {
   width: 100%;
   max-width: 100%;
@@ -288,11 +290,17 @@
   --service-hover-x: 0px;
   --service-hover-y: -30px;
   --service-hover-rotate: 0deg;
+  --service-offset-x: 0px;
+  --service-offset-y: 0px;
+  --service-base-scale-x: 1;
+  --service-base-rotate: 0deg;
   position: absolute;
   inset: 0;
   text-decoration: none;
   z-index: 1;
   isolation: isolate;
+  transform:
+    translate(var(--service-offset-x), var(--service-offset-y)) rotate(var(--service-base-rotate)) scaleX(var(--service-base-scale-x));
   transition: transform 0.12s cubic-bezier(0.33, 1, 0.68, 1),
     filter 0.12s cubic-bezier(0.33, 1, 0.68, 1),
     opacity 0.6s ease;
@@ -372,7 +380,9 @@
 }
 
 .service-box:hover {
-  transform: translate(var(--service-hover-x), var(--service-hover-y)) rotate(var(--service-hover-rotate)) scale(1.11);
+  transform:
+    translate(calc(var(--service-offset-x) + var(--service-hover-x)),
+      calc(var(--service-offset-y) + var(--service-hover-y))) rotate(calc(var(--service-base-rotate) + var(--service-hover-rotate))) scaleX(var(--service-base-scale-x)) scale(1.11);
   z-index: 100;
 }
 
@@ -415,9 +425,9 @@
   --service-shadow: rgba(117, 46, 255, 0.36);
   --service-shadow-hard: rgba(117, 46, 255, 0.92);
   --service-shadow-soft: rgba(117, 46, 255, 0.34);
-  --service-hover-x: -14px;
-  --service-hover-y: -40px;
-  --service-hover-rotate: -4deg;
+  --service-hover-x: 18px;
+  --service-hover-y: -36px;
+  --service-hover-rotate: 3deg;
   clip-path: polygon(4.13% 40.85%, 5.25% 30.42%, 6.57% 18.26%, 52.27% 9.12%, 36.30% 55.25%);
   z-index: 3;
 }
@@ -458,9 +468,9 @@
   --service-shadow: rgba(255, 180, 46, 0.28);
   --service-shadow-hard: rgba(117, 46, 255, 0.88);
   --service-shadow-soft: rgba(117, 46, 255, 0.28);
-  --service-hover-x: 16px;
-  --service-hover-y: -32px;
-  --service-hover-rotate: 2deg;
+  --service-hover-x: -16px;
+  --service-hover-y: -34px;
+  --service-hover-rotate: -5deg;
   clip-path: polygon(65.59% 96.50%, 44.88% 92.67%, 26.26% 89.19%, 39.59% 51.36%, 55.62% 51.27%, 90.82% 51.14%, 92.33% 51.21%, 84.41% 100%);
   z-index: 1;
 }
@@ -689,4 +699,326 @@
   left: -100px;
   rotate: 4deg;
   z-index: 200;
+}
+
+@media (max-width: 920px) {
+  .services-section {
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .services-main-layout {
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 16px;
+  }
+
+  .services-character-wrap {
+    flex: 0 0 auto;
+    width: min(100%, 620px);
+    max-width: 620px;
+    height: min(90vh, 820px);
+    min-height: 420px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    align-self: center;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .services-character-scene {
+    position: absolute;
+    left: 8%;
+    bottom: 1%;
+    width: min(100%, 660px);
+    max-width: 660px;
+    margin: 0;
+    transform: none;
+  }
+
+  .services-character,
+  .services-character-eyes {
+    transform: none;
+  }
+
+  .character-bg-logo {
+    top: 50%;
+    left: 35%;
+    width: 214%;
+    height: 214%;
+    opacity: 0.9;
+    filter: blur(1px);
+    transform: translate(-50%, -50%);
+  }
+
+  .services-perspective-wrap {
+    display: block;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    inset: auto;
+    width: min(108vw, 500px);
+    height: auto;
+    max-width: none;
+    aspect-ratio: 704.33 / 617.65;
+    margin: 0;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    z-index: 20;
+  }
+
+  .services-grid {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    right: auto;
+    aspect-ratio: 704.33 / 617.65;
+    transform: none !important;
+  }
+
+  .services-grid:hover {
+    transform: none;
+  }
+
+  .service-box {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .service-content {
+    gap: 0.55rem;
+  }
+
+  .service-header {
+    column-gap: 0.55rem;
+    row-gap: 0.22rem;
+  }
+
+  .service-number {
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+  }
+
+  .service-box .service-name {
+    font-size: clamp(1.6rem, 4.2vw, 2rem);
+  }
+
+  .service-box .service-desc {
+    font-size: 0.7rem;
+    line-height: 1.24;
+  }
+
+  .service-box:nth-child(1) .service-content {
+    top: 30%;
+    left: 26%;
+    width: 138px;
+  }
+
+  .service-box:nth-child(1) {
+    --service-offset-x: -32px;
+    --service-offset-y: -140px;
+  }
+
+  .service-box:nth-child(2) .service-content {
+    top: 25.5%;
+    left: 70.5%;
+    width: 164px;
+  }
+
+  .service-box:nth-child(2) {
+    --service-offset-x: -156px;
+    --service-offset-y: 130px;
+  }
+
+  .service-box:nth-child(3) .service-content {
+    top: 69%;
+    left: 16%;
+    width: 132px;
+  }
+
+  .service-box:nth-child(3) {
+    --service-offset-x: 212px;
+    --service-offset-y: -146px;
+    --service-base-scale-x: 1.06;
+    --service-base-rotate: -7deg;
+  }
+
+  .service-box:nth-child(4) .service-content {
+    top: 71%;
+    left: 60%;
+    width: 224px;
+  }
+
+  .service-box:nth-child(4) {
+    --service-offset-x: -72px;
+    --service-offset-y: 230px;
+    --service-base-scale-x: 1.12;
+    --service-base-rotate: -6deg;
+  }
+
+  .service-box:nth-child(2) .service-name,
+  .service-box:nth-child(4) .service-name {
+    font-size: clamp(1.36rem, 3.55vw, 1.82rem);
+  }
+
+  .service-box:nth-child(2) .service-desc,
+  .service-box:nth-child(4) .service-desc {
+    font-size: 0.66rem;
+  }
+
+  .services-edge--top-companies {
+    top: -100px;
+    width: 160%;
+    right: -190px;
+  }
+
+  .services-edge--bottom-companies {
+    bottom: -40px;
+    width: 1200px;
+    left: -240px;
+    opacity: 0.4;
+    filter: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .services-perspective-wrap {
+    top: 20%;
+    width: min(102vw, 400px);
+    left: 50%;
+  }
+
+  .services-character-wrap {
+    width: min(100%, 420px);
+    height: min(82vh, 680px);
+    min-height: 340px;
+  }
+
+  .services-character-scene {
+    width: min(100%, 490px);
+    max-width: 490px;
+    left: 8%;
+    bottom: 21%;
+    transform: none;
+  }
+
+  .services-character,
+  .services-character-eyes {
+    transform: none;
+  }
+
+  .character-bg-logo {
+    top: 37%;
+    left: 45%;
+    width: 150%;
+    height: 150%;
+    opacity: 0.82;
+    filter: blur(1px);
+  }
+
+  .services-edge--top-companies {
+    top: -100px;
+    width: 1200px;
+    right: -240px;
+    opacity: 0.4;
+    filter: none;
+  }
+
+  .services-edge--bottom-companies {
+    bottom: -40px;
+    width: 1200px;
+    left: -240px;
+    opacity: 0.4;
+    filter: none;
+  }
+
+  .service-content {
+    gap: 0.36rem;
+  }
+
+  .service-header {
+    column-gap: 0.38rem;
+    row-gap: 0.12rem;
+  }
+
+  .service-number {
+    font-size: 0.66rem;
+  }
+
+  .service-box .service-name {
+    font-size: clamp(1.28rem, 5vw, 2rem);
+  }
+
+  .service-box .service-desc {
+    font-size: 0.58rem;
+    line-height: 1.16;
+  }
+
+  .service-box:nth-child(1) .service-content {
+    top: 30%;
+    left: 27%;
+    width: 98px;
+  }
+
+  .service-box:nth-child(1) {
+    --service-offset-x: -60px;
+    --service-offset-y: -116px;
+  }
+
+  .service-box:nth-child(2) .service-content {
+    top: 25%;
+    left: 71%;
+    width: 126px;
+  }
+
+  .service-box:nth-child(2) {
+    --service-offset-x: -230px;
+    --service-offset-y: 140px;
+  }
+
+  .service-box:nth-child(3) .service-content {
+    top: 68%;
+    left: 16%;
+    width: 98px;
+  }
+
+  /*-------- Poster Deisgn --------*/
+  .service-box:nth-child(3) {
+    --service-offset-x: 300px;
+    --service-offset-y: -240px;
+    --service-base-scale-x: 1.05;
+    --service-base-rotate: -5deg;
+  }
+
+  .service-box:nth-child(4) .service-content {
+    top: 71.5%;
+    left: 60%;
+    width: 178px;
+  }
+
+  .service-box:nth-child(4) {
+    --service-offset-x: -64px;
+    --service-offset-y: 240px;
+    --service-base-scale-x: 1.4;
+    --service-base-rotate: -4deg;
+  }
+
+  .service-box:nth-child(1) .service-name,
+  .service-box:nth-child(3) .service-name {
+    font-size: clamp(1.18rem, 4.2vw, 1.6rem);
+  }
+
+  .service-box:nth-child(2) .service-name,
+  .service-box:nth-child(4) .service-name {
+    font-size: clamp(1.02rem, 3.8vw, 1.34rem);
+  }
+
+  .service-box:nth-child(2) .service-desc,
+  .service-box:nth-child(4) .service-desc {
+    font-size: 0.52rem;
+    line-height: 1.12;
+  }
+
 }

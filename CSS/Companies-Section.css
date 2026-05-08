@@ -6,7 +6,9 @@
   position: relative;
   background: #050505;
   overflow: visible;
-  z-index: 50; /* Lowered so Section 3 sits on top */
+  z-index: 50;
+
+  /* Lowered so Section 3 sits on top */
   /* subtle top and bottom glow instead of hard borders */
   box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 -20px 40px rgba(0, 0, 0, 0.5);
 }
@@ -287,86 +289,226 @@
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   #companies {
-    padding: 60px 0;
+    padding: 0 0 56px;
+    overflow: visible;
+    z-index: 80;
+    margin-top: 0;
+  }
+
+
+
+  #companies::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #050505;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .companies-header {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 94vw);
+    margin: -30px auto 14px;
+    gap: 12px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .companies-header,
+  .marquee-main-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-toggle-btn {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    padding: 8px 12px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .header-toggle-btn.active::after {
+    width: 72%;
+  }
+
+  .header-toggle-sep {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    line-height: 1;
+  }
+
+  .marquee-main-container {
+    width: 100%;
+    height: 88px;
+  }
+
+  .logos-marquee-wrap {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .logos-track {
+    padding: 14px 0;
+  }
+
+  #marquee-proud .logos-track {
+    animation-duration: 34s;
   }
 
   .logo-item {
-    padding: 0 40px;
+    padding: 0 30px;
+    opacity: 0.55;
   }
 
   .logo-svg {
-    height: 35px;
+    height: 32px;
   }
 
   .logo-item[data-brand="ubisoft"] .logo-svg {
-    height: 45px;
+    height: 38px;
+  }
+
+  .logo-item[data-brand="netherrealm"] .logo-svg {
+    height: 42px;
+  }
+
+  .logo-item[data-brand="warnerbros"] .logo-svg {
+    height: 38px;
   }
 
   .logo-item[data-brand="wandlor"] .logo-svg {
-    height: 42px;
-    max-width: 180px;
+    height: 34px;
+    max-width: 150px;
   }
 
   .logo-item[data-brand="molotov"] .logo-svg {
-    height: 46px;
-    max-width: 180px;
+    height: 36px;
+    max-width: 160px;
   }
 
   .logo-item[data-brand="click"] .logo-svg,
-  .logo-item[data-brand="digitalizehub"] .logo-svg,
+  .logo-item[data-brand="noju"] .logo-svg {
+    height: 46px;
+  }
+
   .logo-item[data-brand="lii-market"] .logo-svg,
-  .logo-item[data-brand="noju"] .logo-svg,
   .logo-item[data-brand="sceneproduction"] .logo-svg {
-    height: 60px;
+    height: 32px;
+  }
+
+  .logo-item[data-brand="digitalizehub"] .logo-svg {
+    height: 28px;
   }
 
   .logo-item[data-brand="kosium"] .logo-svg {
-    height: 62px;
-    max-width: 250px;
+    height: 32px;
   }
 
   .logo-item[data-brand="paradox"] .logo-svg {
+    height: 30px;
+    max-width: 150px;
+  }
+
+  .logo-item[data-brand="mk11"] .logo-svg {
+    height: 34px;
+    max-width: 150px;
+  }
+
+  .logo-item[data-brand="ac-mirage"] .logo-svg {
+    height: 38px;
+    max-width: 180px;
+  }
+
+  .logo-item[data-brand="dl2"] .logo-svg {
+    height: 38px;
+    max-width: 180px;
+  }
+
+  .logo-item[data-brand="genesis"] .logo-svg {
+    height: 44px;
+    max-width: 170px;
+  }
+
+  .logo-item[data-brand="mk-movie"] .logo-svg {
     height: 40px;
     max-width: 190px;
   }
 
-  .logo-item[data-brand="mk11"] .logo-svg {
-    height: 42px;
-    max-width: 190px;
-  }
-
-  .logo-item[data-brand="ac-mirage"] .logo-svg {
-    height: 50px;
-    max-width: 230px;
-  }
-
-  .logo-item[data-brand="dl2"] .logo-svg {
-    height: 50px;
-    max-width: 230px;
-  }
-
-  .logo-item[data-brand="genesis"] .logo-svg {
-    height: 58px;
-    max-width: 210px;
-  }
-
-  .logo-item[data-brand="mk-movie"] .logo-svg {
-    height: 52px;
-    max-width: 240px;
-  }
-
   .logo-item[data-brand="jaecoo"] .logo-svg {
-    height: 33px;
-    max-width: 190px;
+    height: 26px;
+    max-width: 150px;
   }
 
   .logo-item[data-brand="omada"] .logo-svg {
-    height: 24px;
-    max-width: 165px;
+    height: 20px;
+    max-width: 130px;
   }
 
   .logo-item[data-brand="zeekr"] .logo-svg {
-    height: 30px;
-    max-width: 170px;
+    height: 24px;
+    max-width: 140px;
+  }
+
+  .logo-sep {
+    width: 3px;
+    height: 3px;
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 480px) {
+  #companies {
+    padding: 0 0 48px;
+    margin-top: 0;
+  }
+
+  .companies-header {
+    width: min(100%, 94vw);
+    margin: -30px auto 14px;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .header-toggle-btn {
+    font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+    padding: 6px 8px;
+    white-space: nowrap;
+  }
+
+  .header-toggle-sep {
+    font-size: 1.4rem;
+  }
+
+  .marquee-main-container {
+    height: 78px;
+  }
+
+  .logo-item {
+    padding: 0 22px;
+  }
+
+  .logos-track {
+    padding: 10px 0;
+  }
+
+  .logo-svg {
+    height: 28px;
+  }
+
+  .logo-item[data-brand="digitalizehub"] .logo-svg {
+    height: 24px;
+  }
+
+  .logo-item[data-brand="kosium"] .logo-svg {
+    height: 28px;
+  }
+
+  .logo-item[data-brand="noju"] .logo-svg,
+  .logo-item[data-brand="click"] .logo-svg {
+    height: 40px;
   }
 }
