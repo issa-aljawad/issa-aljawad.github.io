@@ -3,73 +3,71 @@
     const nav = document.querySelector(".nav-bar");
     if (!nav) return;
 
+    let scrollStopTimeoutId = null;
     let lastScrollY = window.scrollY;
-    let ticking = false;
-    let hideTimeoutId = null;
-    let showTimeoutId = null;
-    const revealZoneHeight = 28;
-    const hideDelay = 260;
-    const showDelay = 180;
+    const showAfterScrollDelay = 180;
+    const scrollDeltaThreshold = 6;
+    const hero = document.querySelector("#hero-section-1");
+    let isInHero = true;
 
-    function showNav() {
-      window.clearTimeout(hideTimeoutId);
-      nav.classList.remove("is-hidden");
-    }
-
-    function queueShow() {
-      window.clearTimeout(showTimeoutId);
-      showTimeoutId = window.setTimeout(showNav, showDelay);
-    }
-
-    function queueHide() {
-      window.clearTimeout(hideTimeoutId);
-      window.clearTimeout(showTimeoutId);
-      if (window.scrollY <= 0) return;
-
-      hideTimeoutId = window.setTimeout(() => {
-        if (!nav.matches(":hover")) {
-          nav.classList.add("is-hidden");
-        }
-      }, hideDelay);
-    }
-
-    function updateNav() {
-      const currentScrollY = window.scrollY;
-      const scrollingDown = currentScrollY > lastScrollY;
-
-      if (scrollingDown) {
-        nav.classList.add("is-hidden");
-      } else if (currentScrollY <= 0) {
-        showNav();
+    function updateHeroState() {
+      if (!hero) {
+        isInHero = false;
+        document.body.classList.remove("is-in-hero");
+        nav.classList.remove("is-over-hero");
+        return;
       }
 
-      lastScrollY = currentScrollY;
-      ticking = false;
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      isInHero = window.scrollY < heroBottom - nav.offsetHeight;
+      document.body.classList.toggle("is-in-hero", isInHero);
+      nav.classList.toggle("is-over-hero", isInHero);
+
+      if (isInHero) {
+        nav.classList.add("is-visible");
+        nav.classList.remove("is-hidden");
+      }
     }
+
+    function showNav() {
+      if (isInHero) return;
+      nav.classList.add("is-visible");
+      nav.classList.remove("is-hidden");
+      updateHeroState();
+    }
+
+    function hideNav() {
+      if (isInHero) return;
+      if (nav.classList.contains("is-open")) return;
+      nav.classList.add("is-hidden");
+      updateHeroState();
+    }
+
+    updateHeroState();
 
     window.addEventListener(
       "scroll",
       () => {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(updateNav);
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollY;
+        lastScrollY = currentScrollY;
+
+        updateHeroState();
+        if (isInHero) return;
+
+        if (delta > scrollDeltaThreshold && currentScrollY > nav.offsetHeight) {
+          hideNav();
+        } else if (delta < -scrollDeltaThreshold) {
+          showNav();
+        }
+
+        window.clearTimeout(scrollStopTimeoutId);
+        scrollStopTimeoutId = window.setTimeout(showNav, showAfterScrollDelay);
       },
       { passive: true }
     );
 
-    window.addEventListener("mousemove", (event) => {
-      if (event.clientY <= revealZoneHeight) {
-        queueShow();
-      } else {
-        queueHide();
-      }
-    });
-
-    nav.addEventListener("mouseenter", () => {
-      window.clearTimeout(showTimeoutId);
-      showNav();
-    });
-    nav.addEventListener("mouseleave", queueHide);
+    window.addEventListener("resize", updateHeroState);
   }
 
   if (document.readyState === "loading") {
