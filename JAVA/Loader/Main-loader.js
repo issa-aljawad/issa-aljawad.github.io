@@ -10,8 +10,8 @@
   const loaderAssets = [
     "mask.png",
     "inner-background.png",
-    "Character.webp",
-    "eyes-closed.webp",
+    "character.png",
+    "eyes-closed.png",
     "tear-frame.webp",
     "upper-right-slach.png",
     "lower-right-slash.png"
@@ -84,7 +84,7 @@
           <g mask="url(#mainTearFaceMask)">
             <image
               class="main-tear-loader__face-image"
-              href="${assetBase}Character.webp"
+              href="${assetBase}character.png"
               x="0"
               y="0"
               width="1920"
@@ -93,7 +93,7 @@
             </image>
             <image
               class="main-tear-loader__face-image main-tear-loader__face-image--closed"
-              href="${assetBase}eyes-closed.webp"
+              href="${assetBase}eyes-closed.png"
               x="0"
               y="0"
               width="1920"

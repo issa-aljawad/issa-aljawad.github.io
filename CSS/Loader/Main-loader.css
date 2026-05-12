@@ -98,14 +98,14 @@
 }
 
 .main-tear-loader__face-image {
-  transform: translate(1600px, 1750px) scale(6);
+  transform: translateX(1800px);
   transform-box: fill-box;
   transform-origin: center center;
 }
 
 .main-tear-loader__face-image--closed {
   opacity: 0;
-  transform: translate(-600px, 1750px) scale(6);
+  transform: translateX(0);
 }
 
 .main-tear-loader__frame {
@@ -206,11 +206,11 @@
 
 @keyframes mainCharacterSlideIn {
   0% {
-    transform: translate(760px, 1750px) scale(6);
+    transform: translateX(760px);
   }
 
   100% {
-    transform: translate(-600px, 1750px) scale(6);
+    transform: translateX(0);
   }
 }
 
