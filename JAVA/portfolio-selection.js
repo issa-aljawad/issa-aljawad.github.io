@@ -40,16 +40,16 @@
     function playTitle() {
       if (hasTitlePlayed) return;
       hasTitlePlayed = true;
-      window.setTimeout(() => {
-        gallery.classList.add("is-title-revealed");
-      }, 1000);
+      gallery.classList.add("is-title-revealed");
     }
 
-    function isSectionInViewport() {
-      const rect = gallery.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    function playSequence() {
+      if (hasTitlePlayed || hasCardsPlayed) return;
 
-      return rect.top <= viewportHeight && rect.bottom >= 0;
+      window.setTimeout(() => {
+        playTitle();
+        window.setTimeout(playCards, 700);
+      }, 500);
     }
 
     function isSectionEndInViewport() {
@@ -60,17 +60,10 @@
     }
 
     function handleMobileScroll() {
-      if (!mobileQuery.matches || (hasTitlePlayed && hasCardsPlayed)) return;
-
-      if (isSectionInViewport()) {
-        playTitle();
-      }
+      if (!mobileQuery.matches || hasTitlePlayed || hasCardsPlayed) return;
 
       if (isSectionEndInViewport()) {
-        playCards();
-      }
-
-      if (hasTitlePlayed && hasCardsPlayed) {
+        playSequence();
         window.removeEventListener("scroll", handleMobileScroll);
         window.removeEventListener("resize", handleMobileScroll);
       }
@@ -88,8 +81,7 @@
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              playTitle();
-              window.setTimeout(playCards, 1000);
+              playSequence();
               observer.unobserve(entry.target);
             }
           });
@@ -102,8 +94,7 @@
 
       observer.observe(gallery);
     } else {
-      playTitle();
-      window.setTimeout(playCards, 1000);
+      playSequence();
     }
   }
 
