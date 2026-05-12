@@ -1,0 +1,410 @@
+/* ======================================================
+   SUBINDEX LOADER
+   Fresh section-loader baseline.
+====================================================== */
+
+:root {
+  --subindex-loader-width: 100vw;
+  --subindex-loader-inner-height: 490px;
+  --subindex-loader-final-scale: 15;
+  --subindex-loader-final-reveal-delay: 2.65s;
+  --subindex-loader-final-reveal-duration: 0.62s;
+}
+
+.subindex-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  background: transparent;
+  pointer-events: auto;
+}
+
+.subindex-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+.subindex-loader.is-playing::before {
+  animation: subindexLoaderBlackFade 0.12s ease var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader__viewport-cutout {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subindex-loader__scene {
+  position: relative;
+  z-index: 2;
+  width: var(--subindex-loader-width);
+  aspect-ratio: 16 / 9;
+  transform: translateY(-60px) translateZ(0);
+  transform-origin: center center;
+}
+
+.subindex-loader.is-playing .subindex-loader__scene {
+  animation: subindexFinalSceneZoom var(--subindex-loader-final-reveal-duration) cubic-bezier(0.76, 0, 0.24, 1) var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.subindex-loader__inner-background {
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  object-fit: contain;
+  transform: none;
+}
+
+.subindex-loader.is-playing .subindex-loader__inner-background {
+  animation:
+    subindexInnerBackgroundScale 0.46s cubic-bezier(0.76, 0, 0.24, 1) 0.52s forwards,
+    subindexFadeOutForFinalReveal 0.18s ease var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader__masked-character {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.subindex-loader__character {
+  width: 100%;
+  height: 100%;
+  transform: translateX(-1800px);
+}
+
+.subindex-loader__smile {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.subindex-loader__eyes-closed {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.subindex-loader.is-playing .subindex-loader__masked-character {
+  animation:
+    subindexCharacterSpawn 0.14s ease 1.12s forwards,
+    subindexFadeOutForFinalReveal 0.18s ease var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader.is-playing .subindex-loader__character {
+  animation: subindexCharacterSlideIn 0.46s cubic-bezier(0.16, 1, 0.3, 1) 1.12s forwards;
+}
+
+.subindex-loader.is-playing .subindex-loader__smile {
+  animation: subindexSmileSpawn 0.05s steps(1, end) 1.68s forwards;
+}
+
+.subindex-loader.is-playing .subindex-loader__eyes-closed {
+  animation: subindexCharacterBlink 0.32s steps(1, end) 1.9s forwards;
+}
+
+.subindex-loader__slashes {
+  z-index: 4;
+  opacity: 0;
+  -webkit-clip-path: inset(0 0 0 100%);
+  clip-path: inset(0 0 0 100%);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.75));
+}
+
+.subindex-loader.is-playing .subindex-loader__slashes {
+  animation:
+    subindexSlashesReveal 0.22s cubic-bezier(0.16, 1, 0.3, 1) 1.82s forwards,
+    subindexFadeOutForFinalReveal 0.38s ease var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader__text {
+  z-index: 5;
+  opacity: 0;
+  transform: translate(220px, -32px);
+  -webkit-clip-path: inset(0 0 0 100%);
+  clip-path: inset(0 0 0 100%);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.65));
+}
+
+.subindex-loader.is-playing .subindex-loader__text {
+  animation:
+    subindexTextReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1) 2.1s forwards,
+    subindexFadeOutForFinalReveal 0.18s ease var(--subindex-loader-final-reveal-delay) forwards;
+}
+
+.subindex-loader.is-playing .subindex-loader__viewport-cutout {
+  animation:
+    subindexViewportCutoutAppear 0.01s linear var(--subindex-loader-final-reveal-delay) forwards,
+    subindexViewportCutoutFade 0.18s ease calc(var(--subindex-loader-final-reveal-delay) + var(--subindex-loader-final-reveal-duration)) forwards;
+}
+
+.subindex-loader__upper-frame {
+  z-index: 3;
+  opacity: 1;
+  transform: translateY(0);
+  will-change: transform, clip-path;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.78));
+}
+
+.subindex-loader__lower-frame {
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(0);
+  will-change: opacity, transform;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.78));
+}
+
+.subindex-loader.is-playing .subindex-loader__upper-frame {
+  animation:
+    subindexUpperFrameReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s forwards,
+    subindexUpperFrameLift 0.34s cubic-bezier(0.76, 0, 0.24, 1) 0.52s forwards;
+}
+
+.subindex-loader.is-playing .subindex-loader__lower-frame {
+  animation:
+    subindexLowerFrameReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.06s forwards,
+    subindexLowerFrameDrop 0.4s cubic-bezier(0.76, 0, 0.24, 1) 0.52s forwards;
+}
+
+@keyframes subindexUpperFrameReveal {
+  to {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes subindexLowerFrameReveal {
+  0% {
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes subindexUpperFrameLift {
+  0% {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-220px);
+  }
+}
+
+@keyframes subindexLowerFrameDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(290px);
+  }
+}
+
+@keyframes subindexInnerBackgroundScale {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes subindexCharacterSpawn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subindexCharacterSlideIn {
+  0% {
+    transform: translateX(-1800px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes subindexSmileSpawn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subindexCharacterBlink {
+  0%,
+  18%,
+  100% {
+    opacity: 0;
+  }
+
+  8%,
+  14% {
+    opacity: 1;
+  }
+}
+
+@keyframes subindexSlashesReveal {
+  0% {
+    opacity: 0;
+    -webkit-clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 0 0 100%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes subindexTextReveal {
+  0% {
+    opacity: 0;
+    transform: translate(220px, -32px);
+    -webkit-clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 0 0 100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, -32px);
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes subindexFadeOutForFinalReveal {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes subindexFinalSceneZoom {
+  0% {
+    transform: translateY(-40px) scale(1);
+  }
+
+  100% {
+    transform: translateY(-40px) scale(var(--subindex-loader-final-scale));
+  }
+}
+
+@keyframes subindexViewportCutoutAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subindexViewportCutoutFade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes subindexLoaderBlackFade {
+  to {
+    opacity: 0;
+  }
+}
+
+
+@media (max-width: 700px) {
+  :root {
+    --subindex-loader-width: 100vw;
+  }
+
+  .subindex-loader__scene {
+    height: 100vh;
+    aspect-ratio: auto;
+  }
+
+  .subindex-loader__text {
+    transform: translate(220px, -8px);
+  }
+
+  @keyframes subindexTextReveal {
+    0% {
+      opacity: 0;
+      transform: translate(220px, -8px);
+      -webkit-clip-path: inset(0 0 0 100%);
+      clip-path: inset(0 0 0 100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0, -8px);
+      -webkit-clip-path: inset(0 0 0 0);
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes subindexUpperFrameLift {
+    0% {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-50px);
+    }
+  }
+
+  @keyframes subindexLowerFrameDrop {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(66px);
+    }
+  }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Loader Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@400;500;800&family=Rajdhani:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="CSS/Global-variables.css">
+  <link rel="stylesheet" href="CSS/Hero-Section.css">
+  <link rel="stylesheet" href="CSS/Loader/Main-loader.css">
+  <script src="JAVA/Loader/Main-loader.js" defer></script>
+  <script src="JAVA/hero-stats.js" defer></script>
+  <style>
+    body {
+      min-height: 100svh;
+      margin: 0;
+      background: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="hero-section-1">
+
+    <div class="hero-background">
+      <div class="hero-background-glow"></div>
+      <div class="hero-background-grid"></div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-character-stage" aria-hidden="true">
+        <span class="hero-frame-panel hero-frame-panel--left"></span>
+        <span class="hero-frame-panel hero-frame-panel--center"></span>
+        <span class="hero-frame-panel hero-frame-panel--right"></span>
+
+        <div class="hero-character-entry">
+          <div class="hero-character-float">
+            <img src="Assets/Hero-Section/Character.png" alt="Stylized character artwork"
+              class="hero-character hero-character--base">
+            <img src="Assets/Hero-Section/closed-eyes.png" alt="" class="hero-character hero-character--blink"
+              aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content reveal-from-left" data-reveal-stagger="120" data-reveal-start="120">
+      <h1 class="hero-title reveal">
+        <span class="hero-name">ISSA AL JAWAD</span>
+        <span class="hero-role">Artist</span>
+      </h1>
+
+      <p class="hero-description reveal">
+        I'm A Digital Artist focusing mainly on the film and entertainment industry. Enjoy my creations
+      </p>
+
+      <a href="#projects" class="hero-button reveal">
+        View My Work
+        <span class="hero-button-arrow">&#8594;</span>
+      </a>
+    </div>
+
+    <div class="hero-info-card hero-info-card--profile reveal-from-left" data-reveal-stagger="100"
+      data-reveal-start="260">
+      <span class="hero-info-label">Profile</span>
+      <span class="hero-info-text">Visual Artist</span>
+      <span class="hero-info-text">3D Artist</span>
+      <span class="hero-info-text">Beirut, Lebanon</span>
+    </div>
+
+    <div class="hero-info-card hero-info-card--focus reveal-from-right" data-reveal-stagger="100"
+      data-reveal-start="300">
+      <span class="hero-info-label">Focus</span>
+      <span class="hero-info-text">Cinematic Posters</span>
+      <span class="hero-info-text">3D Stylized Art</span>
+      <span class="hero-info-rail" aria-hidden="true">
+        <span class="hero-info-rail-marker hero-info-rail-marker--one"></span>
+        <span class="hero-info-rail-marker hero-info-rail-marker--two"></span>
+        <span class="hero-info-rail-marker hero-info-rail-marker--three"></span>
+      </span>
+    </div>
+
+    <div class="hero-overlay-decor" aria-hidden="true">
+      <span class="hero-overlay-line hero-overlay-line--left"></span>
+      <span class="hero-overlay-line hero-overlay-line--right"></span>
+      <span class="hero-overlay-dot hero-overlay-dot--left"></span>
+      <span class="hero-overlay-dot hero-overlay-dot--right"></span>
+      <span class="hero-overlay-corner hero-overlay-corner--top"></span>
+      <span class="hero-overlay-corner hero-overlay-corner--bottom"></span>
+    </div>
+
+    <div class="hero-metrics reveal-from-right" data-reveal-stagger="120" data-reveal-start="240">
+      <div class="hero-metrics-list">
+        <div class="hero-metric reveal">
+          <div class="hero-metric-value"><span class="hero-metric-counter" data-target="3">0</span><span>+</span></div>
+          <div class="hero-metric-label">Featured Projects</div>
+        </div>
+
+        <div class="hero-metric reveal">
+          <div class="hero-metric-value"><span class="hero-metric-counter" data-target="10">0</span><span>+</span></div>
+          <div class="hero-metric-label">Years Creating</div>
+        </div>
+
+        <div class="hero-metric reveal">
+          <div class="hero-metric-value"><span class="hero-metric-counter" data-target="2">0</span><span>+</span></div>
+          <div class="hero-metric-label">Top Studios</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

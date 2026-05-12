@@ -43,10 +43,10 @@
   }
 
   function initHeroStats() {
-    const statsWrap = document.querySelector(".hero-stats-wrap");
-    const values = document.querySelectorAll(".hero-stat-value");
+    const metricsSection = document.querySelector(".hero-metrics");
+    const counters = document.querySelectorAll(".hero-metric-counter");
 
-    if (!statsWrap || values.length === 0) return;
+    if (!metricsSection || counters.length === 0) return;
 
     let hasAnimated = false;
 
@@ -54,8 +54,8 @@
       if (hasAnimated) return;
       hasAnimated = true;
 
-      values.forEach((value, index) => {
-        window.setTimeout(() => animateValue(value, 900 + index * 120), index * 90);
+      counters.forEach((counter, index) => {
+        window.setTimeout(() => animateValue(counter, 900 + index * 120), index * 90);
       });
     }
 
@@ -77,7 +77,7 @@
       }
     );
 
-    observer.observe(statsWrap);
+    observer.observe(metricsSection);
   }
 
   if (document.readyState === "loading") {

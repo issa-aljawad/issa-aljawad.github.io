@@ -17,9 +17,9 @@
    HERO BACKGROUND LAYERS
 ====================================================== */
 
-.hero-layers,
-.hero-bg-glow,
-.hero-grid {
+.hero-background,
+.hero-background-glow,
+.hero-background-grid {
   position: absolute;
   inset: 0;
 
@@ -27,7 +27,7 @@
   z-index: 0;
 }
 
-.hero-bg-glow {
+.hero-background-glow {
   background:
     radial-gradient(ellipse 68% 90% at 28% 72%,
       rgba(117, 46, 255, 0.16) 0%,
@@ -37,7 +37,7 @@
       transparent 60%);
 }
 
-.hero-grid {
+.hero-background-grid {
   background-image:
     linear-gradient(rgba(117, 46, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(117, 46, 255, 0.025) 1px, transparent 1px);
@@ -65,7 +65,7 @@
    HERO CHARACTER STAGE
 ====================================================== */
 
-.hero-video-container {
+.hero-visual {
   position: absolute;
   left: 50%;
   bottom: -12px;
@@ -111,7 +111,7 @@
   filter: blur(28px);
 }
 
-.hero-rect {
+.hero-frame-panel {
   position: absolute;
   z-index: 0;
 
@@ -128,7 +128,7 @@
   animation: heroPanelReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.hero-rect--one {
+.hero-frame-panel--left {
   top: 8%;
   left: 11%;
 
@@ -139,7 +139,7 @@
   animation-delay: 0.08s;
 }
 
-.hero-rect--two {
+.hero-frame-panel--center {
   top: 1%;
   left: 34%;
 
@@ -153,7 +153,7 @@
   animation-delay: 0.18s;
 }
 
-.hero-rect--three {
+.hero-frame-panel--right {
   top: 10%;
   right: 8%;
 
@@ -167,7 +167,7 @@
   animation-delay: 0.28s;
 }
 
-.hero-character-reveal {
+.hero-character-entry {
   position: relative;
   z-index: 2;
 
@@ -178,7 +178,7 @@
   animation: heroCharacterReveal 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
-.hero-character-stack {
+.hero-character-float {
   position: relative;
   width: 100%;
   transform-origin: center bottom;
@@ -209,7 +209,7 @@
    HERO COPY
 ====================================================== */
 
-.hero-copy {
+.hero-content {
   position: absolute;
   top: clamp(148px, 23vh, 238px);
   left: clamp(28px, 6vw, 82px);
@@ -230,7 +230,7 @@
   text-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
-.hero-title-main {
+.hero-name {
   display: block;
   font-family: var(--ff-display);
   font-weight: 800;
@@ -240,7 +240,7 @@
   color: #f5f5f0;
 }
 
-.hero-title-script {
+.hero-role {
   position: absolute;
   left: clamp(72px, 5.8vw, 118px);
   top: clamp(16px, 1.9vw, 30px);
@@ -253,7 +253,7 @@
   z-index: 1;
 }
 
-.hero-desc {
+.hero-description {
   max-width: 320px;
   margin-bottom: 18px;
 
@@ -268,7 +268,7 @@
    HERO CTA
 ====================================================== */
 
-.hero-cta {
+.hero-button {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -304,7 +304,7 @@
     border-color 0.22s ease;
 }
 
-.hero-cta::before {
+.hero-button::before {
   content: '';
   position: absolute;
   inset: 4px 8px 4px 12px;
@@ -313,30 +313,30 @@
   opacity: 0.8;
 }
 
-.hero-cta:hover {
+.hero-button:hover {
   transform: translateX(5px);
   color: #ffffff;
   background: rgba(117, 46, 255, 0.32);
   border-color: rgba(255, 255, 255, 1);
 }
 
-.hero-cta-arrow {
+.hero-button-arrow {
   position: relative;
   z-index: 1;
   font-size: clamp(0.85rem, 1vw, 1rem);
   transition: transform 0.2s ease;
 }
 
-.hero-cta {
+.hero-button {
   z-index: 0;
 }
 
-.hero-cta>* {
+.hero-button>* {
   position: relative;
   z-index: 1;
 }
 
-.hero-cta:hover .hero-cta-arrow {
+.hero-button:hover .hero-button-arrow {
   transform: translateX(4px);
 }
 
@@ -345,7 +345,7 @@
    HERO SIDE ACCENTS
 ====================================================== */
 
-.hero-side-stack {
+.hero-info-card {
   position: absolute;
   z-index: 2;
 
@@ -354,13 +354,13 @@
   gap: 7px;
 }
 
-.hero-side-stack--left {
+.hero-info-card--profile {
   left: clamp(28px, 6vw, 82px);
   bottom: clamp(138px, 18vh, 206px);
   padding-left: 18px;
 }
 
-.hero-side-stack--left::before {
+.hero-info-card--profile::before {
   content: '';
   position: absolute;
   left: 0;
@@ -372,14 +372,14 @@
       rgba(117, 46, 255, 0.1));
 }
 
-.hero-side-stack--right {
+.hero-info-card--focus {
   top: clamp(156px, 18vh, 204px);
   right: clamp(32px, 4.5vw, 72px);
   align-items: flex-start;
   padding-right: 34px;
 }
 
-.hero-side-kicker {
+.hero-info-label {
   font-family: 'Rajdhani', sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
@@ -388,7 +388,7 @@
   color: rgba(245, 245, 240, 0.9);
 }
 
-.hero-side-item {
+.hero-info-text {
   font-family: var(--ff-formular);
   font-size: 0.84rem;
   font-weight: 400;
@@ -397,7 +397,7 @@
   color: rgba(245, 245, 240, 0.46);
 }
 
-.hero-side-rail {
+.hero-info-rail {
   position: absolute;
   top: 2px;
   right: 0;
@@ -411,7 +411,7 @@
   box-shadow: 0 0 18px rgba(117, 46, 255, 0.16);
 }
 
-.hero-side-rail-dot {
+.hero-info-rail-marker {
   position: absolute;
   left: 50%;
   width: 16px;
@@ -422,7 +422,7 @@
   transform: translateX(-50%);
 }
 
-.hero-side-rail-dot::after {
+.hero-info-rail-marker::after {
   content: '';
   position: absolute;
   inset: 4px;
@@ -430,33 +430,33 @@
   background: rgba(245, 245, 240, 0.88);
 }
 
-.hero-side-rail-dot--one {
+.hero-info-rail-marker--one {
   top: 4px;
 }
 
-.hero-side-rail-dot--two {
+.hero-info-rail-marker--two {
   top: 44px;
 }
 
-.hero-side-rail-dot--three {
+.hero-info-rail-marker--three {
   top: 84px;
 }
 
-.hero-ui-decor {
+.hero-overlay-decor {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
 }
 
-.hero-ui-line,
-.hero-ui-dot,
-.hero-ui-bracket {
+.hero-overlay-line,
+.hero-overlay-dot,
+.hero-overlay-corner {
   position: absolute;
   display: block;
 }
 
-.hero-ui-line {
+.hero-overlay-line {
   height: 1px;
   background: linear-gradient(90deg,
       rgba(255, 255, 255, 0),
@@ -464,19 +464,19 @@
       rgba(255, 255, 255, 0));
 }
 
-.hero-ui-line--left {
+.hero-overlay-line--left {
   left: clamp(40px, 7vw, 100px);
   bottom: clamp(126px, 17vh, 190px);
   width: min(18vw, 240px);
 }
 
-.hero-ui-line--right {
+.hero-overlay-line--right {
   right: clamp(48px, 7vw, 110px);
   top: clamp(138px, 18vh, 184px);
   width: min(16vw, 220px);
 }
 
-.hero-ui-dot {
+.hero-overlay-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -484,30 +484,30 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
 }
 
-.hero-ui-dot--left {
+.hero-overlay-dot--left {
   left: clamp(226px, 21vw, 336px);
   bottom: clamp(122px, 17vh, 186px);
 }
 
-.hero-ui-dot--right {
+.hero-overlay-dot--right {
   right: clamp(244px, 20vw, 324px);
   top: clamp(134px, 18vh, 180px);
 }
 
-.hero-ui-bracket {
+.hero-overlay-corner {
   width: 32px;
   height: 32px;
   border-color: rgba(255, 255, 255, 0.18);
   border-style: solid;
 }
 
-.hero-ui-bracket--top {
+.hero-overlay-corner--top {
   top: clamp(108px, 13vh, 146px);
   right: clamp(20px, 4vw, 48px);
   border-width: 1px 1px 0 0;
 }
 
-.hero-ui-bracket--bottom {
+.hero-overlay-corner--bottom {
   left: clamp(22px, 4vw, 48px);
   bottom: clamp(86px, 11vh, 124px);
   border-width: 0 0 1px 1px;
@@ -518,7 +518,7 @@
    HERO STATS
 ====================================================== */
 
-.hero-stats-wrap {
+.hero-metrics {
   position: absolute;
   right: clamp(20px, 4vw, 48px);
   bottom: clamp(30px, 5vh, 62px);
@@ -528,7 +528,7 @@
   max-width: min(520px, 42vw);
 }
 
-.hero-stats {
+.hero-metrics-list {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -536,7 +536,7 @@
   margin-top: 0;
 }
 
-.hero-stat-block {
+.hero-metric {
   position: relative;
   width: auto;
   min-height: 0;
@@ -548,11 +548,11 @@
   text-align: left;
 }
 
-.hero-stat-block::before {
+.hero-metric::before {
   content: none;
 }
 
-.hero-stat-num {
+.hero-metric-value {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
   font-size: clamp(1.9rem, 2.8vw, 2.35rem);
@@ -562,21 +562,21 @@
   white-space: nowrap;
 }
 
-.hero-stat-num span {
+.hero-metric-value span {
   color: white;
 }
 
-.hero-stat-value {
+.hero-metric-counter {
   display: inline-block;
   min-width: 1.2ch;
   color: #ffffff;
 }
 
-.hero-stat-num > span:last-child {
+.hero-metric-value > span:last-child {
   color: var(--purple);
 }
 
-.hero-stat-label {
+.hero-metric-label {
   margin-top: 0;
   max-width: 92px;
   font-size: clamp(0.64rem, 0.78vw, 0.72rem);
@@ -665,20 +665,20 @@
 ====================================================== */
 
 @media (max-width: 1280px) {
-  .hero-video-container {
+  .hero-visual {
     width: min(48vw, 700px);
     height: min(80svh, 790px);
   }
 
-  .hero-copy {
+  .hero-content {
     width: min(460px, 38vw);
   }
 
-  .hero-stats-wrap {
+  .hero-metrics {
     max-width: min(500px, 42vw);
   }
 
-  .hero-side-stack--right {
+  .hero-info-card--focus {
     right: clamp(20px, 3vw, 40px);
   }
 }
@@ -695,7 +695,7 @@
     overflow: visible;
   }
 
-  .hero-copy {
+  .hero-content {
     position: relative;
     top: auto;
     left: auto;
@@ -706,16 +706,16 @@
     text-align: center;
   }
 
-  .hero-title-script {
+  .hero-role {
     left: 50%;
     transform: translateX(-32%);
   }
 
-  .hero-desc {
+  .hero-description {
     max-width: 560px;
   }
 
-  .hero-video-container {
+  .hero-visual {
     position: relative;
     left: auto;
     bottom: auto;
@@ -734,16 +734,16 @@
     aspect-ratio: 0.8;
   }
 
-  .hero-character-reveal {
+  .hero-character-entry {
     width: min(140%, 1300px);
   }
 
-  .hero-side-stack,
-  .hero-ui-decor {
+  .hero-info-card,
+  .hero-overlay-decor {
     display: none;
   }
 
-  .hero-stats-wrap {
+  .hero-metrics {
     position: relative;
     right: auto;
     bottom: auto;
@@ -755,7 +755,7 @@
     justify-content: center;
   }
 
-  .hero-stats {
+  .hero-metrics-list {
     width: min(360px, 100%);
     margin-inline: auto;
     justify-content: center;
@@ -763,13 +763,13 @@
     gap: 18px;
   }
 
-  .hero-stat-block {
+  .hero-metric {
     flex: 0 0 92px;
     align-items: center;
     text-align: center;
   }
 
-  .hero-stat-label {
+  .hero-metric-label {
     text-align: center;
   }
 }
@@ -780,15 +780,15 @@
     gap: 14px;
   }
 
-  .hero-copy {
+  .hero-content {
     width: min(560px, 100%);
   }
 
-  .hero-desc {
+  .hero-description {
     max-width: 480px;
   }
 
-  .hero-video-container {
+  .hero-visual {
     width: min(98vw, 840px);
     margin-bottom: -96px;
   }
@@ -797,12 +797,12 @@
     aspect-ratio: 0.8;
   }
 
-  .hero-stats {
+  .hero-metrics-list {
     width: min(340px, 100%);
     gap: 14px;
   }
 
-  .hero-stat-block {
+  .hero-metric {
     flex: 0 0 86px;
   }
 }
@@ -813,13 +813,13 @@
     gap: 12px;
   }
 
-  .hero-title-main {
+  .hero-name {
     font-size: clamp(2.2rem, 10.5vw, 3.6rem);
     white-space: normal;
     word-break: break-word;
   }
 
-  .hero-title-script {
+  .hero-role {
     top: clamp(14px, 5vw, 26px);
     font-size: clamp(1.9rem, 8.5vw, 2.8rem);
     left: 50%;
@@ -830,44 +830,44 @@
     padding-bottom: clamp(24px, 6vw, 40px);
   }
 
-  .hero-character-reveal {
+  .hero-character-entry {
     width: min(145%, 1000px);
   }
 
-  .hero-rect--one {
+  .hero-frame-panel--left {
     left: 10%;
     width: 30%;
   }
 
-  .hero-rect--two {
+  .hero-frame-panel--center {
     left: 32%;
     width: 34%;
   }
 
-  .hero-rect--three {
+  .hero-frame-panel--right {
     right: 6%;
     width: 29%;
   }
 
-  .hero-stats {
+  .hero-metrics-list {
     width: min(300px, 100%);
     flex-wrap: nowrap;
     justify-content: center;
     gap: 10px;
   }
 
-  .hero-stat-block {
+  .hero-metric {
     flex: 0 0 84px;
     padding-left: 0;
     align-items: center;
     text-align: center;
   }
 
-  .hero-stat-num {
+  .hero-metric-value {
     font-size: clamp(1.6rem, 6.5vw, 2rem);
   }
 
-  .hero-stat-label {
+  .hero-metric-label {
     max-width: 74px;
     font-size: 0.6rem;
     letter-spacing: 0.13em;
@@ -881,19 +881,19 @@
     gap: 10px;
   }
 
-  .hero-copy {
+  .hero-content {
     width: 100%;
   }
 
-  .hero-title-main {
+  .hero-name {
     font-size: clamp(1.9rem, 9vw, 2.8rem);
   }
 
-  .hero-title-script {
+  .hero-role {
     font-size: clamp(1.6rem, 7.5vw, 2.2rem);
   }
 
-  .hero-video-container {
+  .hero-visual {
     width: min(100vw, 630px);
     margin-bottom: -72px;
   }
@@ -902,30 +902,30 @@
     aspect-ratio: 0.8;
   }
 
-  .hero-desc {
+  .hero-description {
     font-size: clamp(0.85rem, 3.5vw, 0.96rem);
     max-width: 100%;
   }
 
-  .hero-cta {
+  .hero-button {
     padding: 12px 22px 12px 24px;
     font-size: 0.78rem;
   }
 
-  .hero-stats {
+  .hero-metrics-list {
     width: min(280px, 100%);
     gap: 8px;
   }
 
-  .hero-stat-block {
+  .hero-metric {
     flex: 0 0 78px;
   }
 
-  .hero-stat-num {
+  .hero-metric-value {
     font-size: clamp(1.5rem, 6vw, 1.8rem);
   }
 
-  .hero-stat-label {
+  .hero-metric-label {
     max-width: 68px;
     font-size: 0.58rem;
   }
@@ -933,9 +933,9 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .hero-rect,
-  .hero-character-reveal,
-  .hero-character-stack {
+  .hero-frame-panel,
+  .hero-character-entry,
+  .hero-character-float {
     animation: none;
     opacity: 1;
     transform: none;

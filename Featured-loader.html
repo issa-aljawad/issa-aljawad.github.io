@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Loader Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@400;500;800&family=Rajdhani:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="CSS/Global-variables.css">
+  <link rel="stylesheet" href="CSS/Cards-Section.css">
+  <link rel="stylesheet" href="CSS/Loader/Subindex-loader.css">
+  <script src="JAVA/Loader/Subindex-loader.js" defer></script>
+  <script src="JAVA/portfolio-selection.js" defer></script>
+  <style>
+    body {
+      min-height: 100svh;
+      margin: 0;
+      background: #000;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="featured-gallery" id="projects">
+    <div class="featured-gallery__scroll-wrap" data-count="5">
+      <section class="featured-gallery__stage">
+        <div class="featured-gallery__shell">
+          <header class="featured-gallery__lockup">
+            <h2 class="featured-gallery__title">FEATURED</h2>
+            <span class="featured-gallery__script">Artworks</span>
+          </header>
+
+          <div class="featured-gallery__nav" aria-label="Featured gallery navigation">
+            <button type="button" class="featured-gallery__nav-button featured-gallery__nav-button--prev"
+              aria-label="Show previous artwork">
+              <span aria-hidden="true">&#8592;</span>
+            </button>
+            <button type="button" class="featured-gallery__nav-button featured-gallery__nav-button--next"
+              aria-label="Show next artwork">
+              <span aria-hidden="true">&#8594;</span>
+            </button>
+          </div>
+
+          <div class="featured-gallery__rail" aria-label="Featured artwork selection">
+            <a href="/Projects/Mortal-Kombat-11.html" class="featured-gallery__card-link card-0"
+              aria-label="Open Mortal Kombat 11 project">
+              <span class="featured-gallery__card card-0">
+                <img src="Assets/Featured-section/card-0.webp" alt="Mortal Kombat 11 artwork" loading="lazy">
+              </span>
+            </a>
+            <a href="/Projects/Dying-Light-2.html" class="featured-gallery__card-link card-1"
+              aria-label="Open Dying Light 2 project">
+              <span class="featured-gallery__card card-1">
+                <img src="Assets/Featured-section/card-1.webp" alt="Dying Light 2 artwork" loading="lazy">
+              </span>
+            </a>
+            <a href="/Projects/Mortal-Kombat-Movie.html" class="featured-gallery__card-link card-2"
+              aria-label="Open Mortal Kombat Movie project">
+              <span class="featured-gallery__card card-2">
+                <img src="Assets/Featured-section/card-2.webp" alt="Mortal Kombat Movie artwork" loading="lazy">
+              </span>
+            </a>
+            <a href="/Projects/Assassins-Creed-Mirage.html" class="featured-gallery__card-link card-3"
+              aria-label="Open Assassins Creed Mirage project">
+              <span class="featured-gallery__card card-3">
+                <img src="Assets/Featured-section/card-3.webp" alt="Assassins Creed Mirage artwork" loading="lazy">
+              </span>
+            </a>
+            <a href="/Projects/Genesis-Senshi.html" class="featured-gallery__card-link card-4"
+              aria-label="Open Genesis Senshi project">
+              <span class="featured-gallery__card card-4">
+                <img src="Assets/Featured-section/card-4.webp" alt="Genesis Senshi artwork" loading="lazy">
+              </span>
+            </a>
+          </div>
+
+          <div class="featured-gallery__hover-display" aria-live="polite">
+            <span class="featured-gallery__hover-name card-0">MORTAL KOMBAT 11</span>
+            <span class="featured-gallery__hover-name card-1">DYING LIGHT 2</span>
+            <span class="featured-gallery__hover-name card-2">MORTAL KOMBAT MOVIE</span>
+            <span class="featured-gallery__hover-name card-3">ASSASSINS CREED MIRAGE</span>
+            <span class="featured-gallery__hover-name card-4">GENESIS SENSHI</span>
+          </div>
+          <img class="featured-gallery__line featured-gallery__line--bottom" src="Assets/line.svg" alt=""
+            aria-hidden="true">
+        </div>
+      </section>
+    </div>
+  </section>
+</body> 
+
+</html>

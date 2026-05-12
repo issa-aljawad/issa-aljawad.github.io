@@ -1,0 +1,311 @@
+/* ======================================================
+   MAIN TEAR LOADER
+   Standalone test version. PNG mask via SVG.
+====================================================== */
+
+:root {
+  --main-loader-width: min(92vw, 1400px);
+  --main-loader-final-scale: 15;
+  --main-loader-final-reveal-duration: 0.42s;
+  --main-loader-snap-delay: 999s;
+}
+
+.main-tear-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.main-tear-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+.main-tear-loader.is-playing::before {
+  animation: mainLoaderBlackFade 0.12s ease 2.55s forwards;
+}
+
+.main-tear-loader__viewport-cutout {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-tear-loader__viewport-mask-image {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+.main-tear-loader__scene {
+  position: relative;
+  z-index: 2;
+  width: var(--main-loader-width);
+  aspect-ratio: 16 / 9;
+  transform: translateZ(0);
+  filter: drop-shadow(0 24px 38px rgba(0, 0, 0, 0.72));
+}
+
+.main-tear-loader__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.main-tear-loader__masked-background,
+.main-tear-loader__masked-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.main-tear-loader__masked-background {
+  z-index: 2;
+  opacity: 0;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+  transform-origin: center center;
+}
+
+.main-tear-loader__masked-face {
+  z-index: 3;
+  opacity: 1;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.main-tear-loader__inner-background {
+  opacity: 1;
+}
+
+.main-tear-loader__face-image {
+  transform: translate(1600px, 1750px) scale(6);
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.main-tear-loader__face-image--closed {
+  opacity: 0;
+  transform: translate(-600px, 1750px) scale(6);
+}
+
+.main-tear-loader__frame {
+  z-index: 4;
+  opacity: 0;
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+  transform-origin: center center;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.78));
+  mix-blend-mode: screen;
+}
+
+.main-tear-loader__slash {
+  z-index: 5;
+  opacity: 0;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.75));
+}
+
+.main-tear-loader__slash--upper {
+  -webkit-clip-path: inset(0 100% 0 0);
+  clip-path: inset(0 100% 0 0);
+}
+
+.main-tear-loader__slash--lower {
+  -webkit-clip-path: inset(0 0 0 100%);
+  clip-path: inset(0 0 0 100%);
+}
+
+.main-tear-loader.is-playing .main-tear-loader__frame {
+  animation:
+    mainTearFrameReveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.14s forwards,
+    mainTearSubtleExpand var(--main-loader-final-reveal-duration) cubic-bezier(0.76, 0, 0.24, 1) 2.55s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__masked-background {
+  animation:
+    mainInnerBackgroundReveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.14s forwards,
+    mainFadeOutForExpand 0.18s ease 2.55s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__viewport-cutout {
+  animation:
+    mainIndexCutoutAppear 0.01s linear 2.55s forwards,
+    mainFadeOutForExpand 0.18s ease calc(2.55s + var(--main-loader-final-reveal-duration)) forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__face-image {
+  animation: mainCharacterSlideIn 0.56s cubic-bezier(0.16, 1, 0.3, 1) 0.88s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__slash--upper {
+  animation:
+    mainUpperSlashReveal 0.28s cubic-bezier(0.16, 1, 0.3, 1) 1.64s forwards,
+    mainFadeOutForExpand 0.18s ease 2.55s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__slash--lower {
+  animation:
+    mainLowerSlashReveal 0.28s cubic-bezier(0.16, 1, 0.3, 1) 1.72s forwards,
+    mainFadeOutForExpand 0.18s ease 2.55s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__face-image--closed {
+  animation: mainCharacterBlink 0.42s steps(1, end) 2.12s forwards;
+}
+
+.main-tear-loader.is-playing .main-tear-loader__masked-face {
+  animation: mainFadeOutForExpand 0.18s ease 2.55s forwards;
+}
+
+@keyframes mainTearFrameReveal {
+  0% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes mainInnerBackgroundReveal {
+  0% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes mainCharacterSlideIn {
+  0% {
+    transform: translate(760px, 1750px) scale(6);
+  }
+
+  100% {
+    transform: translate(-600px, 1750px) scale(6);
+  }
+}
+
+@keyframes mainUpperSlashReveal {
+  0% {
+    opacity: 0;
+    -webkit-clip-path: inset(0 100% 0 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes mainLowerSlashReveal {
+  0% {
+    opacity: 0;
+    -webkit-clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 0 0 100%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes mainTearSubtleExpand {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(var(--main-loader-final-scale));
+  }
+}
+
+@keyframes mainIndexCutoutAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mainFadeOutForExpand {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes mainLoaderBlackFade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes mainCharacterBlink {
+  0%,
+  18%,
+  100% {
+    opacity: 0;
+  }
+
+  8%,
+  14% {
+    opacity: 1;
+  }
+}
+
+@keyframes mainLoaderSnapOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.075);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --main-loader-width: 96vw;
+    --main-loader-face-y: -10px;
+    --main-loader-face-rise: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-tear-loader,
+  .main-tear-loader__frame,
+  .main-tear-loader__reveal,
+  .main-tear-loader__face {
+    animation-duration: 0.01s !important;
+    animation-delay: 0.01s !important;
+  }
+}
