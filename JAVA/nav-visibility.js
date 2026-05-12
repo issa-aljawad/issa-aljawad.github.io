@@ -7,8 +7,14 @@
     let lastScrollY = window.scrollY;
     const showAfterScrollDelay = 180;
     const scrollDeltaThreshold = 6;
+    const desktopRevealZoneHeight = 36;
+    const mobileQuery = window.matchMedia("(max-width: 700px)");
     const hero = document.querySelector("#hero-section-1");
     let isInHero = true;
+
+    function isMobileNav() {
+      return mobileQuery.matches;
+    }
 
     function updateHeroState() {
       if (!hero) {
@@ -55,6 +61,12 @@
         updateHeroState();
         if (isInHero) return;
 
+        if (!isMobileNav()) {
+          hideNav();
+          window.clearTimeout(scrollStopTimeoutId);
+          return;
+        }
+
         if (delta > scrollDeltaThreshold && currentScrollY > nav.offsetHeight) {
           hideNav();
         } else if (delta < -scrollDeltaThreshold) {
@@ -66,6 +78,21 @@
       },
       { passive: true }
     );
+
+    window.addEventListener("mousemove", (event) => {
+      if (isMobileNav() || isInHero) return;
+
+      if (event.clientY <= desktopRevealZoneHeight) {
+        showNav();
+      } else if (!nav.matches(":hover") && !nav.classList.contains("is-open")) {
+        hideNav();
+      }
+    });
+
+    nav.addEventListener("mouseleave", () => {
+      if (isMobileNav() || isInHero) return;
+      hideNav();
+    });
 
     window.addEventListener("resize", updateHeroState);
   }

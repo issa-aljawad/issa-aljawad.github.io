@@ -7,16 +7,16 @@
   const assetBase = new URL("../../Assets/Loader/Featured/", scriptUrl).href;
   const finalRevealDelay = 2650;
   const removeDelay = 3350;
-  const defaultTextAsset = "text.png";
+  const defaultTextAsset = "text.webp";
   const loaderAssets = [
-    "mask.png",
-    "inner-background.png",
-    "character.png",
-    "smile.png",
-    "eyes-closed.png",
-    "slashes.png",
-    "upper-frame.png",
-    "lower-frame.png"
+    "mask.webp",
+    "inner-background.webp",
+    "character.webp",
+    "smile.webp",
+    "eyes-closed.webp",
+    "slashes.webp",
+    "upper-frame.webp",
+    "lower-frame.webp"
   ];
 
   function createSubindexLoader(options = {}) {
@@ -47,7 +47,7 @@
             <rect x="0" y="0" width="1" height="1" fill="white"></rect>
             <image
               class="subindex-loader__viewport-mask-image"
-              href="${assetBase}mask.png"
+              href="${assetBase}mask.webp"
               x="0.04"
               y="0.24125"
               width="0.92"
@@ -60,17 +60,17 @@
         <rect x="0" y="0" width="100" height="100" fill="#000" mask="url(#subindexSectionCutoutMask)"></rect>
       </svg>
       <div class="subindex-loader__scene">
-        <img class="subindex-loader__layer subindex-loader__inner-background" src="${assetBase}inner-background.png" alt="">
+        <img class="subindex-loader__layer subindex-loader__inner-background" src="${assetBase}inner-background.webp" alt="">
         <svg class="subindex-loader__masked-character" viewBox="0 0 1920 1080" aria-hidden="true">
           <defs>
             <mask id="subindexCharacterMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" mask-type="luminance">
-              <image href="${assetBase}mask.png" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
+              <image href="${assetBase}mask.webp" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
             </mask>
           </defs>
           <g mask="url(#subindexCharacterMask)">
             <image
               class="subindex-loader__character"
-              href="${assetBase}character.png"
+              href="${assetBase}character.webp"
               x="0"
               y="0"
               width="1920"
@@ -79,7 +79,7 @@
             </image>
             <image
               class="subindex-loader__smile"
-              href="${assetBase}smile.png"
+              href="${assetBase}smile.webp"
               x="0"
               y="0"
               width="1920"
@@ -88,7 +88,7 @@
             </image>
             <image
               class="subindex-loader__eyes-closed"
-              href="${assetBase}eyes-closed.png"
+              href="${assetBase}eyes-closed.webp"
               x="0"
               y="0"
               width="1920"
@@ -97,10 +97,10 @@
             </image>
           </g>
         </svg>
-        <img class="subindex-loader__layer subindex-loader__slashes" src="${assetBase}slashes.png" alt="">
+        <img class="subindex-loader__layer subindex-loader__slashes" src="${assetBase}slashes.webp" alt="">
         <img class="subindex-loader__layer subindex-loader__text" src="${assetBase}${textAsset}" alt="">
-        <img class="subindex-loader__layer subindex-loader__upper-frame" src="${assetBase}upper-frame.png" alt="">
-        <img class="subindex-loader__layer subindex-loader__lower-frame" src="${assetBase}lower-frame.png" alt="">
+        <img class="subindex-loader__layer subindex-loader__upper-frame" src="${assetBase}upper-frame.webp" alt="">
+        <img class="subindex-loader__layer subindex-loader__lower-frame" src="${assetBase}lower-frame.webp" alt="">
       </div>
     `;
 
@@ -250,17 +250,17 @@
 
       if (!href || href.startsWith("#") || link.target === "_blank") return;
       const normalizedHref = href.toLowerCase();
-      let textAsset = "text.png";
+      let textAsset = "text.webp";
 
       if (
         normalizedHref.includes("/services/") ||
         normalizedHref.includes("services/")
       ) {
-        textAsset = "services-text.png";
+        textAsset = "services-text.webp";
       } else if (normalizedHref.includes("2d-portfolio.html")) {
-        textAsset = "2Dportfolio-text.png";
+        textAsset = "2Dportfolio-text.webp";
       } else if (normalizedHref.includes("3d-portfolio.html")) {
-        textAsset = "3Dportfolio-text.png";
+        textAsset = "3Dportfolio-text.webp";
       }
 
       event.preventDefault();

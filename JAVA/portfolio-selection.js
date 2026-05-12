@@ -23,6 +23,90 @@
     }
   }
 
+  function initFeaturedRevealSequence() {
+    const gallery = document.querySelector(".featured-gallery");
+    if (!gallery) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 820px)");
+    let hasTitlePlayed = false;
+    let hasCardsPlayed = false;
+
+    function playCards() {
+      if (hasCardsPlayed) return;
+      hasCardsPlayed = true;
+      gallery.classList.add("is-cards-revealed");
+    }
+
+    function playTitle() {
+      if (hasTitlePlayed) return;
+      hasTitlePlayed = true;
+      window.setTimeout(() => {
+        gallery.classList.add("is-title-revealed");
+      }, 1000);
+    }
+
+    function isSectionInViewport() {
+      const rect = gallery.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      return rect.top <= viewportHeight && rect.bottom >= 0;
+    }
+
+    function isSectionEndInViewport() {
+      const rect = gallery.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      return rect.bottom <= viewportHeight;
+    }
+
+    function handleMobileScroll() {
+      if (!mobileQuery.matches || (hasTitlePlayed && hasCardsPlayed)) return;
+
+      if (isSectionInViewport()) {
+        playTitle();
+      }
+
+      if (isSectionEndInViewport()) {
+        playCards();
+      }
+
+      if (hasTitlePlayed && hasCardsPlayed) {
+        window.removeEventListener("scroll", handleMobileScroll);
+        window.removeEventListener("resize", handleMobileScroll);
+      }
+    }
+
+    if (mobileQuery.matches) {
+      window.addEventListener("scroll", handleMobileScroll, { passive: true });
+      window.addEventListener("resize", handleMobileScroll);
+      handleMobileScroll();
+      return;
+    }
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              playTitle();
+              window.setTimeout(playCards, 1000);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "-50% 0px -50% 0px",
+          threshold: 0
+        }
+      );
+
+      observer.observe(gallery);
+    } else {
+      playTitle();
+      window.setTimeout(playCards, 1000);
+    }
+  }
+
   function initFeaturedGallery() {
     const gallery = document.querySelector(".featured-gallery");
     if (!gallery) return;
@@ -151,6 +235,7 @@
 
   function init() {
     initPortfolioChoice();
+    initFeaturedRevealSequence();
     initFeaturedGallery();
   }
 

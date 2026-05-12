@@ -802,6 +802,10 @@
     gap: 14px;
   }
 
+  .hero-metrics {
+    margin-top: 8px;
+  }
+
   .hero-metric {
     flex: 0 0 86px;
   }
@@ -854,6 +858,10 @@
     flex-wrap: nowrap;
     justify-content: center;
     gap: 10px;
+  }
+
+  .hero-metrics {
+    margin-top: 2px;
   }
 
   .hero-metric {
@@ -915,6 +923,10 @@
   .hero-metrics-list {
     width: min(280px, 100%);
     gap: 8px;
+  }
+
+  .hero-metrics {
+    margin-top: 0;
   }
 
   .hero-metric {

@@ -8,13 +8,13 @@
   const removeDelay = 3500;
   const finalRevealDelay = 2550;
   const loaderAssets = [
-    "mask.png",
-    "inner-background.png",
-    "character.png",
-    "eyes-closed.png",
+    "mask.webp",
+    "inner-background.webp",
+    "character.webp",
+    "eyes-closed.webp",
     "tear-frame.webp",
-    "upper-right-slach.png",
-    "lower-right-slash.png"
+    "upper-right-slach.webp",
+    "lower-right-slash.webp"
   ];
 
   function createMainLoader() {
@@ -44,7 +44,7 @@
               <rect x="0" y="0" width="1" height="1" fill="white"></rect>
               <image
                 class="main-tear-loader__viewport-mask-image"
-                href="${assetBase}mask.png"
+                href="${assetBase}mask.webp"
                 x="0.04"
                 y="0.24125"
                 width="0.92"
@@ -60,13 +60,13 @@
         <svg class="main-tear-loader__masked-background" viewBox="0 0 1920 1080" aria-hidden="true">
           <defs>
             <mask id="mainTearBackgroundMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" mask-type="luminance">
-              <image href="${assetBase}mask.png" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
+              <image href="${assetBase}mask.webp" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
             </mask>
           </defs>
           <g mask="url(#mainTearBackgroundMask)">
             <image
               class="main-tear-loader__inner-background"
-              href="${assetBase}inner-background.png"
+              href="${assetBase}inner-background.webp"
               x="0"
               y="0"
               width="1920"
@@ -78,13 +78,13 @@
         <svg class="main-tear-loader__masked-face" viewBox="0 0 1920 1080" aria-hidden="true">
           <defs>
             <mask id="mainTearFaceMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" mask-type="luminance">
-              <image href="${assetBase}mask.png" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
+              <image href="${assetBase}mask.webp" x="0" y="0" width="1920" height="1080" preserveAspectRatio="none"></image>
             </mask>
           </defs>
           <g mask="url(#mainTearFaceMask)">
             <image
               class="main-tear-loader__face-image"
-              href="${assetBase}character.png"
+              href="${assetBase}character.webp"
               x="0"
               y="0"
               width="1920"
@@ -93,7 +93,7 @@
             </image>
             <image
               class="main-tear-loader__face-image main-tear-loader__face-image--closed"
-              href="${assetBase}eyes-closed.png"
+              href="${assetBase}eyes-closed.webp"
               x="0"
               y="0"
               width="1920"
@@ -103,8 +103,8 @@
           </g>
         </svg>
         <img class="main-tear-loader__layer main-tear-loader__frame" src="${assetBase}tear-frame.webp" alt="">
-        <img class="main-tear-loader__layer main-tear-loader__slash main-tear-loader__slash--upper" src="${assetBase}upper-right-slach.png" alt="">
-        <img class="main-tear-loader__layer main-tear-loader__slash main-tear-loader__slash--lower" src="${assetBase}lower-right-slash.png" alt="">
+        <img class="main-tear-loader__layer main-tear-loader__slash main-tear-loader__slash--upper" src="${assetBase}upper-right-slach.webp" alt="">
+        <img class="main-tear-loader__layer main-tear-loader__slash main-tear-loader__slash--lower" src="${assetBase}lower-right-slash.webp" alt="">
       </div>
     `;
 
