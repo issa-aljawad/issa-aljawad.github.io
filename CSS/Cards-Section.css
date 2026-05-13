@@ -650,7 +650,7 @@
     --featured-rail-height: clamp(235px, 34vw, 400px);
     --featured-card-max-width: clamp(265px, 31vw, 395px);
     margin-top: -60px;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .featured-gallery__stage {
@@ -676,7 +676,7 @@
     --featured-rail-height: clamp(280px, 78vw, 360px);
     --featured-card-max-width: clamp(174px, 33vw, 238px);
     --featured-mobile-title-start-y: -100px;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .featured-gallery__stage {
