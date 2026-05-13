@@ -9,12 +9,14 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               servicesSection.classList.add("start-animation");
+              const spineLine = document.getElementById("services-spine-line");
+              if (spineLine) spineLine.classList.add("start-animation");
               observer.unobserve(entry.target);
             }
           });
         },
         {
-          threshold: 0.1 // Further lowered to 10% to ensure trigger on all screens
+          threshold: 0.3 // Trigger when 30% of the section is visible
         }
       );
       observer.observe(servicesSection);
