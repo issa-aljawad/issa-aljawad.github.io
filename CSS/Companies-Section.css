@@ -6,6 +6,7 @@
   position: relative;
   background: #050505;
   overflow: visible;
+  overflow-x: clip;
   z-index: 50;
 
   /* Lowered so Section 3 sits on top */
@@ -290,7 +291,8 @@
 @media (max-width: 768px) {
   #companies {
     padding: 0 0 56px;
-    overflow: visible;
+    overflow-x: clip;
+    overflow-y: visible;
     z-index: 80;
     margin-top: 0;
   }

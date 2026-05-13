@@ -650,6 +650,7 @@
     --featured-rail-height: clamp(235px, 34vw, 400px);
     --featured-card-max-width: clamp(265px, 31vw, 395px);
     margin-top: -60px;
+    overflow-x: hidden;
   }
 
   .featured-gallery__stage {
@@ -662,7 +663,10 @@
   }
 
   .featured-gallery__line--bottom {
-    right: -500px;
+    width: min(130vw, 900px);
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(9deg);
   }
 }
 
@@ -672,6 +676,7 @@
     --featured-rail-height: clamp(280px, 78vw, 360px);
     --featured-card-max-width: clamp(174px, 33vw, 238px);
     --featured-mobile-title-start-y: -100px;
+    overflow-x: hidden;
   }
 
   .featured-gallery__stage {
@@ -900,10 +905,12 @@
   }
 
   .featured-gallery__line--bottom {
-    width: 1650px;
-    right: -520px;
-    bottom: -110px;
+    width: min(130vw, 620px);
+    right: auto;
+    left: 50%;
+    bottom: -42px;
     opacity: 0.4;
+    transform: translateX(-50%) rotate(9deg);
   }
 }
 

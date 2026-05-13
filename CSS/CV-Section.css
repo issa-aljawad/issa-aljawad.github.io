@@ -762,3 +762,39 @@
   pointer-events: none;
   z-index: 3;
 }
+
+@media (max-width: 900px) {
+  #about {
+    overflow-x: hidden;
+  }
+
+  .cv-experience-grid,
+  .cv-bottom-row,
+  .cv-achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  #about {
+    padding: 64px 16px;
+  }
+
+  .cv-body {
+    padding: 20px;
+  }
+
+  .cv-header,
+  .cv-footer {
+    padding-inline: 20px;
+  }
+
+  .cv-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cv-btn {
+    justify-content: center;
+  }
+}

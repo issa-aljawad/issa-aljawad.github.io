@@ -870,23 +870,26 @@
 
   .services-edge--top-companies {
     top: -100px;
-    width: 160%;
-    right: -190px;
+    width: min(130vw, 620px);
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) scaleX(-1);
   }
 
   .services-edge--bottom-companies {
     bottom: -40px;
-    width: 1200px;
-    left: -240px;
+    width: min(130vw, 620px);
+    left: 50%;
     opacity: 0.4;
     filter: none;
+    transform: translateX(-50%);
   }
 }
 
 @media (max-width: 560px) {
   .services-perspective-wrap {
     top: 20%;
-    width: min(102vw, 400px);
+    width: min(100%, 360px);
     left: 50%;
   }
 
@@ -920,18 +923,21 @@
 
   .services-edge--top-companies {
     top: -100px;
-    width: 1200px;
-    right: -240px;
+    width: min(130vw, 620px);
+    right: auto;
+    left: 50%;
     opacity: 0.4;
     filter: none;
+    transform: translateX(-50%) scaleX(-1);
   }
 
   .services-edge--bottom-companies {
     bottom: -40px;
-    width: 1200px;
-    left: -240px;
+    width: min(130vw, 620px);
+    left: 50%;
     opacity: 0.4;
     filter: none;
+    transform: translateX(-50%);
   }
 
   .service-content {
@@ -974,8 +980,8 @@
   }
 
   .service-box:nth-child(2) {
-    --service-offset-x: -230px;
-    --service-offset-y: 140px;
+    --service-offset-x: -160px;
+    --service-offset-y: 120px;
   }
 
   .service-box:nth-child(3) .service-content {
@@ -986,8 +992,8 @@
 
   /*-------- Poster Deisgn --------*/
   .service-box:nth-child(3) {
-    --service-offset-x: 300px;
-    --service-offset-y: -240px;
+    --service-offset-x: 190px;
+    --service-offset-y: -190px;
     --service-base-scale-x: 1.05;
     --service-base-rotate: -5deg;
   }

@@ -692,7 +692,7 @@
     align-items: center;
     gap: 18px;
     padding: 120px 24px 48px;
-    overflow: visible;
+    overflow-x: hidden;
   }
 
   .hero-content {
@@ -722,11 +722,11 @@
     order: 3;
     z-index: 0;
 
-    width: min(98vw, 1020px);
+    width: min(100%, 680px);
     height: auto;
     margin-bottom: -120px;
     margin-inline: auto;
-    transform: translateX(-6%);
+    transform: none;
   }
 
   .hero-character-stage {
@@ -789,7 +789,7 @@
   }
 
   .hero-visual {
-    width: min(98vw, 840px);
+    width: min(100%, 560px);
     margin-bottom: -96px;
   }
 
@@ -902,7 +902,7 @@
   }
 
   .hero-visual {
-    width: min(100vw, 630px);
+    width: 100%;
     margin-bottom: -72px;
   }
 
