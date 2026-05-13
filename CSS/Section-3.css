@@ -356,7 +356,10 @@
   transform:
     translate(var(--service-offset-x), var(--service-offset-y)) rotate(var(--service-base-rotate)) scaleX(var(--service-base-scale-x));
   transition: transform 0.12s cubic-bezier(0.33, 1, 0.68, 1),
-    filter 0.12s cubic-bezier(0.33, 1, 0.68, 1);
+    filter 0.12s cubic-bezier(0.33, 1, 0.68, 1),
+    translate 0.3s cubic-bezier(0.33, 1, 0.68, 1),
+    scale 0.3s cubic-bezier(0.33, 1, 0.68, 1),
+    rotate 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .services-section.start-animation .service-box {
@@ -451,10 +454,14 @@
 }
 
 .service-box:hover {
-  transform:
-    translate(calc(var(--service-offset-x) + var(--service-hover-x)),
-      calc(var(--service-offset-y) + var(--service-hover-y))) rotate(calc(var(--service-base-rotate) + var(--service-hover-rotate))) scaleX(var(--service-base-scale-x)) scale(1.11);
+  translate: var(--service-hover-x) var(--service-hover-y);
+  rotate: var(--service-hover-rotate);
+  scale: 1.15;
   z-index: 100;
+  transition: 
+    translate 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+    scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+    rotate 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .service-box:hover .service-shell-svg {
@@ -494,9 +501,9 @@
   --service-shadow: rgba(117, 46, 255, 0.36);
   --service-shadow-hard: rgba(117, 46, 255, 0.92);
   --service-shadow-soft: rgba(117, 46, 255, 0.34);
-  --service-hover-x: 18px;
-  --service-hover-y: -36px;
-  --service-hover-rotate: 3deg;
+  --service-hover-x: -60px;
+  --service-hover-y: -50px;
+  --service-hover-rotate: -4deg;
   clip-path: polygon(4.13% 40.85%, 5.25% 30.42%, 6.57% 18.26%, 52.27% 9.12%, 36.30% 55.25%);
   z-index: 3;
 }
@@ -507,9 +514,9 @@
   --service-shadow: rgba(255, 46, 91, 0.34);
   --service-shadow-hard: rgba(117, 46, 255, 0.88);
   --service-shadow-soft: rgba(117, 46, 255, 0.28);
-  --service-hover-x: 18px;
-  --service-hover-y: -36px;
-  --service-hover-rotate: 3deg;
+  --service-hover-x: 60px;
+  --service-hover-y: -50px;
+  --service-hover-rotate: 4deg;
   clip-path: polygon(49.28% 49.65%, 42.99% 49.82%, 40.08% 49.88%, 40.96% 47.12%, 54.27% 9.14%, 69.33% 6.21%, 85.25% 2.96%, 100% 0%, 92.49% 48.77%, 87.70% 48.84%, 81.31% 48.98%, 69.29% 49.19%, 61.86% 49.34%, 55.22% 49.50%);
   z-index: 2;
 }
@@ -520,9 +527,9 @@
   --service-shadow: rgba(46, 255, 213, 0.28);
   --service-shadow-hard: rgba(117, 46, 255, 0.88);
   --service-shadow-soft: rgba(117, 46, 255, 0.28);
-  --service-hover-x: -16px;
-  --service-hover-y: -34px;
-  --service-hover-rotate: -5deg;
+  --service-hover-x: -60px;
+  --service-hover-y: 50px;
+  --service-hover-rotate: 4deg;
   clip-path: polygon(24.34% 89.39%, 0% 84.79%, 3.75% 42.34%, 35.65% 57.51%);
   z-index: 4;
 }
@@ -537,9 +544,9 @@
   --service-shadow: rgba(255, 180, 46, 0.28);
   --service-shadow-hard: rgba(117, 46, 255, 0.88);
   --service-shadow-soft: rgba(117, 46, 255, 0.28);
-  --service-hover-x: -16px;
-  --service-hover-y: -34px;
-  --service-hover-rotate: -5deg;
+  --service-hover-x: 60px;
+  --service-hover-y: 50px;
+  --service-hover-rotate: -4deg;
   clip-path: polygon(65.59% 96.50%, 44.88% 92.67%, 26.26% 89.19%, 39.59% 51.36%, 55.62% 51.27%, 90.82% 51.14%, 92.33% 51.21%, 84.41% 100%);
   z-index: 1;
 }
@@ -850,6 +857,10 @@
     pointer-events: auto;
   }
 
+  .service-box:hover {
+    scale: 1.05;
+  }
+
   .service-content {
     gap: 0.55rem;
   }
@@ -882,6 +893,9 @@
   .service-box:nth-child(1) {
     --service-offset-x: -32px;
     --service-offset-y: -140px;
+    --service-hover-x: 15px;
+    --service-hover-y: 15px;
+    --service-hover-rotate: 0deg;
   }
 
   .service-box:nth-child(2) .service-content {
@@ -893,6 +907,9 @@
   .service-box:nth-child(2) {
     --service-offset-x: -156px;
     --service-offset-y: 130px;
+    --service-hover-x: 15px;
+    --service-hover-y: -15px;
+    --service-hover-rotate: 0deg;
   }
 
   .service-box:nth-child(3) .service-content {
@@ -906,6 +923,9 @@
     --service-offset-y: -146px;
     --service-base-scale-x: 1.06;
     --service-base-rotate: -7deg;
+    --service-hover-x: -15px;
+    --service-hover-y: 15px;
+    --service-hover-rotate: 0deg;
   }
 
   .service-box:nth-child(4) .service-content {
@@ -919,6 +939,9 @@
     --service-offset-y: 230px;
     --service-base-scale-x: 1.12;
     --service-base-rotate: -6deg;
+    --service-hover-x: -20px;
+    --service-hover-y: -20px;
+    --service-hover-rotate: 0deg;
   }
 
   .service-box:nth-child(2) .service-name,
