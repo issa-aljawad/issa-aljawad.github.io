@@ -542,9 +542,17 @@
   --service-content-rotate: -10deg;
   --service-title-line-width: 64%;
   top: 29%;
-  left: 25.5%;
-  width: 190px;
+  left: 23.5%;
+  width: 220px;
   transform: translate(-50%, -50%) rotate(var(--service-content-rotate));
+}
+
+.service-box:nth-child(1) .service-header {
+  transform: translateX(-14px);
+}
+
+.service-box:nth-child(1) .service-desc {
+  transform: translateX(10px);
 }
 
 .service-box:nth-child(2) .service-content {
@@ -552,7 +560,7 @@
   --service-title-line-width: 70%;
   top: 24.5%;
   left: 72%;
-  width: 250px;
+  width: 285px;
   transform: translate(-50%, -50%) rotate(var(--service-content-rotate));
 }
 
@@ -570,7 +578,7 @@
   --service-title-line-width: 66%;
   top: 72%;
   left: 60.5%;
-  width: 300px;
+  width: 340px;
   transform: translate(-50%, -50%) rotate(var(--service-content-rotate));
 }
 
@@ -592,7 +600,7 @@
 .service-box .service-desc {
   color: rgba(18, 18, 18, 0.76);
   font-family: var(--ff-body);
-  font-size: 0.98rem;
+  font-size: 1.04rem;
   line-height: 1.38;
   max-width: 100%;
   opacity: 1;
@@ -730,7 +738,7 @@
 
   .services-character-scene {
     position: absolute;
-    left: 8%;
+    left: 3%;
     bottom: 1%;
     width: min(100%, 660px);
     max-width: 660px;
@@ -745,7 +753,7 @@
 
   .character-bg-logo {
     top: 50%;
-    left: 35%;
+    left: 30%;
     width: 214%;
     height: 214%;
     opacity: 0.9;
@@ -806,7 +814,7 @@
   }
 
   .service-box .service-desc {
-    font-size: 0.7rem;
+    font-size: 0.74rem;
     line-height: 1.24;
   }
 
@@ -902,7 +910,7 @@
   .services-character-scene {
     width: min(100%, 490px);
     max-width: 490px;
-    left: 8%;
+    left: 2%;
     bottom: 21%;
     transform: none;
   }
@@ -914,7 +922,7 @@
 
   .character-bg-logo {
     top: 37%;
-    left: 45%;
+    left: 39%;
     width: 150%;
     height: 150%;
     opacity: 0.82;
@@ -958,7 +966,7 @@
   }
 
   .service-box .service-desc {
-    font-size: 0.58rem;
+    font-size: 0.62rem;
     line-height: 1.16;
   }
 
@@ -969,61 +977,88 @@
   }
 
   .service-box:nth-child(1) {
-    --service-offset-x: -60px;
-    --service-offset-y: -116px;
+    --service-offset-x: -42px;
+    --service-offset-y: -78px;
   }
 
   .service-box:nth-child(2) .service-content {
-    top: 25%;
-    left: 71%;
+    top: 28%;
+    left: 74%;
     width: 126px;
   }
 
   .service-box:nth-child(2) {
     --service-offset-x: -160px;
-    --service-offset-y: 120px;
+    --service-offset-y: 186px;
   }
 
   .service-box:nth-child(3) .service-content {
-    top: 68%;
-    left: 16%;
-    width: 98px;
+    top: 65%;
+    left: 14%;
+    width: 112px;
+  }
+
+  .service-box:nth-child(3) .service-desc {
+    transform: translateX(-22px);
+  }
+
+  .service-box:nth-child(3) .service-shell-svg,
+  .service-box:nth-child(3) .service-ink-svg,
+  .service-box:nth-child(3) .service-bg-svg,
+  .service-box:nth-child(3) .service-hologram,
+  .service-box:nth-child(3) .service-scanline {
+    transform: scaleX(1.14) scaleY(1.18);
+    transform-origin: center bottom;
+  }
+
+  .service-box:nth-child(3) .service-shell-svg {
+    filter: none;
   }
 
   /*-------- Poster Deisgn --------*/
   .service-box:nth-child(3) {
-    --service-offset-x: 190px;
+    --service-offset-x: 264px;
     --service-offset-y: -190px;
     --service-base-scale-x: 1.05;
     --service-base-rotate: -5deg;
+    clip-path: polygon(18% 89.39%, -5% 84.79%, 0% 29%, 42% 48%);
   }
 
   .service-box:nth-child(4) .service-content {
-    top: 71.5%;
-    left: 60%;
-    width: 178px;
+    top: 72%;
+    left: 57%;
+    width: 148px;
+    transform: translate(-50%, -50%) rotate(var(--service-content-rotate)) scaleX(0.7);
   }
 
   .service-box:nth-child(4) {
     --service-offset-x: -64px;
     --service-offset-y: 240px;
-    --service-base-scale-x: 1.4;
+    --service-base-scale-x: 1.44;
     --service-base-rotate: -4deg;
   }
 
   .service-box:nth-child(1) .service-name,
   .service-box:nth-child(3) .service-name {
-    font-size: clamp(1.18rem, 4.2vw, 1.6rem);
+    font-size: clamp(1.34rem, 4.8vw, 1.84rem);
   }
 
   .service-box:nth-child(2) .service-name,
   .service-box:nth-child(4) .service-name {
-    font-size: clamp(1.02rem, 3.8vw, 1.34rem);
+    font-size: clamp(1.14rem, 4.2vw, 1.52rem);
+  }
+
+  .service-box:nth-child(4) .service-name {
+    white-space: nowrap;
+  }
+
+  .service-box:nth-child(4) .service-header {
+    transform: translateX(-20px);
   }
 
   .service-box:nth-child(2) .service-desc,
   .service-box:nth-child(4) .service-desc {
-    font-size: 0.52rem;
+    font-size: 0.56rem;
     line-height: 1.12;
   }
 
