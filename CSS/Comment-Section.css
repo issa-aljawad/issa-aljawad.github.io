@@ -8,33 +8,33 @@
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  /* Hidden for reveal */
+  /* Hidden for reveal — slides in from the left */
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(-80px);
   transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comment-section.reveal-active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
-/* Staggered Internal Reveals */
+/* Staggered Internal Reveals — slide in from the left */
 .comment-quote-icon,
 .comment-text,
 .comment-author-wrap,
 .comment-nav,
 .comment-progress-container {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateX(-40px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.comment-section.reveal-active .comment-quote-icon { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
-.comment-section.reveal-active .comment-text { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
-.comment-section.reveal-active .comment-author-wrap { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
-.comment-section.reveal-active .comment-nav { opacity: 1; transform: translateY(0); transition-delay: 0.75s; }
-.comment-section.reveal-active .comment-progress-container { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+.comment-section.reveal-active .comment-quote-icon { opacity: 1; transform: translateX(0); transition-delay: 0.3s; }
+.comment-section.reveal-active .comment-text { opacity: 1; transform: translateX(0); transition-delay: 0.45s; }
+.comment-section.reveal-active .comment-author-wrap { opacity: 1; transform: translateX(0); transition-delay: 0.6s; }
+.comment-section.reveal-active .comment-nav { opacity: 1; transform: translateX(0); transition-delay: 0.75s; }
+.comment-section.reveal-active .comment-progress-container { opacity: 1; transform: translateX(0); transition-delay: 0.9s; }
 
 .comment-container {
   max-width: 1200px;

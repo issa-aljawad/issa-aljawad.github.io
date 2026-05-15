@@ -109,7 +109,11 @@
     const nextButton = gallery.querySelector(".featured-gallery__nav-button--next");
     const mobileQuery = window.matchMedia("(max-width: 820px)");
 
-    if (!rail || cards.length === 0 || names.length === 0 || !prevButton || !nextButton) return;
+    if (!rail || cards.length === 0 || names.length === 0) return;
+
+    function dismissSwipeHint() {
+      gallery.classList.add("is-swipe-dismissed");
+    }
 
     const deckTransforms = [
       { x: 0, y: 16, rotate: 0, scale: 1, lift: -10, z: 6, opacity: 1 },
@@ -191,6 +195,7 @@
       if (!touch) return;
       touchStartX = touch.clientX;
       touchStartY = touch.clientY;
+      dismissSwipeHint();
     }
 
     function handleTouchEnd(event) {
@@ -210,8 +215,8 @@
       }
     }
 
-    prevButton.addEventListener("click", () => step(-1));
-    nextButton.addEventListener("click", () => step(1));
+    if (prevButton) prevButton.addEventListener("click", () => step(-1));
+    if (nextButton) nextButton.addEventListener("click", () => step(1));
     rail.addEventListener("touchstart", handleTouchStart, { passive: true });
     rail.addEventListener("touchend", handleTouchEnd, { passive: true });
 

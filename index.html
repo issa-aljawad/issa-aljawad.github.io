@@ -47,6 +47,12 @@
   <!-- Scripts -->
   <!--<script src="/JAVA/Loader/Main-loader.js" defer></script> -->
   <script src="/JAVA/Loader/Subindex-loader.js" defer data-auto="false" data-bind-links="true"></script>
+  <!-- Motion One (vanilla JS animation library) — exposed as window.Motion -->
+  <script type="module">
+    import * as Motion from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+    window.Motion = Motion;
+  </script>
+
   <script src="/JAVA/cursor.js" defer></script>
   <script src="/JAVA/nav-visibility.js" defer></script>
   <script src="/JAVA/nav-burger.js" defer></script>
@@ -282,16 +288,9 @@
             <span class="featured-gallery__script">Artworks</span>
           </header>
 
-          <!-- Navigation Controls: Prev/Next buttons for the gallery -->
-          <div class="featured-gallery__nav" aria-label="Featured gallery navigation">
-            <button type="button" class="featured-gallery__nav-button featured-gallery__nav-button--prev"
-              aria-label="Show previous artwork">
-              <span aria-hidden="true">&#8592;</span>
-            </button>
-            <button type="button" class="featured-gallery__nav-button featured-gallery__nav-button--next"
-              aria-label="Show next artwork">
-              <span aria-hidden="true">&#8594;</span>
-            </button>
+          <!-- Swipe hint: hand-drawn arc arrow (mobile-only) -->
+          <div class="featured-gallery__swipe-hint" aria-hidden="true">
+            <svg class="featured-gallery__swipe-arc" viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg" data-src="/Assets/swipe-arc.svg" aria-hidden="true" focusable="false"></svg>
           </div>
 
           <!-- Artwork Rail: Container for the interactive project cards -->
@@ -820,10 +819,7 @@
             loading="lazy"
             decoding="async"
           >
-          <svg class="scribble-circle" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M150 12 C90 10, 35 22, 22 50 C8 80, 18 110, 60 120 C110 130, 195 128, 232 116 C268 100, 274 58, 248 32 C222 12, 140 4, 80 18 C28 32, 12 70, 38 102 C78 126, 180 130, 226 118 C264 108, 272 70, 250 40"
-                  fill="none" stroke="#a200ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <svg class="scribble-circle" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg" data-src="/Assets/scribble-circle.svg" aria-hidden="true"></svg>
         </div>
         <div class="logo-sep" aria-hidden="true"></div>
 
@@ -913,6 +909,7 @@
             loading="lazy"
             decoding="async"
           >
+          <svg class="scribble-circle" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg" data-src="/Assets/scribble-circle.svg" aria-hidden="true"></svg>
         </div>
         <div class="logo-sep" aria-hidden="true"></div>
 

@@ -22,13 +22,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Wandlor Position Tracker for Auto-Highlight Effect
-  const wandlorItems = document.querySelectorAll('.logo-item[data-brand="wandlor"]');
+  // Inline external SVG scribbles so parent CSS can animate their paths
+  const scribbleHosts = document.querySelectorAll("svg[data-src]");
+  if (scribbleHosts.length) {
+    const cache = new Map();
+    scribbleHosts.forEach((host) => {
+      const src = host.getAttribute("data-src");
+      if (!src) return;
+      if (!cache.has(src)) {
+        cache.set(src, fetch(src).then((r) => r.text()));
+      }
+      cache.get(src).then((markup) => {
+        const parsed = new DOMParser().parseFromString(markup, "image/svg+xml");
+        const sourceSvg = parsed.querySelector("svg");
+        if (!sourceSvg) return;
+        host.innerHTML = sourceSvg.innerHTML;
+      });
+    });
+  }
+
+  // Position Tracker for Auto-Highlight Effect (wandlor + dl2)
+  const highlightItems = document.querySelectorAll(
+    '.logo-item[data-brand="wandlor"], .logo-item[data-brand="dl2"]'
+  );
   const HIGHLIGHT_HOLD_MS = 6000; // match wandlor-highlight-sequence duration
   const lockedUntil = new WeakMap();
 
   function trackWandlor() {
-    wandlorItems.forEach((item) => {
+    highlightItems.forEach((item) => {
       const rect = item.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
 
@@ -59,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Start tracking
-  if (wandlorItems.length) {
+  if (highlightItems.length) {
     trackWandlor();
   }
 });
