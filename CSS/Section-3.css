@@ -966,10 +966,11 @@
   }
 
   .services-edge--top-companies {
-    top: -100px;
+    top: -40px;
     width: min(130vw, 620px);
     right: auto;
     left: 50%;
+    opacity: 1;
     transform: translateX(-50%) scaleX(-1);
   }
 
@@ -977,7 +978,7 @@
     bottom: -40px;
     width: min(130vw, 620px);
     left: 50%;
-    opacity: 0.4;
+    opacity: 1;
     filter: none;
     transform: translateX(-50%);
   }
@@ -1019,11 +1020,11 @@
   }
 
   .services-edge--top-companies {
-    top: -100px;
+    top: -60px;
     width: min(130vw, 620px);
     right: auto;
     left: 50%;
-    opacity: 0.4;
+    opacity: 1;
     filter: none;
     transform: translateX(-50%) scaleX(-1);
   }
@@ -1032,7 +1033,7 @@
     bottom: -40px;
     width: min(130vw, 620px);
     left: 50%;
-    opacity: 0.4;
+    opacity: 1;
     filter: none;
     transform: translateX(-50%);
   }

@@ -49,31 +49,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const lockedUntil = new WeakMap();
 
   function trackWandlor() {
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth <= 768;
+
     highlightItems.forEach((item) => {
+      // On mobile, skip the duplicated logos (kept for seamless loop) so the animation plays once per track
+      if (isMobile && item.getAttribute("aria-hidden") === "true") return;
+
       const rect = item.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
 
-      // Only trigger if we are on Desktop (viewport > 768px)
-      if (viewportWidth > 768) {
-        // Trigger highlight when the logo's center crosses the viewport's center
-        const viewportCenter = viewportWidth / 2;
-        const logoCenter = rect.left + rect.width / 2;
-        const tolerance = rect.width / 2;
+      // Trigger highlight when the logo's center crosses the viewport's center
+      const viewportCenter = viewportWidth / 2;
+      const logoCenter = rect.left + rect.width / 2;
+      const tolerance = rect.width / 2;
 
-        const isAtCenter = Math.abs(logoCenter - viewportCenter) < tolerance;
-        const now = performance.now();
-        const lockExpiry = lockedUntil.get(item) || 0;
+      const isAtCenter = Math.abs(logoCenter - viewportCenter) < tolerance;
+      const now = performance.now();
+      const lockExpiry = lockedUntil.get(item) || 0;
 
-        if (isAtCenter && now >= lockExpiry) {
-          item.classList.add("auto-highlight");
-          lockedUntil.set(item, now + HIGHLIGHT_HOLD_MS);
-        } else if (now >= lockExpiry) {
-          item.classList.remove("auto-highlight");
-        }
-      } else {
-        // Ensure no highlight on mobile/tablet as per user focus on Desktop
+      if (isAtCenter && now >= lockExpiry) {
+        item.classList.add("auto-highlight");
+        lockedUntil.set(item, now + HIGHLIGHT_HOLD_MS);
+      } else if (now >= lockExpiry) {
         item.classList.remove("auto-highlight");
-        lockedUntil.delete(item);
       }
     });
     requestAnimationFrame(trackWandlor);
