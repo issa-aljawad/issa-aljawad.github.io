@@ -11,7 +11,14 @@
       "PowerShell($paths = @\\(\"$env:ProgramFiles\\\\nodejs\\\\node.exe\", \"${env:ProgramFiles\\(x86\\)}\\\\nodejs\\\\node.exe\", \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\", \"$env:APPDATA\\\\npm\\\\node.exe\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"Found: $p\" } })",
       "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; node --version; npm --version)",
       "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm init -y)",
-      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm i motion)"
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm i motion)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; uipro init --ai claude --global)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npx -y uipro init --ai claude --global)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm install -g uipro-cli)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --ai claude --global)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --help)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro --help)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --ai claude)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Issa Al Jawad\\Desktop\\Portfolio Website\\Website Final Version\\Main-Project\\CSS"
