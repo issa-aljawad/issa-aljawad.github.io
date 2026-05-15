@@ -1,6 +1,7 @@
 /* ======================================================
    COMPANIES SECTION — REDESIGN
 ====================================================== */
+
 #companies {
   padding: 80px 0;
   position: relative;
@@ -9,9 +10,10 @@
   overflow-x: clip;
   z-index: 50;
 
-  /* Lowered so Section 3 sits on top */
   /* subtle top and bottom glow instead of hard borders */
-  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 -20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset 0 20px 40px rgba(0, 0, 0, 0.5),
+    inset 0 -20px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Purple line removed */
@@ -19,15 +21,14 @@
 .companies-header {
   text-align: center;
   margin-bottom: 20px;
-  /* Reduced from 60px to move marquee up */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.2, 0, 0.2, 1) 0s;
-  /* Plays first */
 }
 
 #companies.reveal .companies-header {
@@ -52,7 +53,7 @@
 }
 
 .header-toggle-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -62,13 +63,11 @@
   transition: all 0.4s ease;
   transform: translateX(-50%);
   box-shadow: none;
-  /* Removed purple glow */
 }
 
 .header-toggle-btn.active {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: none;
-  /* Removed purple glow */
 }
 
 .header-toggle-btn.active::after {
@@ -89,12 +88,11 @@
 .marquee-main-container {
   position: relative;
   width: 100%;
-  height: 100px;
-  /* Consistent height */
+  height: 150px;
   opacity: 0;
   transform: translateY(20px);
   transition: all 1s cubic-bezier(0.2, 0, 0.2, 1) 0.4s;
-  /* Plays second */
+  overflow: visible;
 }
 
 #companies.reveal .marquee-main-container {
@@ -107,12 +105,27 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
   transition: all 0.6s cubic-bezier(0.2, 0, 0.2, 1);
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  overflow: visible;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
 }
 
 .logos-marquee-wrap.active {
@@ -127,24 +140,91 @@
   white-space: nowrap;
   width: max-content;
   animation: logos-scroll 25s linear infinite;
-  padding: 20px 0;
+  padding: 42px 0 44px;
+  gap: 0;
 }
 
 #marquee-proud .logos-track {
-  animation-duration: 42s;
+  animation-duration: 25s;
 }
+
+/* ======================================================
+   LOGO ITEMS
+====================================================== */
 
 .logo-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 60px;
+  height: 64px;
+  padding: 0 26px;
+  box-sizing: border-box;
   flex: 0 0 auto;
   opacity: 0.25;
-  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+.scribble-underline {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  filter: drop-shadow(0 0 8px rgba(162, 0, 255, 0.4));
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Internal SVG Path styling for the draw animation */
+.scribble-underline path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600; /* Start hidden */
+  transition: stroke-dashoffset 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.logo-item[data-brand="wandlor"].auto-highlight {
+  animation: wandlor-highlight-sequence 6s ease-in-out forwards;
+}
+
+.logo-item[data-brand="wandlor"].auto-highlight .scribble-underline {
+  animation: scribble-visibility-sequence 6s ease-in-out forwards;
+}
+
+.logo-item[data-brand="wandlor"].auto-highlight .scribble-underline path {
+  animation: scribble-draw-sequence 6s ease-in-out forwards;
+}
+
+@keyframes wandlor-highlight-sequence {
+  0% { transform: scale(1); opacity: 0.25; }
+  8% { transform: scale(1.15); opacity: 0.9; } /* Scale up (Hover animation) */
+  65% { transform: scale(1.15); opacity: 0.9; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); } /* Hold ends — long ease-out release */
+  100% { transform: scale(1); opacity: 0.25; }    /* Return to normal over ~2.1s */
+}
+
+@keyframes scribble-visibility-sequence {
+  0% { opacity: 0; }
+  20% { opacity: 0; }    /* Wait for scale + delay */
+  25% { opacity: 1; }    /* Appear */
+  65% { opacity: 1; animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }    /* Hold ends — eased fade */
+  100% { opacity: 0; }   /* Disappear */
+}
+
+@keyframes scribble-draw-sequence {
+  0% { stroke-dashoffset: 600; }
+  25% { stroke-dashoffset: 600; } /* Delay before reveal */
+  32% { stroke-dashoffset: 0; }   /* Scribble reveal */
+  65% { stroke-dashoffset: 0; }   /* Hold */
+  100% { stroke-dashoffset: 0; }
 }
 
 .logo-item:hover {
@@ -153,119 +233,19 @@
 }
 
 .logo-svg {
-  height: 45px;
-  width: auto;
-  max-width: 180px;
   display: block;
+  object-fit: contain;
   filter: none;
 }
 
 .logo-wordmark {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: Rajdhani, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   color: white;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   pointer-events: none;
-}
-
-/* Specific scaling for wider/taller logos */
-.logo-item[data-brand="ubisoft"] .logo-svg {
-  height: 60px;
-}
-
-.logo-item[data-brand="netherrealm"] .logo-svg {
-  height: 65px;
-}
-
-.logo-item[data-brand="warnerbros"] .logo-svg {
-  height: 62px;
-}
-
-.logo-item[data-brand="wandlor"] .logo-svg {
-  height: 58px;
-  max-width: 220px;
-}
-
-.logo-item[data-brand="molotov"] .logo-svg {
-  height: 62px;
-  max-width: 220px;
-}
-
-.logo-item[data-brand="click"] .logo-svg {
-  height: 80px;
-}
-
-.logo-item[data-brand="digitalizehub"] .logo-svg {
-  height: 100px;
-  max-width: 200px;
-}
-
-.logo-item[data-brand="kosium"] .logo-svg {
-  height: 75px;
-  max-width: 200px;
-}
-
-.logo-item[data-brand="lii-market"] .logo-svg {
-  height: 60px;
-}
-
-.logo-item[data-brand="noju"] .logo-svg {
-  height: 100px;
-}
-
-.logo-item[data-brand="paradox"] .logo-svg {
-  height: 56px;
-  max-width: 250px;
-}
-
-.logo-item[data-brand="sceneproduction"] .logo-svg {
-  height: 80px;
-}
-
-.logo-item[data-brand="mk11"] .logo-svg {
-  height: 58px;
-  max-width: 250px;
-  filter: none;
-}
-
-.logo-item[data-brand="ac-mirage"] .logo-svg {
-  height: 68px;
-  max-width: 300px;
-  filter: none;
-}
-
-.logo-item[data-brand="dl2"] .logo-svg {
-  height: 66px;
-  max-width: 300px;
-  filter: none;
-}
-
-.logo-item[data-brand="genesis"] .logo-svg {
-  height: 78px;
-  max-width: 260px;
-}
-
-.logo-item[data-brand="mk-movie"] .logo-svg {
-  height: 72px;
-  max-width: 320px;
-  filter: none;
-}
-
-.logo-item[data-brand="jaecoo"] .logo-svg {
-  height: 42px;
-  max-width: 235px;
-}
-
-.logo-item[data-brand="omada"] .logo-svg {
-  height: 31px;
-  max-width: 205px;
-}
-
-.logo-item[data-brand="zeekr"] .logo-svg {
-  height: 38px;
-  max-width: 210px;
 }
 
 .logo-sep {
@@ -275,7 +255,80 @@
   border-radius: 50%;
   box-shadow: 0 0 10px #a200ff;
   opacity: 0.4;
+  flex: 0 0 auto;
 }
+
+/* ---- warnerbros ---- */
+.logo-item[data-brand="warnerbros"] { width: 126px; }
+.logo-item[data-brand="warnerbros"] .logo-svg { width: 74px; height: 76px; }
+
+/* ---- wandlor ---- */
+.logo-item[data-brand="wandlor"] { width: 252px; }
+.logo-item[data-brand="wandlor"] .logo-svg { width: 200px; height: 72px; }
+
+/* ---- digitalizehub ---- */
+.logo-item[data-brand="digitalizehub"] { width: 282px; }
+.logo-item[data-brand="digitalizehub"] .logo-svg { width: 230px; height: 80px; }
+
+/* ---- molotov ---- */
+.logo-item[data-brand="molotov"] { width: 248px; }
+.logo-item[data-brand="molotov"] .logo-svg { width: 196px; height: 76px; }
+
+/* ---- paradox ---- */
+.logo-item[data-brand="paradox"] { width: 248px; }
+.logo-item[data-brand="paradox"] .logo-svg { width: 196px; height: 68px; }
+
+/* ---- ac-mirage ---- */
+.logo-item[data-brand="ac-mirage"] { width: 280px; }
+.logo-item[data-brand="ac-mirage"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- dl2 ---- */
+.logo-item[data-brand="dl2"] { width: 280px; }
+.logo-item[data-brand="dl2"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- click ---- */
+.logo-item[data-brand="click"] { width: 248px; }
+.logo-item[data-brand="click"] .logo-svg { width: 196px; height: 54px; }
+
+/* ---- kosium ---- */
+.logo-item[data-brand="kosium"] { width: 248px; }
+.logo-item[data-brand="kosium"] .logo-svg { width: 196px; height: 54px; }
+
+/* ---- mk11 ---- */
+.logo-item[data-brand="mk11"] { width: 280px; }
+.logo-item[data-brand="mk11"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- lii-market ---- */
+.logo-item[data-brand="lii-market"] { width: 128px; }
+.logo-item[data-brand="lii-market"] .logo-svg { width: 76px; height: 76px; }
+
+/* ---- noju ---- */
+.logo-item[data-brand="noju"] { width: 184px; }
+.logo-item[data-brand="noju"] .logo-svg { width: 132px; height: 38px; }
+
+/* ---- genesis ---- */
+.logo-item[data-brand="genesis"] { width: 132px; }
+.logo-item[data-brand="genesis"] .logo-svg { width: 80px; height: 80px; }
+
+/* ---- sceneproduction ---- */
+.logo-item[data-brand="sceneproduction"] { width: 144px; }
+.logo-item[data-brand="sceneproduction"] .logo-svg { width: 92px; height: 76px; }
+
+/* ---- mk-movie ---- */
+.logo-item[data-brand="mk-movie"] { width: 280px; }
+.logo-item[data-brand="mk-movie"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- jaecoo ---- */
+.logo-item[data-brand="jaecoo"] { width: 280px; }
+.logo-item[data-brand="jaecoo"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- omada ---- */
+.logo-item[data-brand="omada"] { width: 280px; }
+.logo-item[data-brand="omada"] .logo-svg { width: 220px; height: 80px; }
+
+/* ---- zeekr ---- */
+.logo-item[data-brand="zeekr"] { width: 280px; }
+.logo-item[data-brand="zeekr"] .logo-svg { width: 220px; height: 80px; }
 
 @keyframes logos-scroll {
   from {
@@ -287,7 +340,10 @@
   }
 }
 
-/* Mobile Adjustments */
+/* ======================================================
+   MOBILE ADJUSTMENTS
+====================================================== */
+
 @media (max-width: 768px) {
   #companies {
     padding: 0 0 56px;
@@ -296,8 +352,6 @@
     z-index: 80;
     margin-top: 0;
   }
-
-
 
   #companies::before {
     content: "";
@@ -347,8 +401,20 @@
   }
 
   .logos-marquee-wrap {
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
   }
 
   .logos-track {
@@ -360,98 +426,82 @@
   }
 
   .logo-item {
-    padding: 0 30px;
+    height: 58px;
+    padding: 0 20px;
     opacity: 0.55;
   }
 
-  .logo-svg {
-    height: 32px;
-  }
+  /* ---- warnerbros ---- */
+  .logo-item[data-brand="warnerbros"] { width: 94px; }
+  .logo-item[data-brand="warnerbros"] .logo-svg { width: 54px; height: 54px; }
 
-  .logo-item[data-brand="ubisoft"] .logo-svg {
-    height: 38px;
-  }
+  /* ---- wandlor ---- */
+  .logo-item[data-brand="wandlor"] { width: 200px; }
+  .logo-item[data-brand="wandlor"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="netherrealm"] .logo-svg {
-    height: 42px;
-  }
+  /* ---- digitalizehub ---- */
+  .logo-item[data-brand="digitalizehub"] { width: 240px; }
+  .logo-item[data-brand="digitalizehub"] .logo-svg { width: 200px; height: 68px; }
 
-  .logo-item[data-brand="warnerbros"] .logo-svg {
-    height: 38px;
-  }
+  /* ---- molotov ---- */
+  .logo-item[data-brand="molotov"] { width: 158px; }
+  .logo-item[data-brand="molotov"] .logo-svg { width: 118px; height: 50px; }
 
-  .logo-item[data-brand="wandlor"] .logo-svg {
-    height: 34px;
-    max-width: 150px;
-  }
+  /* ---- paradox ---- */
+  .logo-item[data-brand="paradox"] { width: 158px; }
+  .logo-item[data-brand="paradox"] .logo-svg { width: 118px; height: 44px; }
 
-  .logo-item[data-brand="molotov"] .logo-svg {
-    height: 36px;
-    max-width: 160px;
-  }
+  /* ---- ac-mirage ---- */
+  .logo-item[data-brand="ac-mirage"] { width: 200px; }
+  .logo-item[data-brand="ac-mirage"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="click"] .logo-svg,
-  .logo-item[data-brand="noju"] .logo-svg {
-    height: 46px;
-  }
+  /* ---- dl2 ---- */
+  .logo-item[data-brand="dl2"] { width: 200px; }
+  .logo-item[data-brand="dl2"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="lii-market"] .logo-svg,
-  .logo-item[data-brand="sceneproduction"] .logo-svg {
-    height: 32px;
-  }
+  /* ---- click ---- */
+  .logo-item[data-brand="click"] { width: 156px; }
+  .logo-item[data-brand="click"] .logo-svg { width: 116px; height: 34px; }
 
-  .logo-item[data-brand="digitalizehub"] .logo-svg {
-    height: 28px;
-  }
+  /* ---- kosium ---- */
+  .logo-item[data-brand="kosium"] { width: 156px; }
+  .logo-item[data-brand="kosium"] .logo-svg { width: 116px; height: 34px; }
 
-  .logo-item[data-brand="kosium"] .logo-svg {
-    height: 32px;
-  }
+  /* ---- mk11 ---- */
+  .logo-item[data-brand="mk11"] { width: 200px; }
+  .logo-item[data-brand="mk11"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="paradox"] .logo-svg {
-    height: 30px;
-    max-width: 150px;
-  }
+  /* ---- lii-market ---- */
+  .logo-item[data-brand="lii-market"] { width: 94px; }
+  .logo-item[data-brand="lii-market"] .logo-svg { width: 54px; height: 54px; }
 
-  .logo-item[data-brand="mk11"] .logo-svg {
-    height: 34px;
-    max-width: 150px;
-  }
+  /* ---- noju ---- */
+  .logo-item[data-brand="noju"] { width: 120px; }
+  .logo-item[data-brand="noju"] .logo-svg { width: 80px; height: 24px; }
 
-  .logo-item[data-brand="ac-mirage"] .logo-svg {
-    height: 38px;
-    max-width: 180px;
-  }
+  /* ---- genesis ---- */
+  .logo-item[data-brand="genesis"] { width: 98px; }
+  .logo-item[data-brand="genesis"] .logo-svg { width: 58px; height: 58px; }
 
-  .logo-item[data-brand="dl2"] .logo-svg {
-    height: 38px;
-    max-width: 180px;
-  }
+  /* ---- sceneproduction ---- */
+  .logo-item[data-brand="sceneproduction"] { width: 104px; }
+  .logo-item[data-brand="sceneproduction"] .logo-svg { width: 64px; height: 56px; }
 
-  .logo-item[data-brand="genesis"] .logo-svg {
-    height: 44px;
-    max-width: 170px;
-  }
+  /* ---- mk-movie ---- */
+  .logo-item[data-brand="mk-movie"] { width: 200px; }
+  .logo-item[data-brand="mk-movie"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="mk-movie"] .logo-svg {
-    height: 40px;
-    max-width: 190px;
-  }
+  /* ---- jaecoo ---- */
+  .logo-item[data-brand="jaecoo"] { width: 200px; }
+  .logo-item[data-brand="jaecoo"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="jaecoo"] .logo-svg {
-    height: 26px;
-    max-width: 150px;
-  }
+  /* ---- omada ---- */
+  .logo-item[data-brand="omada"] { width: 200px; }
+  .logo-item[data-brand="omada"] .logo-svg { width: 160px; height: 58px; }
 
-  .logo-item[data-brand="omada"] .logo-svg {
-    height: 20px;
-    max-width: 130px;
-  }
-
-  .logo-item[data-brand="zeekr"] .logo-svg {
-    height: 24px;
-    max-width: 140px;
-  }
+  /* ---- zeekr ---- */
+  .logo-item[data-brand="zeekr"] { width: 200px; }
+  .logo-item[data-brand="zeekr"] .logo-svg { width: 160px; height: 58px; }
 
   .logo-sep {
     width: 3px;
@@ -490,27 +540,83 @@
   }
 
   .logo-item {
-    padding: 0 22px;
+    height: 54px;
+    padding: 0 16px;
   }
 
   .logos-track {
     padding: 10px 0;
   }
 
-  .logo-svg {
-    height: 28px;
-  }
+  /* ---- warnerbros ---- */
+  .logo-item[data-brand="warnerbros"] { width: 84px; }
+  .logo-item[data-brand="warnerbros"] .logo-svg { width: 52px; height: 52px; }
 
-  .logo-item[data-brand="digitalizehub"] .logo-svg {
-    height: 24px;
-  }
+  /* ---- wandlor ---- */
+  .logo-item[data-brand="wandlor"] { width: 180px; }
+  .logo-item[data-brand="wandlor"] .logo-svg { width: 144px; height: 52px; }
 
-  .logo-item[data-brand="kosium"] .logo-svg {
-    height: 28px;
-  }
+  /* ---- digitalizehub ---- */
+  .logo-item[data-brand="digitalizehub"] { width: 184px; }
+  .logo-item[data-brand="digitalizehub"] .logo-svg { width: 152px; height: 52px; }
 
-  .logo-item[data-brand="noju"] .logo-svg,
-  .logo-item[data-brand="click"] .logo-svg {
-    height: 40px;
-  }
+  /* ---- molotov ---- */
+  .logo-item[data-brand="molotov"] { width: 164px; }
+  .logo-item[data-brand="molotov"] .logo-svg { width: 132px; height: 52px; }
+
+  /* ---- paradox ---- */
+  .logo-item[data-brand="paradox"] { width: 164px; }
+  .logo-item[data-brand="paradox"] .logo-svg { width: 132px; height: 45px; }
+
+  /* ---- ac-mirage ---- */
+  .logo-item[data-brand="ac-mirage"] { width: 180px; }
+  .logo-item[data-brand="ac-mirage"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- dl2 ---- */
+  .logo-item[data-brand="dl2"] { width: 180px; }
+  .logo-item[data-brand="dl2"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- click ---- */
+  .logo-item[data-brand="click"] { width: 162px; }
+  .logo-item[data-brand="click"] .logo-svg { width: 130px; height: 35px; }
+
+  /* ---- kosium ---- */
+  .logo-item[data-brand="kosium"] { width: 162px; }
+  .logo-item[data-brand="kosium"] .logo-svg { width: 130px; height: 35px; }
+
+  /* ---- mk11 ---- */
+  .logo-item[data-brand="mk11"] { width: 180px; }
+  .logo-item[data-brand="mk11"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- lii-market ---- */
+  .logo-item[data-brand="lii-market"] { width: 84px; }
+  .logo-item[data-brand="lii-market"] .logo-svg { width: 52px; height: 52px; }
+
+  /* ---- noju ---- */
+  .logo-item[data-brand="noju"] { width: 112px; }
+  .logo-item[data-brand="noju"] .logo-svg { width: 80px; height: 24px; }
+
+  /* ---- genesis ---- */
+  .logo-item[data-brand="genesis"] { width: 88px; }
+  .logo-item[data-brand="genesis"] .logo-svg { width: 52px; height: 52px; }
+
+  /* ---- sceneproduction ---- */
+  .logo-item[data-brand="sceneproduction"] { width: 96px; }
+  .logo-item[data-brand="sceneproduction"] .logo-svg { width: 64px; height: 52px; }
+
+  /* ---- mk-movie ---- */
+  .logo-item[data-brand="mk-movie"] { width: 180px; }
+  .logo-item[data-brand="mk-movie"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- jaecoo ---- */
+  .logo-item[data-brand="jaecoo"] { width: 180px; }
+  .logo-item[data-brand="jaecoo"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- omada ---- */
+  .logo-item[data-brand="omada"] { width: 180px; }
+  .logo-item[data-brand="omada"] .logo-svg { width: 144px; height: 52px; }
+
+  /* ---- zeekr ---- */
+  .logo-item[data-brand="zeekr"] { width: 180px; }
+  .logo-item[data-brand="zeekr"] .logo-svg { width: 144px; height: 52px; }
 }

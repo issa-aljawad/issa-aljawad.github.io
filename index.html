@@ -48,14 +48,15 @@
   <!--<script src="/JAVA/Loader/Main-loader.js" defer></script> -->
   <script src="/JAVA/Loader/Subindex-loader.js" defer data-auto="false" data-bind-links="true"></script>
   <script src="/JAVA/cursor.js" defer></script>
+  <script src="/JAVA/nav-visibility.js" defer></script>
+  <script src="/JAVA/nav-burger.js" defer></script>
+  <script src="/JAVA/hero-stats.js" defer></script>
   <script src="/JAVA/banner.js" defer></script>
   <script src="/JAVA/services.js" defer></script>
+  <script src="/JAVA/companies-marquee.js" defer></script>  
   <script src="/JAVA/comment-slider.js"></script>
   <script src="/JAVA/portfolio-selection.js" defer></script>
   <script src="/JAVA/about.js" defer></script>
-  <script src="/JAVA/hero-stats.js" defer></script>
-  <script src="/JAVA/nav-visibility.js" defer></script>
-  <script src="/JAVA/nav-burger.js" defer></script>
   <script src="/JAVA/contact-modal.js"></script>
 </head>
 
@@ -507,224 +508,479 @@
 
 
   <!-- =====================================================
-       COMPANIES SECTION
-  ===================================================== -->
-  <section class="banner-two-section" id="companies">
-    <img src="/Assets/line.svg" class="services-edge services-edge--top-companies" alt="" aria-hidden="true">
-    <div class="companies-header">
-      <button class="header-toggle-btn active" data-target="proud">Proud to Work With</button>
-      <span class="header-toggle-sep">/</span>
-      <button class="header-toggle-btn" data-target="promoted">Promoted Projects</button>
+     COMPANIES SECTION
+====================================================== -->
+<section class="banner-two-section" id="companies" aria-label="Companies and promoted projects">
+  <img
+    src="/Assets/line.svg"
+    class="services-edge services-edge--top-companies"
+    alt=""
+    aria-hidden="true"
+  >
+
+  <div class="companies-header" role="group" aria-label="Logo marquee selector">
+    <button
+      type="button"
+      class="header-toggle-btn active"
+      data-target="proud"
+      aria-controls="marquee-proud"
+      aria-pressed="true"
+    >
+      Proud to Work With
+    </button>
+
+    <span class="header-toggle-sep" aria-hidden="true">/</span>
+
+    <button
+      type="button"
+      class="header-toggle-btn"
+      data-target="promoted"
+      aria-controls="marquee-promoted"
+      aria-pressed="false"
+    >
+      Promoted Projects
+    </button>
+  </div>
+
+  <div class="marquee-main-container">
+    <!-- Proud to Work With Track -->
+    <div
+      class="logos-marquee-wrap active"
+      id="marquee-proud"
+      aria-hidden="false"
+    >
+      <div class="logos-track">
+        <!-- Original Set -->
+        <div class="logo-item" data-brand="warnerbros">
+          <img
+            src="/Assets/Companies-Projects-logos/warner-bros.svg"
+            class="logo-svg logo-square"
+            alt="Warner Bros"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="wandlor">
+          <img
+            src="/Assets/Companies-Projects-logos/wandlor.svg"
+            class="logo-svg logo-landscape"
+            alt="Wandlor Agency"
+            loading="lazy"
+            decoding="async"
+          >
+            <svg class="scribble-underline" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M190,5 C160,20 130,-5 100,10 C70,25 40,5 10,15 M205,10 C185,25 155,0 120,15 C85,30 50,10 15,20" 
+                    fill="none" stroke="#a200ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="molotov">
+          <img
+            src="/Assets/Companies-Projects-logos/molotov-films.svg"
+            class="logo-svg logo-landscape"
+            alt="Molotov Films"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="click">
+          <img
+            src="/Assets/Companies-Projects-logos/click.svg"
+            class="logo-svg logo-landscape"
+            alt="Click"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="digitalizehub">
+          <img
+            src="/Assets/Companies-Projects-logos/digitalizehub.svg"
+            class="logo-svg logo-wide"
+            alt="Digitalize Hub"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="kosium">
+          <img
+            src="/Assets/Companies-Projects-logos/kosium.svg"
+            class="logo-svg logo-landscape"
+            alt="Kosium"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="lii-market">
+          <img
+            src="/Assets/Companies-Projects-logos/lii-market.svg"
+            class="logo-svg logo-landscape"
+            alt="Lii Market"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="noju">
+          <img
+            src="/Assets/Companies-Projects-logos/noju.svg"
+            class="logo-svg logo-landscape"
+            alt="Noju"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="paradox">
+          <img
+            src="/Assets/Companies-Projects-logos/paradox.svg"
+            class="logo-svg logo-landscape"
+            alt="Paradox"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="sceneproduction">
+          <img
+            src="/Assets/Companies-Projects-logos/sceneproduction.svg"
+            class="logo-svg logo-wide"
+            alt="Scene Production"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <!-- Duplicated Set for Seamless Loop -->
+        <div class="logo-item" data-brand="warnerbros" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/warner-bros.svg"
+            class="logo-svg logo-square"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="wandlor" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/wandlor.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+            <svg class="scribble-underline" viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M190,5 C160,20 130,-5 100,10 C70,25 40,5 10,15 M205,10 C185,25 155,0 120,15 C85,30 50,10 15,20" 
+                    fill="none" stroke="#a200ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="molotov" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/molotov-films.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="click" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/click.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="digitalizehub" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/digitalizehub.svg"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="kosium" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/kosium.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="lii-market" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/lii-market.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="noju" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/noju.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="paradox" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/paradox.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="sceneproduction" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/sceneproduction.svg"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+      </div>
     </div>
 
-    <div class="marquee-main-container">
-      <!-- Proud to Work With Track -->
-      <div class="logos-marquee-wrap active" id="marquee-proud">
-        <div class="logos-track">
-          <!-- Warner Bros -->
-          <div class="logo-item" data-brand="warnerbros">
-            <img src="/Assets/Companies-Projects-logos/warner-bros.svg" class="logo-svg" alt="Warner Bros">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Wandlor Agency -->
-          <div class="logo-item" data-brand="wandlor">
-            <img src="/Assets/Companies-Projects-logos/wandlor.svg" class="logo-svg" alt="Wandlor Agency">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Molotov Films -->
-          <div class="logo-item" data-brand="molotov">
-            <img src="/Assets/Companies-Projects-logos/molotov-films.svg" class="logo-svg" alt="Molotov Films">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Click -->
-          <div class="logo-item" data-brand="click">
-            <img src="/Assets/Companies-Projects-logos/click.svg" class="logo-svg" alt="Click">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Digitalize Hub -->
-          <div class="logo-item" data-brand="digitalizehub">
-            <img src="/Assets/Companies-Projects-logos/digitalizehub.svg" class="logo-svg" alt="Digitalize Hub">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Kosium -->
-          <div class="logo-item" data-brand="kosium">
-            <img src="/Assets/Companies-Projects-logos/kosium.svg" class="logo-svg" alt="Kosium">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Lii Market -->
-          <div class="logo-item" data-brand="lii-market">
-            <img src="/Assets/Companies-Projects-logos/lii-market.svg" class="logo-svg" alt="Lii Market">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Noju -->
-          <div class="logo-item" data-brand="noju">
-            <img src="/Assets/Companies-Projects-logos/noju.svg" class="logo-svg" alt="Noju">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Paradox -->
-          <div class="logo-item" data-brand="paradox">
-            <img src="/Assets/Companies-Projects-logos/paradox.svg" class="logo-svg" alt="Paradox">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Scene Production -->
-          <div class="logo-item" data-brand="sceneproduction">
-            <img src="/Assets/Companies-Projects-logos/sceneproduction.svg" class="logo-svg" alt="Scene Production">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Duplicated for Loop -->
-          <div class="logo-item" data-brand="warnerbros">
-            <img src="/Assets/Companies-Projects-logos/warner-bros.svg" class="logo-svg" alt="Warner Bros">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="wandlor">
-            <img src="/Assets/Companies-Projects-logos/wandlor.svg" class="logo-svg" alt="Wandlor Agency">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="molotov">
-            <img src="/Assets/Companies-Projects-logos/molotov-films.svg" class="logo-svg" alt="Molotov Films">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="click">
-            <img src="/Assets/Companies-Projects-logos/click.svg" class="logo-svg" alt="Click">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="digitalizehub">
-            <img src="/Assets/Companies-Projects-logos/digitalizehub.svg" class="logo-svg" alt="Digitalize Hub">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="kosium">
-            <img src="/Assets/Companies-Projects-logos/kosium.svg" class="logo-svg" alt="Kosium">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="lii-market">
-            <img src="/Assets/Companies-Projects-logos/lii-market.svg" class="logo-svg" alt="Lii Market">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="noju">
-            <img src="/Assets/Companies-Projects-logos/noju.svg" class="logo-svg" alt="Noju">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="paradox">
-            <img src="/Assets/Companies-Projects-logos/paradox.svg" class="logo-svg" alt="Paradox">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="sceneproduction">
-            <img src="/Assets/Companies-Projects-logos/sceneproduction.svg" class="logo-svg" alt="Scene Production">
-          </div>
-          <div class="logo-sep"></div>
+    <!-- Promoted Projects Track -->
+    <div
+      class="logos-marquee-wrap"
+      id="marquee-promoted"
+      aria-hidden="true"
+    >
+      <div class="logos-track">
+        <!-- Original Set -->
+        <div class="logo-item" data-brand="mk11">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/mk11.svg"
+            class="logo-svg logo-wide"
+            alt="Mortal Kombat 11"
+            loading="lazy"
+            decoding="async"
+          >
         </div>
-      </div>
+        <div class="logo-sep" aria-hidden="true"></div>
 
-      <!-- Promoted Projects Track -->
-      <div class="logos-marquee-wrap" id="marquee-promoted">
-        <div class="logos-track">
-          <!-- Mortal Kombat 11 -->
-          <div class="logo-item" data-brand="mk11">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/mk11.svg" class="logo-svg"
-              alt="Mortal Kombat 11">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Assassin's Creed -->
-          <div class="logo-item" data-brand="ac-mirage">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/ac-mirage.svg" class="logo-svg"
-              alt="Assassin's Creed Mirage">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Dying Light 2 -->
-          <div class="logo-item" data-brand="dl2">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/dyinglight2.svg" class="logo-svg"
-              alt="Dying Light 2">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Genesis Senshi -->
-          <div class="logo-item" data-brand="genesis">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/genesis.svg" class="logo-svg"
-              alt="Genesis Senshi">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- MK Movie -->
-          <div class="logo-item" data-brand="mk-movie">
-            <img src="Assets/Companies-Projects-logos/promoted-projects/mortalkombatmovie.webp" class="logo-svg"
-              alt="Mortal Kombat Movie">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Jaecoo -->
-          <div class="logo-item" data-brand="jaecoo">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/jaecoo.svg" class="logo-svg" alt="Jaecoo">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Omada -->
-          <div class="logo-item" data-brand="omada">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/omada.svg" class="logo-svg" alt="Omada">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Zeekr -->
-          <div class="logo-item" data-brand="zeekr">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/zeekr.svg" class="logo-svg" alt="Zeekr">
-          </div>
-          <div class="logo-sep"></div>
-
-          <!-- Duplicated for Loop -->
-          <div class="logo-item" data-brand="mk11">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/mk11.svg" class="logo-svg"
-              alt="Mortal Kombat 11">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="ac-mirage">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/ac-mirage.svg" class="logo-svg"
-              alt="Assassin's Creed Mirage">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="dl2">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/dyinglight2.svg" class="logo-svg"
-              alt="Dying Light 2">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="genesis">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/genesis.svg" class="logo-svg"
-              alt="Genesis Senshi">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="mk-movie">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/mortalkombatmovie.webp" class="logo-svg"
-              alt="Mortal Kombat Movie">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="jaecoo">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/jaecoo.svg" class="logo-svg" alt="Jaecoo">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="omada">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/omada.svg" class="logo-svg" alt="Omada">
-          </div>
-          <div class="logo-sep"></div>
-          <div class="logo-item" data-brand="zeekr">
-            <img src="/Assets/Companies-Projects-logos/promoted-projects/zeekr.svg" class="logo-svg" alt="Zeekr">
-          </div>
-          <div class="logo-sep"></div>
+        <div class="logo-item" data-brand="ac-mirage">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/ac-mirage.svg"
+            class="logo-svg logo-wide"
+            alt="Assassin's Creed Mirage"
+            loading="lazy"
+            decoding="async"
+          >
         </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="dl2">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/dyinglight2.svg"
+            class="logo-svg logo-wide"
+            alt="Dying Light 2"
+            loading="lazy"
+            decoding="async"
+          >
+          <svg class="scribble-circle" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M150 12 C90 10, 35 22, 22 50 C8 80, 18 110, 60 120 C110 130, 195 128, 232 116 C268 100, 274 58, 248 32 C222 12, 140 4, 80 18 C28 32, 12 70, 38 102 C78 126, 180 130, 226 118 C264 108, 272 70, 250 40"
+                  fill="none" stroke="#a200ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="genesis">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/genesis.svg"
+            class="logo-svg logo-landscape"
+            alt="Genesis Senshi"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="mk-movie">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/mortalkombatmovie.webp"
+            class="logo-svg logo-wide"
+            alt="Mortal Kombat Movie"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="jaecoo">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/jaecoo.svg"
+            class="logo-svg logo-landscape"
+            alt="Jaecoo"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="omada">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/omada.svg"
+            class="logo-svg logo-landscape"
+            alt="Omada"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="zeekr">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/zeekr.svg"
+            class="logo-svg logo-landscape"
+            alt="Zeekr"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <!-- Duplicated Set for Seamless Loop -->
+        <div class="logo-item" data-brand="mk11" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/mk11.svg"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="ac-mirage" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/ac-mirage.svg"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="dl2" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/dyinglight2.svg"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="genesis" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/genesis.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="mk-movie" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/mortalkombatmovie.webp"
+            class="logo-svg logo-wide"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="jaecoo" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/jaecoo.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="omada" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/omada.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
+
+        <div class="logo-item" data-brand="zeekr" aria-hidden="true">
+          <img
+            src="/Assets/Companies-Projects-logos/promoted-projects/zeekr.svg"
+            class="logo-svg logo-landscape"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="logo-sep" aria-hidden="true"></div>
       </div>
     </div>
-    <img src="/Assets/line.svg" class="services-edge services-edge--bottom-companies" alt="" aria-hidden="true">
-  </section>
+  </div>
 
+  <img
+    src="/Assets/line.svg"
+    class="services-edge services-edge--bottom-companies"
+    alt=""
+    aria-hidden="true"
+  >
+</section>
   <!-- =====================================================
        COMMENT SECTION — TESTIMONIAL SLIDER
   ===================================================== -->
