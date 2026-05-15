@@ -3,7 +3,15 @@
     "allow": [
       "Bash(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\")",
       "PowerShell(Remove-Item \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\JAVA\\\\hero-character-position.js\" -Confirm:$false)",
-      "Bash(cp \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\CSS\\\\Cards-Section.css\" \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\BACKUP\\\\Cards-Section-CSS.css\")"
+      "Bash(cp \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\CSS\\\\Cards-Section.css\" \"c:\\\\Users\\\\Issa Al Jawad\\\\Desktop\\\\Portfolio Website\\\\Website Final Version\\\\Main-Project\\\\BACKUP\\\\Cards-Section-CSS.css\")",
+      "Bash(npm init *)",
+      "PowerShell(npm init -y)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell($paths = @\\(\"$env:ProgramFiles\\\\nodejs\\\\node.exe\", \"${env:ProgramFiles\\(x86\\)}\\\\nodejs\\\\node.exe\", \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\", \"$env:APPDATA\\\\npm\\\\node.exe\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"Found: $p\" } })",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; node --version; npm --version)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm init -y)",
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs\"; npm i motion)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Issa Al Jawad\\Desktop\\Portfolio Website\\Website Final Version\\Main-Project\\CSS"
