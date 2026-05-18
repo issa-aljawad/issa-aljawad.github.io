@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Caveat:wght@400;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=Outfit:wght@400;500;600;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Condensed:wght@400;600;700;800;900&family=Bowlby+One&family=Caveat:wght@400;700&family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&family=Outfit:wght@400;500;600;800&family=Rajdhani:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- CSS Files -->
@@ -1136,47 +1136,48 @@
   ===================================================== -->
   <section class="portfolio-choice-section" id="portfolio-selection">
     <div class="choice-header reveal">
-      <span class="choice-eyebrow">Explore My Work</span>
-      <h2 class="choice-title">Choose Your Path</h2>
+      <h2 class="choice-title">
+        EXPLORE<span class="choice-title-script">work</span>
+      </h2>
+      <div class="choice-subtitle" aria-hidden="true">Choose Your Path</div>
     </div>
 
     <div class="choice-container">
-      <!-- 2D Portfolio Card -->
-      <a href="/2D-portfolio.html" class="choice-card reveal" data-reveal-delay="100">
-        <div class="scanline-overlay"></div>
-        <img src="/Assets/Portfolio-Selection/2d-preview.png" alt="2D Portfolio" class="choice-bg-img">
-        <div class="choice-decor">TYPE:CONCEPT_ART // 2D</div>
-        <div class="choice-content">
-          <span class="choice-label">2D</span>
-          <p class="choice-desc">Dive into my collection of concept art, stylized illustrations, and visual storytelling
-            pieces.</p>
-          <div class="choice-btn">
-            Enter 2D Realm
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
+      <!-- LEFT: 3D Portfolio Card -->
+      <a href="/3D-portfolio.html" class="choice-card choice-card--3d reveal" data-reveal-delay="100">
+        <div class="choice-mask-group">
+          <img src="/Assets/Portfolio-Selection/3D-background.webp" alt="" class="choice-bg-img">
+          <img src="/Assets/Portfolio-Selection/3D-character.webp" alt="" class="choice-char-img choice-char-img--clipped">
         </div>
+        <div class="choice-char-mask">
+          <img src="/Assets/Portfolio-Selection/3D-character.webp" alt="3D Portfolio" class="choice-char-img choice-char-img--floating">
+        </div>
+        <span class="choice-sfx" aria-hidden="true">Zoom!</span>
+        <span class="choice-card-label">
+          <span class="choice-card-label__intro">Explore</span>
+          <span class="choice-card-label__hero">3D</span>
+          <span class="choice-card-label__sub">Realm</span>
+        </span>
       </a>
 
-      <!-- 3D Portfolio Card -->
-      <a href="/3D-portfolio.html" class="choice-card reveal" data-reveal-delay="200">
-        <div class="scanline-overlay"></div>
-        <img src="/Assets/Portfolio-Selection/3d-preview.png" alt="3D Portfolio" class="choice-bg-img">
-        <div class="choice-decor">TYPE:MODELS_SCULPTS // 3D</div>
-        <div class="choice-content">
-          <span class="choice-label">3D</span>
-          <p class="choice-desc">Experience my stylized 3D character work, high-fidelity sculpts, and immersive
-            environments.</p>
-          <div class="choice-btn">
-            Enter 3D Realm
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </div>
+      <!-- GUTTER -->
+      <div class="choice-divider" aria-hidden="true"></div>
+
+      <!-- RIGHT: 2D Portfolio Card -->
+      <a href="/2D-portfolio.html" class="choice-card choice-card--2d reveal" data-reveal-delay="200">
+        <div class="choice-mask-group">
+          <img src="/Assets/Portfolio-Selection/2D-background.webp" alt="" class="choice-bg-img">
+          <img src="/Assets/Portfolio-Selection/2D-character.webp" alt="" class="choice-char-img choice-char-img--clipped">
         </div>
+        <div class="choice-char-mask">
+          <img src="/Assets/Portfolio-Selection/2D-character.webp" alt="2D Portfolio" class="choice-char-img choice-char-img--floating">
+        </div>
+        <span class="choice-sfx" aria-hidden="true">Doki!</span>
+        <span class="choice-card-label">
+          <span class="choice-card-label__intro">Explore</span>
+          <span class="choice-card-label__hero">2D</span>
+          <span class="choice-card-label__sub">Realm</span>
+        </span>
       </a>
     </div>
   </section>

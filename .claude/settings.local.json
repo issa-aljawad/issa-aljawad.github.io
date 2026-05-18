@@ -18,7 +18,11 @@
       "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --ai claude --global)",
       "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --help)",
       "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro --help)",
-      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --ai claude)"
+      "PowerShell($env:Path = \"$env:Path;C:\\\\Program Files\\\\nodejs;$env:APPDATA\\\\npm\"; uipro init --ai claude)",
+      "Bash(python3 \".claude/skills/ui-ux-pro-max/scripts/search.py\" \"portfolio dark premium creative designer choice selector\" --design-system -p \"2D-3D Portfolio Selector\" -f markdown)",
+      "PowerShell(py \".claude/skills/ui-ux-pro-max/scripts/search.py\" \"split-screen diagonal duo card hover reveal\" --domain style -n 6)",
+      "PowerShell(py \".claude/skills/ui-ux-pro-max/scripts/search.py\" \"anime manga halftone speed-lines action comic\" --domain style -n 5)",
+      "PowerShell(py \".claude/skills/ui-ux-pro-max/scripts/search.py\" \"japanese typography display\" --domain typography -n 4)"
     ],
     "additionalDirectories": [
       "c:\\Users\\Issa Al Jawad\\Desktop\\Portfolio Website\\Website Final Version\\Main-Project\\CSS"
